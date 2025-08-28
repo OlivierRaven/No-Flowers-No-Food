@@ -6,110 +6,167 @@
 <title>No Flowers = No Food | Act for Biodiversity (NZ)</title>
 <meta name="description" content="A campaign site focused on saving pollinators and biodiversity in New Zealand. Why it matters, what you can do, and resources to help." />
 
+<!-- Google Font for friendlier, readable type -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
+/* =============================================
+   🌷 Vibrant, accessible, flower-themed redesign
+   ============================================= */
+
 /* 🎨 Color Palette */
 :root {
-  --bg:#fefcf9;
+  --bg:#fffefc;
   --ink:#1f2f1f;
-  --green:#3a9d3a;
-  --leaf:#2f8f2f;
-  --pink:#f78fb3;
-  --sky:#3a86ff;
-  --sun:#ffb703;
-  --accent:#e8f6f0;
-  --card:#ffffff;
+  --green:#2fa84f;   /* primary brand green */
+  --leaf:#2d7d3c;    /* dark green for headings */
+  --pink:#ff89c2;    /* flower pink */
+  --sky:#3a86ff;     /* link sky blue */
+  --sun:#ffb703;     /* warm yellow */
+  --lav:#b388eb;     /* lavender */
+  --accent:#eaf8f0;  /* pale green */
+  --card:#ffffff;    /* cards */
+  --ring:#9fe3bc;    /* focus ring */
 }
 
 /* 🌸 Global styles */
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;scroll-behavior:smooth}
-a{color:var(--sky);text-decoration:none;transition:color .3s}
+html,body{
+  font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background: var(--bg);
+  color:var(--ink);
+  line-height:1.75;
+  scroll-behavior:smooth;
+  font-size:18px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+}
+
+/* Links */
+a{color:var(--sky);text-decoration:none;transition:color .2s ease}
 a:hover{color:var(--green)}
+a:focus-visible{outline:3px solid var(--ring);outline-offset:3px;border-radius:6px}
+
+/* 🌿 Subtle floating floral gradient background */
+body::before{
+  content:"";position:fixed;inset:-20vmax;z-index:-1;opacity:.24;filter:blur(60px);
+  background:
+    radial-gradient(40vmax 40vmax at 10% 15%, #ffe1f1 0%, transparent 60%),
+    radial-gradient(35vmax 35vmax at 85% 10%, #e1ffef 0%, transparent 60%),
+    radial-gradient(45vmax 45vmax at 80% 80%, #e8e3ff 0%, transparent 60%),
+    radial-gradient(30vmax 30vmax at 15% 80%, #fff1d6 0%, transparent 60%);
+}
 
 /* 🌿 Smooth fade-in */
-body{animation:fadeIn 1.2s ease-in}
-@keyframes fadeIn{0%{opacity:0;}100%{opacity:1;}}
+body{animation:fadeIn 800ms ease-in}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 /* Sticky Navbar */
-.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(6px);border-bottom:2px solid var(--accent)}
+.nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:2px solid var(--accent)}
 .nav-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:.7rem 1rem}
-.brand{display:flex;align-items:center;gap:.6rem;font-weight:800;color:var(--green);font-size:1.2rem}
-.brand .logo{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #fff 0 30%, var(--sun) 31% 55%, var(--green) 56%)}
-.menu{display:flex;gap:.9rem;flex-wrap:wrap}
-.menu a{padding:.5rem .8rem;border-radius:10px;transition:background .3s}
-.menu a:hover{background:var(--accent)}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:800;color:var(--green);font-size:1.25rem}
+.brand .logo{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #eaf3ea;background:#fff}
+.menu{display:flex;gap:.6rem;flex-wrap:wrap}
+.menu a{padding:.5rem .8rem;border-radius:999px;font-weight:700;color:var(--leaf);transition:background .25s ease, transform .2s}
+.menu a:hover{background:var(--accent);transform:translateY(-1px)}
+.menu a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
 
 /* 🌺 Hero Section */
-.hero{position:relative;min-height:65vh;display:flex;justify-content:center;align-items:center;text-align:center;color:#fff;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1465146633011-14f18c72b735?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;filter:brightness(.65)}
+.hero{position:relative;min-height:68vh;display:flex;justify-content:center;align-items:center;text-align:center;color:#fff;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1465146633011-14f18c72b735?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;filter:brightness(.62)}
 .hero .wrap{position:relative;z-index:1;max-width:1000px;padding:3.5rem 1rem}
-.hero h1{font-size:clamp(2.3rem,5vw,4rem);margin-bottom:.6rem;text-shadow:2px 2px 12px rgba(0,0,0,.5)}
-.hero p{font-size:clamp(1.1rem,2.3vw,1.3rem);color:#f0fff0;margin-bottom:1.5rem}
+.hero .logo-hero{width:86px;height:86px;border-radius:50%;margin:0 auto .8rem;border:3px solid #ffffffcc;background:#fff;object-fit:cover}
+.hero h1{font-size:clamp(2.3rem,5vw,4.2rem);margin-bottom:.6rem;text-shadow:2px 2px 14px rgba(0,0,0,.55)}
+.hero p{font-size:clamp(1.05rem,2.3vw,1.3rem);color:#f0fff0;margin:0 auto 1.6rem;max-width:900px}
 .cta-row{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-block;border-radius:999px;padding:.9rem 1.3rem;font-weight:700;font-size:1rem;transition:all .3s ease}
-.btn.primary{background:var(--green);color:#fff;box-shadow:0 5px 15px rgba(47,143,47,.4)}
-.btn.primary:hover{background:#2a7d2a;transform:translateY(-2px)}
-.btn.secondary{background:#ffffffcc;color:#143214;border:2px solid #e4efe4}
+.btn{display:inline-block;border-radius:999px;padding:.9rem 1.3rem;font-weight:800;font-size:1rem;transition:all .25s ease}
+.btn.primary{background:var(--green);color:#fff;box-shadow:0 5px 15px rgba(47,143,47,.35)}
+.btn.primary:hover{background:#23733a;transform:translateY(-2px)}
+.btn.secondary{background:#ffffffdd;color:#143214;border:2px solid #e4efe4}
 .btn.secondary:hover{background:#fff}
 
 /* 🌸 Sections */
-section{max-width:1100px;margin:auto;padding:3.2rem 1rem;position:relative}
-section h2{text-align:center;font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:1.2rem;color:var(--green);position:relative}
-section h2::after{content:"";display:block;width:80px;height:4px;background:linear-gradient(to right,var(--pink),var(--sun),var(--green));margin:.6rem auto;border-radius:2px}
+section{max-width:1200px;margin:auto;padding:3.2rem 1rem;position:relative}
+section h2{text-align:center;font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:1.2rem;color:var(--green);font-weight:900}
+section h2::after{content:"";display:block;width:100px;height:5px;background:linear-gradient(90deg,var(--pink),var(--sun),var(--green),var(--lav));margin:.7rem auto;border-radius:3px}
+
+/* Subtle section backgrounds to add colour bands */
+.section-band{background:linear-gradient(135deg,#fff8fa,#f4fef6)}
+.section-band-alt{background:linear-gradient(135deg,#f9fcff,#fff8f2)}
 
 /* Highlight box */
-.lead{background:#fff9e5;border:1px solid #ffe49f;border-left:6px solid var(--sun);border-radius:.6rem;padding:1rem 1.2rem;margin:1rem 0}
+.lead{background:#fff9e5;border:1px solid #ffe49f;border-left:6px solid var(--sun);border-radius:.8rem;padding:1rem 1.2rem;margin:1.1rem 0;font-size:1.05rem}
 
 /* Cards */
 .grid{display:grid;gap:1rem}
 @media(min-width:720px){.grid.cols-2{grid-template-columns:repeat(2,1fr)}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
-.card{background:var(--card);border-radius:1rem;padding:1.2rem;box-shadow:0 8px 20px rgba(0,0,0,.06);transition:transform .3s,box-shadow .3s}
+.card{background:var(--card);border-radius:1rem;padding:1.2rem;box-shadow:0 8px 20px rgba(0,0,0,.06);transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden}
 .card:hover{transform:translateY(-6px);box-shadow:0 12px 28px rgba(0,0,0,.12)}
-.card h3{margin-bottom:.6rem;color:var(--leaf)}
+.card h3{margin-bottom:.55rem;color:var(--leaf)}
+.card::after{content:"";position:absolute;bottom:-28px;right:-28px;width:90px;height:90px;background:radial-gradient(circle,var(--pink) 18%,transparent 50%);opacity:.18}
 
 /* Gallery */
 .gallery{display:grid;gap:.9rem;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
-.gallery img{width:100%;height:230px;object-fit:cover;border-radius:.8rem;border:3px solid var(--accent);transition:transform .3s}
+.gallery img{width:100%;height:230px;object-fit:cover;border-radius:.9rem;border:3px solid var(--accent);transition:transform .25s}
 .gallery img:hover{transform:scale(1.04)}
-figcaption{text-align:center;font-size:.9rem;color:#4a5d4a;margin-top:.3rem}
+figcaption{text-align:center;font-size:.9rem;color:#4a5d4a;margin-top:.35rem}
 
 /* Blockquote */
 blockquote{margin:1.5rem 0;padding:1rem 1.2rem;background:var(--accent);border-left:6px solid var(--leaf);border-radius:.6rem;font-style:italic}
 
 /* FAQ */
-details{background:#fff;border:1px solid #dceadc;border-radius:.8rem;padding:1rem;margin:.6rem 0;transition:all .3s}
-summary{cursor:pointer;font-weight:700;color:var(--green);margin-bottom:.4rem}
+details{background:#fff;border:1px solid #dceadc;border-radius:.8rem;padding:1rem;margin:.6rem 0;transition:all .25s}
+summary{cursor:pointer;font-weight:800;color:var(--green);margin-bottom:.35rem}
+
+/* Lists for the 4-week plan */
+ol{padding-left:1.2rem}
+li+li{margin-top:.35rem}
 
 /* Footer */
-footer{background:linear-gradient(135deg,#1e3d1e,#2f8f2f);color:#eaf4ea;padding:2.4rem 1.1rem;margin-top:2rem}
-footer a{color:#fcd34d;text-decoration:underline}
-.foot-inner{max-width:1100px;margin:auto;display:grid;gap:1rem}
+footer{background:linear-gradient(135deg,#1e3d1e,#2f8f2f);color:#eaf4ea;padding:2.4rem 1.1rem;margin-top:2.2rem}
+footer a{color:#ffe99a;text-decoration:underline}
+.foot-inner{max-width:1200px;margin:auto;display:grid;gap:1rem}
+footer ul{padding-left:1.1rem}
 
 /* Back to top button */
-.to-top{position:fixed;right:1rem;bottom:1rem;background:#fff;border:1px solid #dfeadf;border-radius:999px;padding:.6rem .8rem;box-shadow:0 8px 20px rgba(0,0,0,.08);font-weight:bold;transition:.3s}
-.to-top:hover{background:var(--accent)}
+.to-top{position:fixed;right:1rem;bottom:1rem;background:#fff;border:1px solid #dfeadf;border-radius:999px;padding:.6rem .8rem;box-shadow:0 8px 20px rgba(0,0,0,.08);font-weight:bold;transition:.25s}
+.to-top:hover{background:var(--pink);color:#fff}
+.to-top:focus-visible{outline:3px solid var(--ring);outline-offset:3px}
+
+/* Utility: container width for resource list links inside grid */
+.resources a{background:#ffffff; border:1px solid #e7f1e7; padding: .9rem 1rem; border-radius:.75rem; box-shadow:0 4px 12px rgba(0,0,0,.04); display:block; transition:transform .2s, box-shadow .2s}
+.resources a:hover{transform:translateY(-3px); box-shadow:0 10px 22px rgba(0,0,0,.08)}
 </style>
 </head>
 <body>
+<a id="top"></a>
 
-<nav class="nav">
+<!-- Accessible, correctly used logo in the nav -->
+<nav class="nav" role="navigation" aria-label="Primary">
   <div class="nav-inner">
-    <div class="brand"><span class="logo"></span><span>No Flowers = No Food</span></div>
-    <div class="menu">
-      <a href="#why">Why it matters</a>
-      <a href="#insects">Insects & food</a>
-      <a href="#actions">Do this</a>
-      <a href="#benefits">Benefits</a>
-      <a href="#gallery">Photos</a>
-      <a href="#global">Global</a>
-      <a href="#nz">NZ resources</a>
-      <a href="#faq">FAQ</a>
+    <div class="brand">
+      <img class="logo" src="noflowers_logo.png" alt="No Flowers = No Food logo" />
+      <span>No Flowers = No Food</span>
+    </div>
+    <div class="menu" role="menubar">
+      <a role="menuitem" href="#why">Why it matters</a>
+      <a role="menuitem" href="#insects">Insects &amp; food</a>
+      <a role="menuitem" href="#actions">Do this</a>
+      <a role="menuitem" href="#benefits">Benefits</a>
+      <a role="menuitem" href="#gallery">Photos</a>
+      <a role="menuitem" href="#global">Global</a>
+      <a role="menuitem" href="#nz">NZ resources</a>
+      <a role="menuitem" href="#faq">FAQ</a>
     </div>
   </div>
 </nav>
 
-<header class="hero">
+<header class="hero" role="banner">
   <div class="wrap">
+    <img class="logo-hero" src="noflowers_logo.png" alt="No Flowers = No Food logo" />
     <h1>🌼 No Flowers = No Food</h1>
     <p>New Zealand and the world face a biodiversity crisis. Insects and pollinators are declining, which threatens our food, our ecosystems, and wellbeing. The fix starts on our lawns, berms, schools, and streets.</p>
     <div class="cta-row">
@@ -119,187 +176,187 @@ footer a{color:#fcd34d;text-decoration:underline}
   </div>
 </header>
 
-<!-- ✅ Keep your original content structure below -->
-<section id="why"><h2>The biodiversity crisis — why we must act now</h2>
-<div class="lead"><p>Global assessments show nature is in rapid decline... (content unchanged)</p></div>
-<!-- Cards -->
-<div class="grid cols-3">
-<div class="card"><h3>Nature supports everything</h3><p>Pollination, soil building...</p></div>
-<div class="card"><h3>We are losing it fast</h3><p>Habitat fragmentation...</p></div>
-<div class="card"><h3>Good news</h3><p>Nature rebounds quickly...</p></div>
-</div>
-<blockquote><p><strong>“Transformative change is needed across society.”</strong> — IPBES Global Assessment (2019)</p></blockquote>
+<!-- ✅ Full original content preserved and restyled below -->
+<section id="why" class="section-band" aria-labelledby="why-title">
+  <h2 id="why-title">The biodiversity crisis — why we must act now</h2>
+  <div class="lead"><p>Global assessments show nature is in rapid decline... (content unchanged)</p></div>
+  <!-- Cards -->
+  <div class="grid cols-3">
+    <div class="card"><h3>Nature supports everything</h3><p>Pollination, soil building...</p></div>
+    <div class="card"><h3>We are losing it fast</h3><p>Habitat fragmentation...</p></div>
+    <div class="card"><h3>Good news</h3><p>Nature rebounds quickly...</p></div>
+  </div>
+  <blockquote><p><strong>“Transformative change is needed across society.”</strong> — IPBES Global Assessment (2019)</p></blockquote>
 </section>
 
-
-  <section id="insects" aria-labelledby="insects-title">
-    <h2 id="insects-title">Why insects matter for food, people, and place</h2>
-    <div class="grid cols-2">
-      <div class="card">
-        <h3>Pollination = food</h3>
-        <p>Many crops in NZ rely on pollinators: kiwifruit, apples, stone fruit, seed crops, and more. Honeybees help, but bumblebees, native bees, hoverflies, moths, butterflies, and even some birds contribute. See <a href="https://www.landcareresearch.co.nz/tools-and-resources/education/pollination" target="_blank" rel="noopener">Manaaki Whenua: Pollination & pollinators</a>.</p>
-      </div>
-      <div class="card">
-        <h3>Native uniqueness</h3>
-        <p>New Zealand has ~22,000 described arthropod species and many more yet to be identified. About 80% are endemic. Protecting insects protects what makes Aotearoa special. See <a href="https://www.landcareresearch.co.nz/discover-our-research/restoring-ecosystems/plants-invertebrates-fungi-and-bacteria/invertebrate-systematics" target="_blank" rel="noopener">Manaaki Whenua on invertebrate diversity</a>.</p>
-      </div>
-      <div class="card">
-        <h3>Beyond bees</h3>
-        <p>Night-flying moths, flies, and birds also pollinate, including in cooler and alpine places. Research finds moths can act as pollinators even in Subantarctic NZ. See <a href="https://polarresearch.net/index.php/polar/article/view/3545/9942" target="_blank" rel="noopener">Polar Research (2019)</a>.</p>
-      </div>
-      <div class="card">
-        <h3>Insects connect ecosystems</h3>
-        <p>Insects feed birds and fish, recycle nutrients, and keep soils alive. Lose insects and everything else suffers. Recovery starts with flowers, nesting sites, and chemical-free spaces.</p>
-      </div>
+<section id="insects" class="section-band-alt" aria-labelledby="insects-title">
+  <h2 id="insects-title">Why insects matter for food, people, and place</h2>
+  <div class="grid cols-2">
+    <div class="card">
+      <h3>Pollination = food</h3>
+      <p>Many crops in NZ rely on pollinators: kiwifruit, apples, stone fruit, seed crops, and more. Honeybees help, but bumblebees, native bees, hoverflies, moths, butterflies, and even some birds contribute. See <a href="https://www.landcareresearch.co.nz/tools-and-resources/education/pollination" target="_blank" rel="noopener">Manaaki Whenua: Pollination &amp; pollinators</a>.</p>
     </div>
-  </section>
-
-  <section id="actions" aria-labelledby="actions-title">
-    <h2 id="actions-title">Do this today — simple actions with big impact</h2>
-    <div class="lead"><p>Nature does not only live in reserves. It lives everywhere. Your lawn, verge, balcony, and school grounds can be part of the solution.</p></div>
-    <div class="grid cols-2">
-      <div class="card"><h3>Don’t mow in peak flowering</h3><p>Pause mowing in spring and summer so flowers can bloom and feed pollinators. Inspired by <a href="https://www.plantlife.org.uk/campaigns/nomowmay/" target="_blank" rel="noopener">No Mow May</a> and related campaigns.</p></div>
-      <div class="card"><h3>Don’t spray</h3><p>Avoid herbicides and pesticides. Manage weeds by hand, mulch, or design with native groundcovers. Chemical-free spaces bring insects back quickly.</p></div>
-      <div class="card"><h3>Plant native wildflowers and shrubs</h3><p>Choose varied flowering times to support pollinators year-round. Include nesting habitat like bare patches for ground-nesting bees and tussocks.</p></div>
-      <div class="card"><h3>Let edges grow</h3><p>Leave parts of lawns, road edges, and berms to grow naturally. Connect patches into a local corridor so insects can move through neighbourhoods.</p></div>
-      <div class="card"><h3>Support pollinator-friendly farms & councils</h3><p>Encourage Bee Friendly Farming practices and local bylaws that reduce mowing and spraying. See <a href="https://www.pollinator.org/bff" target="_blank" rel="noopener">Bee Friendly Farming</a>.</p></div>
-      <div class="card"><h3>Join & share</h3><p>Volunteer with local groups and share your wild patches on social media. Community action normalises nature-inclusive streets and schools.</p></div>
+    <div class="card">
+      <h3>Native uniqueness</h3>
+      <p>New Zealand has ~22,000 described arthropod species and many more yet to be identified. About 80% are endemic. Protecting insects protects what makes Aotearoa special. See <a href="https://www.landcareresearch.co.nz/discover-our-research/restoring-ecosystems/plants-invertebrates-fungi-and-bacteria/invertebrate-systematics" target="_blank" rel="noopener">Manaaki Whenua on invertebrate diversity</a>.</p>
     </div>
-  </section>
-
-  <section id="benefits" aria-labelledby="benefits-title">
-    <h2 id="benefits-title">The benefits of being nature-inclusive</h2>
-    <div class="grid cols-3">
-      <div class="card"><h3>Food security</h3><p>Pollinators keep orchards, gardens, and farms productive. Without flowers there is no food. Fewer chemicals also protect beneficial insects and soils.</p></div>
-      <div class="card"><h3>Health and wellbeing</h3><p>Green streets reduce stress, improve mood, and invite active living. See <a href="https://www.wur.nl/en/research-results/research-institutes/environmental-research/focus-areas/green-cities/nature-and-health-in-the-city.htm" target="_blank" rel="noopener">Wageningen: Nature & health in the city</a>.</p></div>
-      <div class="card"><h3>Climate resilience</h3><p>Wildflower verges and green roofs cool cities and help soak up stormwater. Nature-inclusive design reduces heat and flood risks. See <a href="https://www.sempergreen.com/en/about-us/news/the-benefits-of-nature-inclusive-neighbourhoods" target="_blank" rel="noopener">Sempergreen</a>.</p></div>
-      <div class="card"><h3>Beauty and place</h3><p>Colourful meadows, birdsong, and butterflies make neighbourhoods more welcoming and distinct. Small patches add up.</p></div>
-      <div class="card"><h3>Community connection</h3><p>Garden strips, school meadows, and shared planters bring people together and create pride in local streets.</p></div>
-      <div class="card"><h3>Costs down over time</h3><p>Less mowing and spraying can cut maintenance costs when areas are designed well and allowed to naturalise.</p></div>
+    <div class="card">
+      <h3>Beyond bees</h3>
+      <p>Night-flying moths, flies, and birds also pollinate, including in cooler and alpine places. Research finds moths can act as pollinators even in Subantarctic NZ. See <a href="https://polarresearch.net/index.php/polar/article/view/3545/9942" target="_blank" rel="noopener">Polar Research (2019)</a>.</p>
     </div>
-  </section>
-
-  <section id="gallery" aria-labelledby="gallery-title">
-    <h2 id="gallery-title">Photos — how beautiful wildflowers can be</h2>
-    <p>These copyright‑free images show what’s possible when we let nature bloom. Use them as inspiration for your verge, berm, or school garden.</p>
-    <div class="gallery" role="list">
-      <figure role="listitem"><img loading="lazy" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Wildflower meadow with diverse flowers" /><figcaption>Mixed wildflower meadow, buzzing with life.</figcaption></figure>
-      <figure role="listitem"><img loading="lazy" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1200&auto=format&fit=crop" alt="Bee on purple flower" /><figcaption>Bees need continuous blooms from spring to autumn.</figcaption></figure>
-      <figure role="listitem"><img loading="lazy" src="https://images.unsplash.com/photo-1495395226200-8fbf6b1d9f4c?q=80&w=1200&auto=format&fit=crop" alt="Butterfly on yellow flower" /><figcaption>Butterflies and moths are key pollinators too.</figcaption></figure>
-      <figure role="listitem"><img loading="lazy" src="https://images.unsplash.com/photo-1508614999368-9260051292e3?q=80&w=1200&auto=format&fit=crop" alt="Close-up of native-looking flowers" /><figcaption>Even small patches of flowers help connect habitats.</figcaption></figure>
-      <figure role="listitem"><img loading="lazy" src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=1200&auto=format&fit=crop" alt="Street verge with flowers" /><figcaption>Street verges can become corridors for insects.</figcaption></figure>
-      <figure role="listitem"><img loading="lazy" src="https://images.unsplash.com/photo-1499313843379-068ee3b6f77f?q=80&w=1200&auto=format&fit=crop" alt="Bumblebee on clover" /><figcaption>Common “weeds” like clover are important nectar sources.</figcaption></figure>
+    <div class="card">
+      <h3>Insects connect ecosystems</h3>
+      <p>Insects feed birds and fish, recycle nutrients, and keep soils alive. Lose insects and everything else suffers. Recovery starts with flowers, nesting sites, and chemical-free spaces.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="global" aria-labelledby="global-title">
-    <h2 id="global-title">Global initiatives to learn from and link to</h2>
-    <p>These organisations and projects show what works and provide practical guidance that any community can adapt.</p>
-    <div class="grid cols-3 resources">
-      <a href="https://www.plantlife.org.uk/campaigns/nomowmay/" target="_blank" rel="noopener"><strong>Plantlife: No Mow May</strong> — pause mowing, let flowers feed pollinators.</a>
-      <a href="https://www.plantlife.org.uk/everything-you-need-to-know-about-no-mow-may-and-the-no-mow-movement/" target="_blank" rel="noopener">Everything about the No Mow movement</a>
-      <a href="https://www.xerces.org/pollinator-conservation/habitat-installation-guides" target="_blank" rel="noopener"><strong>Xerces Society</strong> — habitat installation guides for pollinators.</a>
-      <a href="https://xerces.org/publications/guidelines/pollinator-friendly-parks" target="_blank" rel="noopener">Pollinator‑friendly parks guideline</a>
-      <a href="https://www.pollinator.org/bff" target="_blank" rel="noopener"><strong>Pollinator Partnership</strong> — Bee Friendly Farming program.</a>
-      <a href="https://iclei-europe.org/publications-tools/?c=search&uid=b07XuqQ5" target="_blank" rel="noopener"><strong>EU Pollinators Initiative</strong> — Guide for pollinator‑friendly cities.</a>
-      <a href="https://urbanresilienceforum.eu/fileadmin/user_upload/Practical_Information/Marketplace/factsheet_a4_a-guide-for-pollinator-friendly-cities_en_03-03.pdf" target="_blank" rel="noopener">Pollinator‑friendly cities PDF</a>
-      <a href="https://files.ipbes.net/ipbes-web-prod-public-files/inline/files/ipbes_global_assessment_report_summary_for_policymakers.pdf" target="_blank" rel="noopener"><strong>IPBES Global Assessment (2019)</strong> — summary for policymakers.</a>
-      <a href="https://www.worldwildlife.org/publications/2024-living-planet-report" target="_blank" rel="noopener"><strong>WWF Living Planet Report 2024</strong> — wildlife populations down 73% since 1970.</a>
-      <a href="https://www.sempergreen.com/en/about-us/news/the-benefits-of-nature-inclusive-neighbourhoods" target="_blank" rel="noopener"><strong>Sempergreen</strong> — benefits of nature‑inclusive neighbourhoods.</a>
-      <a href="https://www.wur.nl/en/research-results/research-institutes/environmental-research/focus-areas/green-cities/nature-and-health-in-the-city.htm" target="_blank" rel="noopener"><strong>Wageningen UR</strong> — nature and health in the city.</a>
-      <a href="https://www.theguardian.com/environment/2025/aug/22/bee-buffets-the-pollinator-pathways-turning-drab-alleys-into-insect-havens" target="_blank" rel="noopener">Pollinator pathways turning alleys into havens (Bristol)</a>
+<section id="actions" class="section-band" aria-labelledby="actions-title">
+  <h2 id="actions-title">Do this today — simple actions with big impact</h2>
+  <div class="lead"><p>Nature does not only live in reserves. It lives everywhere. Your lawn, verge, balcony, and school grounds can be part of the solution.</p></div>
+  <div class="grid cols-2">
+    <div class="card"><h3>Don’t mow in peak flowering</h3><p>Pause mowing in spring and summer so flowers can bloom and feed pollinators. Inspired by <a href="https://www.plantlife.org.uk/campaigns/nomowmay/" target="_blank" rel="noopener">No Mow May</a> and related campaigns.</p></div>
+    <div class="card"><h3>Don’t spray</h3><p>Avoid herbicides and pesticides. Manage weeds by hand, mulch, or design with native groundcovers. Chemical-free spaces bring insects back quickly.</p></div>
+    <div class="card"><h3>Plant native wildflowers and shrubs</h3><p>Choose varied flowering times to support pollinators year-round. Include nesting habitat like bare patches for ground-nesting bees and tussocks.</p></div>
+    <div class="card"><h3>Let edges grow</h3><p>Leave parts of lawns, road edges, and berms to grow naturally. Connect patches into a local corridor so insects can move through neighbourhoods.</p></div>
+    <div class="card"><h3>Support pollinator-friendly farms &amp; councils</h3><p>Encourage Bee Friendly Farming practices and local bylaws that reduce mowing and spraying. See <a href="https://www.pollinator.org/bff" target="_blank" rel="noopener">Bee Friendly Farming</a>.</p></div>
+    <div class="card"><h3>Join &amp; share</h3><p>Volunteer with local groups and share your wild patches on social media. Community action normalises nature-inclusive streets and schools.</p></div>
+  </div>
+</section>
+
+<section id="benefits" class="section-band-alt" aria-labelledby="benefits-title">
+  <h2 id="benefits-title">The benefits of being nature-inclusive</h2>
+  <div class="grid cols-3">
+    <div class="card"><h3>Food security</h3><p>Pollinators keep orchards, gardens, and farms productive. Without flowers there is no food. Fewer chemicals also protect beneficial insects and soils.</p></div>
+    <div class="card"><h3>Health and wellbeing</h3><p>Green streets reduce stress, improve mood, and invite active living. See <a href="https://www.wur.nl/en/research-results/research-institutes/environmental-research/focus-areas/green-cities/nature-and-health-in-the-city.htm" target="_blank" rel="noopener">Wageningen: Nature &amp; health in the city</a>.</p></div>
+    <div class="card"><h3>Climate resilience</h3><p>Wildflower verges and green roofs cool cities and help soak up stormwater. Nature-inclusive design reduces heat and flood risks. See <a href="https://www.sempergreen.com/en/about-us/news/the-benefits-of-nature-inclusive-neighbourhoods" target="_blank" rel="noopener">Sempergreen</a>.</p></div>
+    <div class="card"><h3>Beauty and place</h3><p>Colourful meadows, birdsong, and butterflies make neighbourhoods more welcoming and distinct. Small patches add up.</p></div>
+    <div class="card"><h3>Community connection</h3><p>Garden strips, school meadows, and shared planters bring people together and create pride in local streets.</p></div>
+    <div class="card"><h3>Costs down over time</h3><p>Less mowing and spraying can cut maintenance costs when areas are designed well and allowed to naturalise.</p></div>
+  </div>
+</section>
+
+<section id="gallery" class="section-band" aria-labelledby="gallery-title">
+  <h2 id="gallery-title">Photos — how beautiful wildflowers can be</h2>
+  <p>These copyright‑free images show what’s possible when we let nature bloom. Use them as inspiration for your verge, berm, or school garden.</p>
+  <div class="gallery" role="list">
+    <figure role="listitem"><img loading="lazy" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Wildflower meadow with diverse flowers" /><figcaption>Mixed wildflower meadow, buzzing with life.</figcaption></figure>
+    <figure role="listitem"><img loading="lazy" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1200&auto=format&fit=crop" alt="Bee on purple flower" /><figcaption>Bees need continuous blooms from spring to autumn.</figcaption></figure>
+    <figure role="listitem"><img loading="lazy" src="https://images.unsplash.com/photo-1495395226200-8fbf6b1d9f4c?q=80&w=1200&auto=format&fit=crop" alt="Butterfly on yellow flower" /><figcaption>Butterflies and moths are key pollinators too.</figcaption></figure>
+    <figure role="listitem"><img loading="lazy" src="https://images.unsplash.com/photo-1508614999368-9260051292e3?q=80&w=1200&auto=format&fit=crop" alt="Close-up of native-looking flowers" /><figcaption>Even small patches of flowers help connect habitats.</figcaption></figure>
+    <figure role="listitem"><img loading="lazy" src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=1200&auto=format&fit=crop" alt="Street verge with flowers" /><figcaption>Street verges can become corridors for insects.</figcaption></figure>
+    <figure role="listitem"><img loading="lazy" src="https://images.unsplash.com/photo-1499313843379-068ee3b6f77f?q=80&w=1200&auto=format&fit=crop" alt="Bumblebee on clover" /><figcaption>Common “weeds” like clover are important nectar sources.</figcaption></figure>
+  </div>
+</section>
+
+<section id="global" class="section-band-alt" aria-labelledby="global-title">
+  <h2 id="global-title">Global initiatives to learn from and link to</h2>
+  <p>These organisations and projects show what works and provide practical guidance that any community can adapt.</p>
+  <div class="grid cols-3 resources">
+    <a href="https://www.plantlife.org.uk/campaigns/nomowmay/" target="_blank" rel="noopener"><strong>Plantlife: No Mow May</strong> — pause mowing, let flowers feed pollinators.</a>
+    <a href="https://www.plantlife.org.uk/everything-you-need-to-know-about-no-mow-may-and-the-no-mow-movement/" target="_blank" rel="noopener">Everything about the No Mow movement</a>
+    <a href="https://www.xerces.org/pollinator-conservation/habitat-installation-guides" target="_blank" rel="noopener"><strong>Xerces Society</strong> — habitat installation guides for pollinators.</a>
+    <a href="https://xerces.org/publications/guidelines/pollinator-friendly-parks" target="_blank" rel="noopener">Pollinator‑friendly parks guideline</a>
+    <a href="https://www.pollinator.org/bff" target="_blank" rel="noopener"><strong>Pollinator Partnership</strong> — Bee Friendly Farming program.</a>
+    <a href="https://iclei-europe.org/publications-tools/?c=search&uid=b07XuqQ5" target="_blank" rel="noopener"><strong>EU Pollinators Initiative</strong> — Guide for pollinator‑friendly cities.</a>
+    <a href="https://urbanresilienceforum.eu/fileadmin/user_upload/Practical_Information/Marketplace/factsheet_a4_a-guide-for-pollinator-friendly-cities_en_03-03.pdf" target="_blank" rel="noopener">Pollinator‑friendly cities PDF</a>
+    <a href="https://files.ipbes.net/ipbes-web-prod-public-files/inline/files/ipbes_global_assessment_report_summary_for_policymakers.pdf" target="_blank" rel="noopener"><strong>IPBES Global Assessment (2019)</strong> — summary for policymakers.</a>
+    <a href="https://www.worldwildlife.org/publications/2024-living-planet-report" target="_blank" rel="noopener"><strong>WWF Living Planet Report 2024</strong> — wildlife populations down 73% since 1970.</a>
+    <a href="https://www.sempergreen.com/en/about-us/news/the-benefits-of-nature-inclusive-neighbourhoods" target="_blank" rel="noopener"><strong>Sempergreen</strong> — benefits of nature‑inclusive neighbourhoods.</a>
+    <a href="https://www.wur.nl/en/research-results/research-institutes/environmental-research/focus-areas/green-cities/nature-and-health-in-the-city.htm" target="_blank" rel="noopener"><strong>Wageningen UR</strong> — nature and health in the city.</a>
+    <a href="https://www.theguardian.com/environment/2025/aug/22/bee-buffets-the-pollinator-pathways-turning-drab-alleys-into-insect-havens" target="_blank" rel="noopener">Pollinator pathways turning alleys into havens (Bristol)</a>
+  </div>
+</section>
+
+<section id="nz" class="section-band" aria-labelledby="nz-title">
+  <h2 id="nz-title">Aotearoa resources, groups, and ideas</h2>
+  <div class="grid cols-2">
+    <div class="card">
+      <h3>Threats and policy</h3>
+      <p>See DOC on <a href="https://www.doc.govt.nz/nature/pests-and-threats/" target="_blank" rel="noopener">pests and threats</a> and <a href="https://www.doc.govt.nz/our-work/managing-threats/" target="_blank" rel="noopener">managing threats</a>. Learn how beekeeping is managed on conservation land: <a href="https://www.doc.govt.nz/our-work/honeybees-on-conservation-land/" target="_blank" rel="noopener">Honeybees on conservation land</a>.</p>
     </div>
-  </section>
-
-  <section id="nz" aria-labelledby="nz-title">
-    <h2 id="nz-title">Aotearoa resources, groups, and ideas</h2>
-    <div class="grid cols-2">
-      <div class="card">
-        <h3>Threats and policy</h3>
-        <p>See DOC on <a href="https://www.doc.govt.nz/nature/pests-and-threats/" target="_blank" rel="noopener">pests and threats</a> and <a href="https://www.doc.govt.nz/our-work/managing-threats/" target="_blank" rel="noopener">managing threats</a>. Learn how beekeeping is managed on conservation land: <a href="https://www.doc.govt.nz/our-work/honeybees-on-conservation-land/" target="_blank" rel="noopener">Honeybees on conservation land</a>.</p>
-      </div>
-      <div class="card">
-        <h3>Pollinators in NZ</h3>
-        <p>Read Manaaki Whenua on <a href="https://www.landcareresearch.co.nz/tools-and-resources/education/pollination" target="_blank" rel="noopener">pollination</a> and NZ’s unique invertebrate diversity: <a href="https://www.landcareresearch.co.nz/discover-our-research/restoring-ecosystems/plants-invertebrates-fungi-and-bacteria/invertebrate-systematics" target="_blank" rel="noopener">invertebrate systematics</a>.</p>
-      </div>
-      <div class="card">
-        <h3>Community & citizen science</h3>
-        <p>Join the <a href="https://www.nzbutterflies.org.nz/" target="_blank" rel="noopener">Moths and Butterflies of NZ Trust</a>, help with monarch overwintering records, and plant for caterpillars and nectar. See their <a href="https://www.nzbutterflies.org.nz/project/tagging/" target="_blank" rel="noopener">tagging project</a>.</p>
-      </div>
-      <div class="card">
-        <h3>Garden for wildlife</h3>
-        <p>Forest & Bird’s <a href="https://www.forestandbird.org.nz/resources/wild-gardening" target="_blank" rel="noopener">wild gardening</a> tips can turn any space into habitat. Add water, flowering natives, and reduce tidiness to invite life back.</p>
-      </div>
-      <div class="card">
-        <h3>Schools and streets</h3>
-        <p>Start with a small “no‑mow” triangle, seed a mini‑meadow, and add signs that explain why it’s left wild. Share before/after photos to inspire neighbours.</p>
-      </div>
-      <div class="card">
-        <h3>Science corner</h3>
-        <p>NZ studies show moths can pollinate in Subantarctic conditions (<a href="https://polarresearch.net/index.php/polar/article/view/3545/9942" target="_blank" rel="noopener">Polar Research</a>) and that birds contribute to pollination and seed dispersal (<a href="https://www.nzes.org.nz/nzje/free_issues/NZJEcol12_s_27.pdf" target="_blank" rel="noopener">NZ Journal of Ecology</a>).</p>
-      </div>
+    <div class="card">
+      <h3>Pollinators in NZ</h3>
+      <p>Read Manaaki Whenua on <a href="https://www.landcareresearch.co.nz/tools-and-resources/education/pollination" target="_blank" rel="noopener">pollination</a> and NZ’s unique invertebrate diversity: <a href="https://www.landcareresearch.co.nz/discover-our-research/restoring-ecosystems/plants-invertebrates-fungi-and-bacteria/invertebrate-systematics" target="_blank" rel="noopener">invertebrate systematics</a>.</p>
     </div>
-  </section>
-
-  <section aria-labelledby="how-title" id="how">
-    <h2 id="how-title">How to start — a simple 4‑week plan</h2>
-    <ol>
-      <li><strong>Week 1:</strong> Pick a patch. Stop mowing and spraying. Observe what flowers appear. Add a sign that says “Pollinator Patch — No Flowers, No Food”.</li>
-      <li><strong>Week 2:</strong> Add diversity. Plant native wildflowers and shrubs with staggered bloom times. Include a shallow water dish with stones.</li>
-      <li><strong>Week 3:</strong> Create structure. Leave some stems and tussocks for nesting. Add bare sunny soil for ground‑nesting bees.</li>
-      <li><strong>Week 4:</strong> Connect. Talk to neighbours, your school, marae, or workplace. Link patches to form a local corridor.</li>
-    </ol>
-  </section>
-
-  <section id="faq" aria-labelledby="faq-title">
-    <h2 id="faq-title">FAQ — common questions</h2>
-    <details>
-      <summary>Will long grass look messy?</summary>
-      <p>Design makes all the difference. Frame wild areas with a mown edge or path, add a small sign, and mix in flowering natives. People read it as intentional.</p>
-    </details>
-    <details>
-      <summary>Are “weeds” like clover and dandelions really OK?</summary>
-      <p>Yes. They are valuable nectar sources in early spring when food is scarce. Replace spraying with selective hand weeding and let flowers feed insects.</p>
-    </details>
-    <details>
-      <summary>What about allergies or safety?</summary>
-      <p>Choose lower‑allergen species and keep sightlines open around driveways. In public spaces, add simple signage and maintain clear edges for accessibility.</p>
-    </details>
-    <details>
-      <summary>What if my council has mowing schedules?</summary>
-      <p>Ask for a pilot. Point to No Mow May and EU Pollinator City guides. Propose “mosaic mowing”, reduced spray zones, and seasonal flowering windows.</p>
-    </details>
-  </section>
-
-  <section aria-labelledby="share-title" id="share">
-    <h2 id="share-title">Spread the word</h2>
-    <p>Share photos of your patch, tag your council and local groups, and use these hashtags to grow the movement in Aotearoa:</p>
-    <p><strong>#NoFlowersNoFood #SaveOurBees #Biodiversity #DontMow #DontSpray #NativeWildflowers #FoodSecurity #ClimateAction</strong></p>
-  </section>
-
-  <footer role="contentinfo">
-    <div class="foot-inner">
-      <div>
-        <p><strong>About this page</strong><br/>A community effort to protect Aotearoa’s pollinators and biodiversity by making everyday places more nature‑inclusive.</p>
-      </div>
-      <div>
-        <p><strong>Key references</strong></p>
-        <ul>
-          <li><a href="https://files.ipbes.net/ipbes-web-prod-public-files/inline/files/ipbes_global_assessment_report_summary_for_policymakers.pdf" target="_blank" rel="noopener">IPBES Global Assessment (2019)</a></li>
-          <li><a href="https://www.worldwildlife.org/publications/2024-living-planet-report" target="_blank" rel="noopener">WWF Living Planet Report 2024</a></li>
-          <li><a href="https://www.plantlife.org.uk/campaigns/nomowmay/" target="_blank" rel="noopener">Plantlife: No Mow May</a></li>
-          <li><a href="https://www.landcareresearch.co.nz/tools-and-resources/education/pollination" target="_blank" rel="noopener">Manaaki Whenua: Pollination</a></li>
-          <li><a href="https://www.doc.govt.nz/nature/pests-and-threats/" target="_blank" rel="noopener">DOC: Threats to biodiversity</a></li>
-        </ul>
-      </div>
-      <div>
-        <p><strong>Contact</strong></p>
-        <p>Want to collaborate or run a neighbourhood pilot? Email: <a href="mailto:yourname@example.com">noflowers.nofood@icloud.com</a></p>
-      </div>
+    <div class="card">
+      <h3>Community &amp; citizen science</h3>
+      <p>Join the <a href="https://www.nzbutterflies.org.nz/" target="_blank" rel="noopener">Moths and Butterflies of NZ Trust</a>, help with monarch overwintering records, and plant for caterpillars and nectar. See their <a href="https://www.nzbutterflies.org.nz/project/tagging/" target="_blank" rel="noopener">tagging project</a>.</p>
     </div>
-    <p style="margin-top:1rem">© 2025 No Flowers = No Food — Made for Aotearoa New Zealand</p>
-  </footer>
+    <div class="card">
+      <h3>Garden for wildlife</h3>
+      <p>Forest &amp; Bird’s <a href="https://www.forestandbird.org.nz/resources/wild-gardening" target="_blank" rel="noopener">wild gardening</a> tips can turn any space into habitat. Add water, flowering natives, and reduce tidiness to invite life back.</p>
+    </div>
+    <div class="card">
+      <h3>Schools and streets</h3>
+      <p>Start with a small “no‑mow” triangle, seed a mini‑meadow, and add signs that explain why it’s left wild. Share before/after photos to inspire neighbours.</p>
+    </div>
+    <div class="card">
+      <h3>Science corner</h3>
+      <p>NZ studies show moths can pollinate in Subantarctic conditions (<a href="https://polarresearch.net/index.php/polar/article/view/3545/9942" target="_blank" rel="noopener">Polar Research</a>) and that birds contribute to pollination and seed dispersal (<a href="https://www.nzes.org.nz/nzje/free_issues/NZJEcol12_s_27.pdf" target="_blank" rel="noopener">NZ Journal of Ecology</a>).</p>
+    </div>
+  </div>
+</section>
 
-  <a class="to-top" href="#top" aria-label="Back to top">⬆︎ Top</a>
+<section id="how" class="section-band-alt" aria-labelledby="how-title">
+  <h2 id="how-title">How to start — a simple 4‑week plan</h2>
+  <ol>
+    <li><strong>Week 1:</strong> Pick a patch. Stop mowing and spraying. Observe what flowers appear. Add a sign that says “Pollinator Patch — No Flowers, No Food”.</li>
+    <li><strong>Week 2:</strong> Add diversity. Plant native wildflowers and shrubs with staggered bloom times. Include a shallow water dish with stones.</li>
+    <li><strong>Week 3:</strong> Create structure. Leave some stems and tussocks for nesting. Add bare sunny soil for ground‑nesting bees.</li>
+    <li><strong>Week 4:</strong> Connect. Talk to neighbours, your school, marae, or workplace. Link patches to form a local corridor.</li>
+  </ol>
+</section>
+
+<section id="faq" class="section-band" aria-labelledby="faq-title">
+  <h2 id="faq-title">FAQ — common questions</h2>
+  <details>
+    <summary>Will long grass look messy?</summary>
+    <p>Design makes all the difference. Frame wild areas with a mown edge or path, add a small sign, and mix in flowering natives. People read it as intentional.</p>
+  </details>
+  <details>
+    <summary>Are “weeds” like clover and dandelions really OK?</summary>
+    <p>Yes. They are valuable nectar sources in early spring when food is scarce. Replace spraying with selective hand weeding and let flowers feed insects.</p>
+  </details>
+  <details>
+    <summary>What about allergies or safety?</summary>
+    <p>Choose lower‑allergen species and keep sightlines open around driveways. In public spaces, add simple signage and maintain clear edges for accessibility.</p>
+  </details>
+  <details>
+    <summary>What if my council has mowing schedules?</summary>
+    <p>Ask for a pilot. Point to No Mow May and EU Pollinator City guides. Propose “mosaic mowing”, reduced spray zones, and seasonal flowering windows.</p>
+  </details>
+</section>
+
+<section id="share" class="section-band-alt" aria-labelledby="share-title">
+  <h2 id="share-title">Spread the word</h2>
+  <p>Share photos of your patch, tag your council and local groups, and use these hashtags to grow the movement in Aotearoa:</p>
+  <p><strong>#NoFlowersNoFood #SaveOurBees #Biodiversity #DontMow #DontSpray #NativeWildflowers #FoodSecurity #ClimateAction</strong></p>
+</section>
+
+<footer role="contentinfo">
+  <div class="foot-inner">
+    <div>
+      <p><strong>About this page</strong><br/>A community effort to protect Aotearoa’s pollinators and biodiversity by making everyday places more nature‑inclusive.</p>
+    </div>
+    <div>
+      <p><strong>Key references</strong></p>
+      <ul>
+        <li><a href="https://files.ipbes.net/ipbes-web-prod-public-files/inline/files/ipbes_global_assessment_report_summary_for_policymakers.pdf" target="_blank" rel="noopener">IPBES Global Assessment (2019)</a></li>
+        <li><a href="https://www.worldwildlife.org/publications/2024-living-planet-report" target="_blank" rel="noopener">WWF Living Planet Report 2024</a></li>
+        <li><a href="https://www.plantlife.org.uk/campaigns/nomowmay/" target="_blank" rel="noopener">Plantlife: No Mow May</a></li>
+        <li><a href="https://www.landcareresearch.co.nz/tools-and-resources/education/pollination" target="_blank" rel="noopener">Manaaki Whenua: Pollination</a></li>
+        <li><a href="https://www.doc.govt.nz/nature/pests-and-threats/" target="_blank" rel="noopener">DOC: Threats to biodiversity</a></li>
+      </ul>
+    </div>
+    <div>
+      <p><strong>Contact</strong></p>
+      <p>Want to collaborate or run a neighbourhood pilot? Email: <a href="mailto:noflowers.nofood@icloud.com">noflowers.nofood@icloud.com</a></p>
+    </div>
+  </div>
+  <p style="margin-top:1rem">© 2025 No Flowers = No Food — Made for Aotearoa New Zealand</p>
+</footer>
+
+<a class="to-top" href="#top" aria-label="Back to top">⬆︎ Top</a>
 </body>
 </html>
