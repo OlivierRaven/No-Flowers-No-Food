@@ -3,238 +3,230 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>No Flowers = No Food | Act for Nature</title>
-<meta name="description" content="Flowers feed bees. Bees make food. Let's act now to save nature in Aotearoa New Zealand." />
+<title>No Flowers = No Food | Act for Biodiversity (NZ)</title>
+<meta name="description" content="A campaign site focused on saving pollinators and biodiversity in New Zealand. Easy tips, pictures, and ways to help." />
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg: #f6fff1;
-  --text: #24321e;
-  --accent-pink: #f95d9b;
-  --accent-yellow: #f9c80e;
-  --accent-purple: #8c5ae0;
-  --accent-green: #31b237;
-  --accent-blue: #2a9df4;
-  --card-bg: #ffffff;
+:root{
+  --bg:#fffbe6;
+  --text:#1b2a17;
+  --primary:#ff6f61;
+  --secondary:#ffcc29;
+  --accent:#6abf69;
+  --highlight:#ff9ed0;
+  --card-bg:#ffffffdd;
+  --card-shadow:rgba(0,0,0,0.1);
+  --link:#d02f7e;
 }
 
-/* Reset */
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-  font-family: 'Nunito', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-}
+/* Reset & Base */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Nunito',system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{text-decoration:none;color:var(--link)}
+a:hover{text-decoration:underline}
 
 /* NAV */
-.nav {
-  position: sticky;
-  top: 0;
-  background: #ffffffd8;
-  backdrop-filter: blur(6px);
-  border-bottom: 3px solid var(--accent-green);
-}
-.nav-inner {
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-}
-.brand {
-  font-weight: 900;
-  font-size: 1.3rem;
-  color: var(--accent-green);
-}
-.menu a {
-  margin: 0 .5rem;
-  text-decoration: none;
-  font-weight: 700;
-  color: var(--accent-green);
-  padding: .4rem .8rem;
-  border-radius: 20px;
-}
-.menu a:hover {
-  background: var(--accent-green);
-  color: #fff;
-}
+.nav{position:sticky;top:0;background:linear-gradient(90deg,#fff8f0,#fffbe6);border-bottom:2px solid #ffe0c2;z-index:1000}
+.nav-inner{max-width:1240px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem}
+.brand{display:flex;align-items:center;gap:.5rem;font-weight:800;color:var(--accent);font-size:1.25rem}
+.brand .logo{width:44px;height:44px;border-radius:10px;object-fit:cover;border:3px solid var(--highlight);background:linear-gradient(135deg,var(--primary),var(--highlight))}
+.menu{display:flex;gap:.5rem;flex-wrap:wrap}
+.menu a{padding:.45rem .8rem;border-radius:999px;font-weight:700;transition:all .18s}
+.menu a:hover{background:var(--secondary);color:#000}
 
 /* HERO */
-.hero {
-  text-align: center;
-  padding: 4rem 1rem;
-  background: linear-gradient(180deg, var(--accent-yellow), var(--accent-pink));
-  color: #fff;
-}
-.hero h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  margin-bottom: 1rem;
-}
-.hero p {
-  font-size: 1.2rem;
-  max-width: 700px;
-  margin: auto;
-  margin-bottom: 1.5rem;
-}
-.cta-row a {
-  display: inline-block;
-  margin: .5rem;
-  padding: 1rem 1.5rem;
-  font-size: 1.1rem;
-  font-weight: 900;
-  border-radius: 999px;
-  text-decoration: none;
-  transition: all .2s;
-}
-.btn-main {
-  background: var(--accent-green);
-  color: #fff;
-}
-.btn-main:hover {
-  background: #268e2d;
-}
-.btn-alt {
-  background: #fff;
-  color: var(--accent-green);
-  border: 2px solid var(--accent-green);
-}
-.btn-alt:hover {
-  background: var(--accent-green);
-  color: #fff;
-}
+.hero{position:relative;min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:3rem 1rem;overflow:hidden;background:linear-gradient(135deg,#ffecd2,#ff6f61)}
+.hero::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1465146633011-14f18c72b735?q=80&w=2000&auto=format&fit=crop');background-size:cover;background-position:50% 30%;filter:brightness(.6)}
+.hero .wrap{position:relative;z-index:2;max-width:1000px;padding:2rem}
+.logo-hero{width:96px;height:96px;border-radius:22px;margin:0 auto 1rem;border:4px solid var(--secondary);background:linear-gradient(135deg,var(--primary),#fff)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);color:#fff;text-shadow:2px 4px 12px rgba(0,0,0,0.5);margin-bottom:.8rem}
+.hero p{color:#fff;font-size:clamp(1rem,2vw,1.2rem);max-width:850px;margin:0 auto 1.4rem}
 
-/* SECTION */
-section {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 2rem 1rem;
-}
-section h2 {
-  text-align: center;
-  font-size: 2rem;
-  color: var(--accent-green);
-  margin-bottom: 1rem;
-}
-.lead {
-  text-align: center;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  background: #e4ffd8;
-  padding: 1rem;
-  border-radius: 8px;
-}
-.grid {
-  display: grid;
-  gap: 1rem;
-}
-@media(min-width:700px) {
-  .grid.cols-2 { grid-template-columns: repeat(2,1fr); }
-  .grid.cols-3 { grid-template-columns: repeat(3,1fr); }
-}
-.card {
-  background: var(--card-bg);
-  border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-.card h3 {
-  color: var(--accent-blue);
-  margin-bottom: .5rem;
-}
+/* Buttons */
+.cta-row{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;border-radius:999px;padding:.9rem 1.4rem;font-weight:700;font-size:1rem;transition:transform .18s,box-shadow .18s;text-align:center}
+.btn.primary{background:linear-gradient(90deg,var(--primary),var(--highlight));color:#fff;box-shadow:0 6px 20px var(--card-shadow)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px var(--card-shadow)}
+.btn.secondary{background:var(--secondary);color:#000;box-shadow:0 4px 18px var(--card-shadow)}
+.btn.secondary:hover{transform:translateY(-2px);box-shadow:0 10px 24px var(--card-shadow)}
 
-/* GALLERY */
-.gallery {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
-}
-.gallery img {
-  width: 100%;
-  border-radius: 12px;
-  height: 220px;
-  object-fit: cover;
-}
+/* Sections */
+section{max-width:1200px;margin:2rem auto;padding:2rem 1rem;position:relative}
+section h2{text-align:center;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:1rem;color:var(--accent);font-weight:800}
+section h2::after{content:'';display:block;width:80px;height:6px;margin:.5rem auto;border-radius:6px;background:linear-gradient(90deg,var(--primary),var(--highlight))}
 
-/* FOOTER */
-footer {
-  background: var(--accent-green);
-  color: #fff;
-  padding: 2rem 1rem;
-  text-align: center;
-  margin-top: 2rem;
-}
-footer a { color: #fff; text-decoration: underline; }
+/* Cards & Grids */
+.grid{display:grid;gap:1rem;margin-top:1rem}
+@media(min-width:720px){.grid.cols-2{grid-template-columns:repeat(2,1fr)}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--card-bg);border-radius:12px;padding:1rem;box-shadow:0 6px 18px var(--card-shadow);position:relative;overflow:hidden}
+.card h3{color:var(--primary);margin-bottom:.4rem;font-size:1.15rem}
+.card p{color:var(--text);font-size:1rem;line-height:1.5}
+.card::after{content:'';position:absolute;right:-20px;bottom:-20px;width:80px;height:80px;background:radial-gradient(circle,var(--highlight) 20%,transparent 60%);opacity:.15}
 
+/* Lead boxes */
+.lead{background:var(--secondary);border-left:6px solid var(--primary);padding:1rem 1.2rem;border-radius:10px;font-size:1.05rem}
+
+/* Gallery */
+.gallery{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));margin-top:1rem}
+.gallery img{width:100%;height:260px;object-fit:cover;border-radius:12px;border:4px solid rgba(255,250,252,0.8);transition:transform .2s}
+.gallery img:hover{transform:scale(1.03)}
+figcaption{font-size:.95rem;color:#3b5736;margin-top:.4rem;text-align:center}
+
+/* FAQ */
+details{background:var(--primary);border:1px solid rgba(255,200,200,0.5);border-radius:10px;padding:1rem;margin:.6rem 0;color:#fff}
+summary{cursor:pointer;font-weight:800;color:#fff}
+
+/* Footer */
+footer{margin-top:2rem;padding:2rem 1rem;background:var(--accent);color:#fff;border-radius:12px 12px 0 0}
+footer a{color:#fff; font-weight:600}
+.foot-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+
+/* Back to top */
+.to-top{position:fixed;right:1rem;bottom:1rem;background:var(--primary);border-radius:999px;padding:.6rem .8rem;box-shadow:0 8px 22px rgba(0,0,0,0.15);font-weight:700;color:#fff}
+.to-top:hover{background:var(--highlight);color:#000}
 </style>
 </head>
 <body>
+<a id="top"></a>
 
 <nav class="nav">
   <div class="nav-inner">
-    <div class="brand">🌼 No Flowers = No Food</div>
+    <div class="brand">
+      <img class="logo" src="noflowers_logo.png" alt="No Flowers = No Food logo" />
+      <span>No Flowers = No Food</span>
+    </div>
     <div class="menu">
-      <a href="#why">Why</a>
-      <a href="#actions">What to Do</a>
+      <a href="#why">Why it matters</a>
+      <a href="#insects">Insects & Food</a>
+      <a href="#actions">Do This</a>
+      <a href="#benefits">Benefits</a>
       <a href="#gallery">Photos</a>
-      <a href="#share">Share</a>
+      <a href="#global">Global</a>
+      <a href="#nz">NZ Resources</a>
+      <a href="#faq">FAQ</a>
     </div>
   </div>
 </nav>
 
 <header class="hero">
-  <h1>No Flowers = No Food</h1>
-  <p>Flowers feed bees. Bees help make food. If we lose flowers, we lose food. You can help – and it’s easy!</p>
-  <div class="cta-row">
-    <a href="#actions" class="btn-main">🌱 Start Helping Today</a>
-    <a href="#share" class="btn-alt">📣 Spread the Word</a>
+  <div class="wrap">
+    <img class="logo-hero" src="noflowers_logo.png" alt="No Flowers = No Food logo" />
+    <h1>🌼 No Flowers = No Food</h1>
+    <p>Insects are disappearing, and without them, we risk losing our food. Even small patches of flowers in gardens, schools, or streets make a big difference.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#actions">🌱 Start Today</a>
+      <a class="btn secondary" href="#global">🌍 See Global Action</a>
+    </div>
   </div>
 </header>
 
 <section id="why">
-  <h2>Why Does This Matter?</h2>
-  <div class="lead">Bees, butterflies, and insects need flowers to eat. We need insects to grow food. No flowers = no food.</div>
+  <h2>The Biodiversity Crisis — Why Act Now</h2>
+  <div class="lead">
+    <p>Nature is disappearing fast. Animals, insects, and plants are in trouble. If we don’t act now, our food, water, and world will be at risk.</p>
+  </div>
   <div class="grid cols-3">
-    <div class="card"><h3>Nature Gives Us Food</h3><p>Bees and bugs pollinate apples, kiwifruit, veggies – most of our food!</p></div>
-    <div class="card"><h3>But Bugs Are Disappearing</h3><p>Too much mowing and spraying kills flowers and insects.</p></div>
-    <div class="card"><h3>Good News!</h3><p>If we plant flowers and stop spraying, nature comes back fast.</p></div>
+    <div class="card"><h3>Nature feeds us</h3><p>Pollinators help grow our food, clean our water, and keep soil healthy.</p></div>
+    <div class="card"><h3>It’s disappearing</h3><p>Insects are dying, habitats are shrinking, and chemical use is harming wildlife.</p></div>
+    <div class="card"><h3>Good news</h3><p>Nature can bounce back quickly if we plant flowers, stop spraying, and let wild areas grow.</p></div>
+  </div>
+  <blockquote><p><strong>“Big changes are needed to protect our planet.”</strong> — IPBES 2019</p></blockquote>
+</section>
+
+<section id="insects">
+  <h2>Why Insects Matter for Food and People</h2>
+  <div class="grid cols-2">
+    <div class="card"><h3>Pollination = Food</h3><p>Many fruits, vegetables, and seeds need bees, butterflies, moths, and even birds to grow. Learn more <a href="https://www.landcareresearch.co.nz/tools-and-resources/education/pollination" target="_blank">here</a>.</p></div>
+    <div class="card"><h3>NZ’s Unique Insects</h3><p>New Zealand has thousands of special insect species. Protecting them keeps Aotearoa unique. <a href="https://www.landcareresearch.co.nz/discover-our-research/restoring-ecosystems/plants-invertebrates-fungi-and-bacteria/invertebrate-systematics" target="_blank">More info</a>.</p></div>
+    <div class="card"><h3>Beyond Bees</h3><p>Moths, flies, and birds also help pollinate. Even cold, alpine, and subantarctic areas get pollinated!</p></div>
+    <div class="card"><h3>Insects Connect Life</h3><p>Insects feed birds and fish, recycle nutrients, and keep soils alive. Flowers, nests, and chemical-free areas help them recover.</p></div>
   </div>
 </section>
 
 <section id="actions">
-  <h2>What Can You Do?</h2>
-  <div class="lead">You don’t need a big garden. A small patch helps. Here’s how:</div>
+  <h2>Do This Today — Easy Actions</h2>
+  <div class="lead"><p>Nature lives everywhere. Your garden, street, or school can help. Try these steps:</p></div>
   <div class="grid cols-2">
-    <div class="card"><h3>🌼 Let Flowers Grow</h3><p>Don’t mow every week. Let daisies and clover bloom.</p></div>
-    <div class="card"><h3>🚫 Stop Spraying</h3><p>Chemicals kill bugs. Pull weeds by hand or cover with mulch.</p></div>
-    <div class="card"><h3>🌱 Plant Wildflowers</h3><p>Choose flowers that bloom in different seasons so bees have food all year.</p></div>
-    <div class="card"><h3>🏡 Make Bug Homes</h3><p>Leave some sticks, soil patches, and grass for insects to live in.</p></div>
+    <div class="card"><h3>Don’t mow in spring & summer</h3><p>Let flowers bloom to feed insects. Inspired by <a href="https://www.plantlife.org.uk/campaigns/nomowmay/" target="_blank">No Mow May</a>.</p></div>
+    <div class="card"><h3>Stop spraying chemicals</h3><p>Hand-pull weeds, use mulch, or plant native groundcovers. Insects love chemical-free spaces.</p></div>
+    <div class="card"><h3>Plant native wildflowers</h3><p>Plant different flowers that bloom at different times. Add nesting spots for bees and small insects.</p></div>
+    <div class="card"><h3>Let edges grow</h3><p>Leave lawn corners, street edges, and berms wild. Connect patches to make insect corridors.</p></div>
+    <div class="card"><h3>Support pollinator-friendly farms & councils</h3><p>Encourage local “Bee Friendly” actions. <a href="https://www.pollinator.org/bff" target="_blank">Learn more</a>.</p></div>
+    <div class="card"><h3>Join & Share</h3><p>Volunteer, share photos of your wild patch, and inspire your community.</p></div>
+  </div>
+</section>
+
+<section id="benefits">
+  <h2>Benefits of Being Nature-Friendly</h2>
+  <div class="grid cols-3">
+    <div class="card"><h3>Food Security</h3><p>Pollinators keep gardens, farms, and orchards productive. Fewer chemicals protect insects and soil.</p></div>
+    <div class="card"><h3>Health & Happiness</h3><p>Green streets and wildflowers reduce stress, improve mood, and encourage play and walking. <a href="https://www.wur.nl/en/research-results/research-institutes/environmental-research/focus-areas/green-cities/nature-and-health-in-the-city.htm" target="_blank">More info</a>.</p></div>
+    <div class="card"><h3>Climate Help</h3><p>Wildflower patches cool cities, soak up water, and reduce flooding.</p></div>
+    <div class="card"><h3>Beauty</h3><p>Colourful flowers, birds, and butterflies make daily life joyful.</p></div>
+    <div class="card"><h3>Education</h3><p>Kids learn about ecosystems, pollination, and caring for nature.</p></div>
+    <div class="card"><h3>Resilience</h3><p>Connected wild patches help wildlife survive and adapt to climate change.</p></div>
   </div>
 </section>
 
 <section id="gallery">
-  <h2>See How Pretty It Looks!</h2>
-  <p style="text-align:center;">Wildflower patches are colourful and full of life. Your place can look like this:</p>
+  <h2>Photos & Inspiration</h2>
   <div class="gallery">
-    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=600" alt="Wildflowers">
-    <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=600" alt="Bee on flower">
-    <img src="https://images.unsplash.com/photo-1495395226200-8fbf6b1d9f4c?q=80&w=600" alt="Butterfly on flower">
+    <figure><img src="IMG_1955.png" alt="Wildflower meadow"><figcaption>Wildflower meadow</figcaption></figure>
+    <figure><img src="https://images.unsplash.com/photo-1524594154903-c50d0b1c48b1?q=80&w=600&auto=format&fit=crop" alt="Bee on flower"><figcaption>Bee on flower</figcaption></figure>
+    <figure><img src="https://images.unsplash.com/photo-1521747116042-5a810fda9664?q=80&w=600&auto=format&fit=crop" alt="Butterfly"><figcaption>Butterfly in garden</figcaption></figure>
   </div>
 </section>
 
-<section id="share">
-  <h2>Share and Inspire Others</h2>
-  <p style="text-align:center;">Take a photo of your wild patch and share it with these hashtags:</p>
-  <p style="text-align:center; font-weight:900;">#NoFlowersNoFood #SaveOurBees #GrowWild</p>
+<section id="global">
+  <h2>Global Action</h2>
+  <p>Worldwide, pollinators are in trouble. Cities, farmers, and communities plant flowers, protect insects, and reduce chemicals. Learn from these examples to help in NZ.</p>
+  <ul>
+    <li>Plant flower strips in cities and farms</li>
+    <li>Encourage schools to create insect gardens</li>
+    <li>Share stories and results with others</li>
+  </ul>
+</section>
+
+<section id="nz">
+  <h2>New Zealand Resources</h2>
+  <ul>
+    <li><a href="https://www.landcareresearch.co.nz/tools-and-resources/education/pollination" target="_blank">Pollination Education</a></li>
+    <li><a href="https://www.doc.govt.nz/our-work/biodiversity/" target="_blank">DOC Biodiversity</a></li>
+    <li><a href="https://www.kcc.org.nz/" target="_blank">Kiwi Conservation Clubs</a></li>
+  </ul>
+</section>
+
+<section id="faq">
+  <h2>FAQ</h2>
+  <details><summary>Why can’t I just mow the lawn?</summary><p>Mowing removes flowers insects need. Letting corners or patches bloom helps pollinators survive.</p></details>
+  <details><summary>Do native flowers really make a difference?</summary><p>Yes! They evolved with local insects and give the best nectar and pollen.</p></details>
+  <details><summary>Can wildflowers spread to neighbors?</summary><p>Most pollinator-friendly flowers stay local. Control invasive species and plant responsibly.</p></details>
+  <details><summary>Is chemical-free safe?</summary><p>Yes! Using fewer sprays keeps insects alive and protects our food and water.</p></details>
 </section>
 
 <footer>
-  <p><strong>Made for Aotearoa New Zealand</strong><br/>© 2025 No Flowers = No Food</p>
+  <div class="foot-inner">
+    <div>
+      <p><strong>About this page</strong><br/>Helping Aotearoa’s pollinators by making everyday places wild and colorful.</p>
+    </div>
+    <div>
+      <p><strong>Key references</strong></p>
+      <ul>
+        <li><a href="https://files.ipbes.net/ipbes-web-prod-public-files/inline/files/ipbes_global_assessment_report_summary_for_policymakers.pdf" target="_blank">IPBES Global Assessment (2019)</a></li>
+        <li><a href="https://www.worldwildlife.org/publications/2024-living-planet-report" target="_blank">WWF Living Planet Report 2024</a></li>
+        <li><a href="https://www.plantlife.org.uk/campaigns/nomowmay/" target="_blank">Plantlife: No Mow May</a></li>
+      </ul>
+    </div>
+    <div>
+      <p><strong>Contact</strong></p>
+      <p>Email: <a href="mailto:noflowers.nofood@icloud.com">noflowers.nofood@icloud.com</a></p>
+    </div>
+  </div>
+  <p style="margin-top:1rem">© 2025 No Flowers = No Food — Aotearoa NZ</p>
 </footer>
 
+<a class="to-top" href="#top" aria-label="Back to top">⬆︎ Top</a>
 </body>
 </html>
