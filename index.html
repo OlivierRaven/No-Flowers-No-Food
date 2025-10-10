@@ -12,6 +12,9 @@
 <meta property="og:type" content="website" />
 <meta property="og:image" content="IMG_4277.jpeg" />
 
+<!-- Optional: advertise a PDF version of the poster if/when you add it -->
+<link rel="alternate" type="application/pdf" href="poster.pdf" title="No Flowers = No Food — Campaign Poster" />
+
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
 <style>
@@ -114,7 +117,7 @@ img{max-width:100%;display:block}
   background-size:cover;
   background-position:50% 30%;
   mix-blend-mode:multiply;
-  opacity:.45; /* ← missing semicolon fixed */
+  opacity:.45;
   z-index:1;
   pointer-events:none;
 }
@@ -169,7 +172,6 @@ img{max-width:100%;display:block}
   padding:.9rem 1.25rem;
   font-weight:800;
   font-size:1rem;
-  /* safer, cross-browser transition set */
   transition:
     transform .15s ease,
     box-shadow .15s ease,
@@ -184,28 +186,17 @@ img{max-width:100%;display:block}
   color:#06281c;
   box-shadow:var(--shadow);
 }
-.btn.primary:hover{
-  transform:translateY(-2px);
-  /* subtle lift without animating the gradient itself */
-  filter:brightness(1.04);
-}
+.btn.primary:hover{ transform:translateY(-2px); filter:brightness(1.04) }
 
 .btn.secondary{
   background:#fff;
   color:#0f3d2f;
   border:2px solid #e2f2e6;
 }
-.btn.secondary:hover{
-  background:#f6fff8;
-  transform:translateY(-2px);
-}
+.btn.secondary:hover{ background:#f6fff8; transform:translateY(-2px) }
 
 .btn:focus-visible,
-.btn:focus{
-  outline:none;
-  box-shadow:var(--ring);
-}
-
+.btn:focus{ outline:none; box-shadow:var(--ring) }
 
 /* Sections */
 section{margin:2rem 0;padding:2rem 0}
@@ -216,9 +207,7 @@ section header h2{font-size:clamp(1.6rem,3.2vw,2.2rem);margin-bottom:.6rem;color
 /* Grids & cards */
 .grid{display:grid;gap:1rem;margin-top:1rem}
 @media(min-width:720px){.grid.cols-2{grid-template-columns:repeat(2,1fr)}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
-.card{
-  border-radius:14px;padding:1rem 1rem;border:1px solid #eef2ee;box-shadow:var(--shadow);position:relative
-}
+.card{ border-radius:14px;padding:1rem 1rem;border:1px solid #eef2ee;box-shadow:var(--shadow);position:relative }
 .card h3{color:#0f3d2f;margin-bottom:.35rem;font-size:1.15rem}
 .card p{color:var(--muted);font-size:1rem}
 .card ul{margin:.35rem 0 .2rem 1.1rem}
@@ -263,6 +252,7 @@ blockquote{margin:1rem 0;padding:.8rem 1rem;border-left:6px solid #ff9ed0;backgr
 </style>
 </head>
 <body>
+<a id="top"></a>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Page frame: keeps everything off the screen edges -->
@@ -283,6 +273,8 @@ blockquote{margin:1rem 0;padding:.8rem 1rem;border-left:6px solid #ff9ed0;backgr
         <a role="menuitem" href="#aotearoa">Aotearoa action</a>
         <a role="menuitem" href="#nz">NZ resources</a>
         <a role="menuitem" href="#faq">FAQ</a>
+        <!-- New: quick poster link -->
+        <a role="menuitem" href="poster.html" target="_blank" rel="noopener">Poster</a>
       </div>
     </div>
   </nav>
@@ -300,6 +292,15 @@ blockquote{margin:1rem 0;padding:.8rem 1rem;border-left:6px solid #ff9ed0;backgr
       <div class="cta-row" role="group" aria-label="Primary actions">
         <a class="btn primary" href="#actions">🌱 Start today</a>
         <a class="btn secondary" href="#nz">📚 NZ resources</a>
+        <!-- Poster CTAs with accessible labels -->
+        <a class="btn primary" href="poster.html" target="_blank" rel="noopener"
+           aria-label="Open the campaign poster in a new tab">
+          📄 View Poster
+        </a>
+        <a class="btn secondary" href="poster.html" download
+           aria-label="Download the campaign poster">
+          ⬇️ Download Poster
+        </a>
       </div>
     </div>
   </header>
@@ -486,6 +487,9 @@ blockquote{margin:1rem 0;padding:.8rem 1rem;border-left:6px solid #ff9ed0;backgr
             <li><a href="https://www.landcareresearch.co.nz/tools-and-resources/education/pollination" target="_blank" rel="noopener">Pollination education</a></li>
             <li><a href="https://www.doc.govt.nz/our-work/biodiversity/" target="_blank" rel="noopener">DOC biodiversity</a></li>
             <li><a href="https://www.kcc.org.nz/" target="_blank" rel="noopener">Kiwi Conservation Clubs</a></li>
+            <!-- Poster entry repeated for scrollers -->
+            <li><a href="poster.html" target="_blank" rel="noopener">Campaign poster (view)</a> ·
+                <a href="poster.html" download>download</a></li>
           </ul>
         </div>
         <div class="card">
@@ -545,6 +549,8 @@ blockquote{margin:1rem 0;padding:.8rem 1rem;border-left:6px solid #ff9ed0;backgr
           <li><a href="https://www.worldwildlife.org/publications/2024-living-planet-report" target="_blank" rel="noopener">WWF Living Planet Report 2024</a></li>
         </ul>
         <p class="fine">Note: This campaign adapts “No Mow” ideas to New Zealand by emphasising native ecosystems.</p>
+        <!-- Small persistent poster link -->
+        <p class="fine">Also see: <a href="poster.html" target="_blank" rel="noopener">Campaign poster</a> (<a href="poster.html" download>download</a>)</p>
       </div>
       <div>
         <p><strong>Contact</strong></p>
