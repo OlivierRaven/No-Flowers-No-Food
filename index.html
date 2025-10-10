@@ -16,392 +16,544 @@
 
 <style>
 :root{
-  --bg:#fffdf6;
-  --ink:#162215;
-  --muted:#2d3e2a;
-  --primary:#1fbf7a; /* greener, NZ bush vibe */
+  /* Base palette: brighter, flower-forward */
+  --bg-gradient: radial-gradient(1200px 800px at 15% 10%, #fff8d9 0%, transparent 60%),
+                  radial-gradient(1200px 800px at 85% 20%, #ffe6f6 0%, transparent 60%),
+                  radial-gradient(1200px 800px at 50% 100%, #e6fff1 0%, transparent 60%),
+                  #fffef9;
+  --ink:#122018;
+  --muted:#2a4135;
+
+  /* Brand greens & accents */
+  --primary:#1fbf7a;
   --primary-2:#6abf69;
-  --accent:#ffd166;
-  --accent-2:#ff9ed0;
-  --card:#ffffff;
-  --shadow:0 10px 24px rgba(0,0,0,.08);
-  --link:#136f63;
-  --ring: 0 0 0 3px rgba(31,191,122,.25);
+  --link:#0f6c56;
+
+  /* Flower tints for cards */
+  --rose:#ffe0eb;
+  --sun:#fff1c9;
+  --sky:#e6f4ff;
+  --mint:#eafff1;
+  --lav:#efe6ff;
+  --peach:#ffe9dc;
+
+  --paper:#ffffff;
+  --ring: 0 0 0 3px rgba(31,191,122,.28);
+  --shadow: 0 14px 28px rgba(0,0,0,.08);
 }
 
 /* Reset & base */
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:'Nunito',system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;text-rendering:optimizeLegibility}
+body{
+  font-family:'Nunito',system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--ink); line-height:1.6;
+  background:var(--bg-gradient);
+  text-rendering:optimizeLegibility;
+}
 a{color:var(--link);text-decoration:none}
 a:hover{text-decoration:underline}
 img{max-width:100%;display:block}
 
-/* Accessibility helpers */
+/* Accessibility */
 .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
-.skip-link:focus{position:fixed;left:1rem;top:1rem;width:auto;height:auto;background:#fff;padding:.6rem 1rem;border-radius:.6rem;box-shadow:var(--shadow);z-index:2000}
+.skip-link:focus{position:fixed;left:1rem;top:1rem;width:auto;height:auto;background:#fff;padding:.6rem 1rem;border-radius:.6rem;box-shadow:var(--shadow);z-index:3000}
+
+/* Page frame: pulls content away from edges */
+.page{
+  max-width:1180px;
+  margin:1.25rem auto 2rem;
+  background:var(--paper);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  overflow:hidden; /* keep hero corners rounded */
+  border:1px solid #eef3ee;
+}
+
+/* Inner container padding for all sections */
+.container{padding:0 1.25rem}
+@media(min-width:960px){.container{padding:0 2rem}}
 
 /* Nav */
-.nav{position:sticky;top:0;background:#ffffffd9;backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid #e9f2ea;z-index:1000}
-.nav-inner{max-width:1240px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem;gap:1rem}
-.brand{display:flex;align-items:center;gap:.6rem;font-weight:900;color:var(--link);font-size:1.15rem}
-.brand .logo{width:42px;height:42px;border-radius:10px;object-fit:cover;border:3px solid var(--accent);background:linear-gradient(135deg,var(--primary),#fff)}
+.nav{position:sticky;top:0;background:#ffffffee;backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid #e9f2ea;z-index:1000}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem;gap:1rem}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:900;color:#0f3d2f;font-size:1.1rem}
+.brand .logo{width:42px;height:42px;border-radius:10px;object-fit:cover;border:3px solid #ffd166;background:linear-gradient(135deg,var(--primary),#fff)}
 .menu{display:flex;gap:.25rem;flex-wrap:wrap}
 .menu a{padding:.45rem .75rem;border-radius:999px;font-weight:800}
-.menu a:hover{background:#eef8f0}
+.menu a:hover{background:#e8fbf1}
 .menu a:focus-visible{outline:none;box-shadow:var(--ring)}
 
 /* Hero */
-.hero{position:relative;min-height:68vh;display:grid;place-items:center;text-align:center;overflow:hidden}
-.hero::before{
-  content:"";position:absolute;inset:0;
+.hero{
+  position:relative;
+  min-height:58vh;
+  display:grid;
+  place-items:center;
+  text-align:center;
+}
+
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(60% 60% at 20% 10%, rgba(255,214,102,.60) 0%, rgba(255,214,102,0) 70%),
+    radial-gradient(60% 60% at 80% 20%, rgba(255,158,208,.55) 0%, rgba(255,158,208,0) 70%),
+    linear-gradient(135deg, #b7f3d0 0%, #6ad9a2 45%, #39b57f 100%);
+  filter:saturate(1.05);
+  z-index:0;
+  pointer-events:none;
+}
+
+.hero-photo{
+  position:absolute;
+  inset:0;
+  /* fallback base colour behind the image */
+  background-color:#b7f3d0;
   background-image:url('https://images.unsplash.com/photo-1465146633011-14f18c72b735?q=80&w=2000&auto=format&fit=crop');
-  background-size:cover;background-position:50% 30%;filter:brightness(.6) saturate(.9)
+  background-size:cover;
+  background-position:50% 30%;
+  mix-blend-mode:multiply;
+  opacity:.45; /* ← missing semicolon fixed */
+  z-index:1;
+  pointer-events:none;
 }
-.hero::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.55))
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.45));
+  z-index:2;
+  pointer-events:none;
 }
-.hero .wrap{position:relative;z-index:2;max-width:1000px;padding:3rem 1rem}
-.logo-hero{width:92px;height:92px;border-radius:22px;margin:0 auto 1rem;border:4px solid var(--accent);background:linear-gradient(135deg,var(--primary),#fff)}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.75rem);color:#fff;letter-spacing:.2px;text-shadow:0 6px 24px rgba(0,0,0,.45);margin-bottom:.6rem}
-.hero p{color:#eef8f0;font-size:clamp(1rem,2.1vw,1.25rem);max-width:820px;margin:0 auto 1.2rem}
+
+.hero .wrap{
+  position:relative;
+  z-index:3;
+  max-width:980px;
+  padding:3rem 1rem;
+}
+
+.logo-hero{
+  width:92px;height:92px;border-radius:22px;margin:0 auto 1rem;
+  border:4px solid #ffd166;
+  background:linear-gradient(135deg,var(--primary),#fff);
+}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,5vw,3.6rem);
+  color:#fff;letter-spacing:.2px;
+  text-shadow:0 10px 30px rgba(0,0,0,.35);
+  margin-bottom:.6rem;
+}
+
+.hero p{
+  color:#eefaf4;
+  font-size:clamp(1rem,2.1vw,1.22rem);
+  max-width:800px;
+  margin:0 auto 1.2rem;
+}
 
 /* Buttons */
-.cta-row{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-block;border-radius:999px;padding:.85rem 1.25rem;font-weight:800;font-size:1rem;transition:transform .15s,box-shadow .15s, background .15s}
-.btn.primary{background:linear-gradient(90deg,var(--primary),var(--primary-2));color:#fff;box-shadow:var(--shadow)}
-.btn.primary:hover{transform:translateY(-2px)}
-.btn.secondary{background:#fff;color:#0f3d2f;border:2px solid #e2f2e6}
-.btn.secondary:hover{background:#f6fff8}
-.btn:focus-visible{outline:none;box-shadow:var(--ring)}
+.cta-row{
+  display:flex;
+  gap:.7rem;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-block;
+  border-radius:999px;
+  padding:.9rem 1.25rem;
+  font-weight:800;
+  font-size:1rem;
+  /* safer, cross-browser transition set */
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease,
+    background-color .15s ease,
+    color .15s ease,
+    filter .15s ease;
+  will-change: transform, box-shadow, background-color, color, filter;
+}
+
+.btn.primary{
+  background:linear-gradient(90deg,#2ad08a,#6adf90);
+  color:#06281c;
+  box-shadow:var(--shadow);
+}
+.btn.primary:hover{
+  transform:translateY(-2px);
+  /* subtle lift without animating the gradient itself */
+  filter:brightness(1.04);
+}
+
+.btn.secondary{
+  background:#fff;
+  color:#0f3d2f;
+  border:2px solid #e2f2e6;
+}
+.btn.secondary:hover{
+  background:#f6fff8;
+  transform:translateY(-2px);
+}
+
+.btn:focus-visible,
+.btn:focus{
+  outline:none;
+  box-shadow:var(--ring);
+}
+
 
 /* Sections */
-section{max-width:1200px;margin:2.2rem auto;padding:2rem 1rem}
+section{margin:2rem 0;padding:2rem 0}
 section header h2{font-size:clamp(1.6rem,3.2vw,2.2rem);margin-bottom:.6rem;color:#0f3d2f}
-.section-kicker{display:inline-block;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#2a7d62;background:#e8fbf1;border:1px solid #ccf3de;padding:.2rem .6rem;border-radius:999px;margin-bottom:.6rem}
-.hr{height:6px;width:84px;border-radius:6px;background:linear-gradient(90deg,var(--primary),var(--accent));margin:.5rem 0 1rem}
+.section-kicker{display:inline-block;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#145a46;background:#e8fbf1;border:1px solid #ccf3de;padding:.2rem .6rem;border-radius:999px;margin-bottom:.6rem}
+.hr{height:6px;width:90px;border-radius:6px;background:linear-gradient(90deg,#ff9ed0,#ffd166,#2ad08a);margin:.5rem 0 1rem}
 
 /* Grids & cards */
 .grid{display:grid;gap:1rem;margin-top:1rem}
 @media(min-width:720px){.grid.cols-2{grid-template-columns:repeat(2,1fr)}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
-.card{background:var(--card);border-radius:14px;padding:1rem 1rem;border:1px solid #eef2ee;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.card{
+  border-radius:14px;padding:1rem 1rem;border:1px solid #eef2ee;box-shadow:var(--shadow);position:relative
+}
 .card h3{color:#0f3d2f;margin-bottom:.35rem;font-size:1.15rem}
 .card p{color:var(--muted);font-size:1rem}
 .card ul{margin:.35rem 0 .2rem 1.1rem}
 .card li{margin:.2rem 0}
 
+/* Pastel card variants for colour (auto-rotating) */
+.grid .card:nth-child(6n+1){background:var(--rose)}
+.grid .card:nth-child(6n+2){background:var(--sun)}
+.grid .card:nth-child(6n+3){background:var(--sky)}
+.grid .card:nth-child(6n+4){background:var(--mint)}
+.grid .card:nth-child(6n+5){background:var(--lav)}
+.grid .card:nth-child(6n+6){background:var(--peach)}
+
 /* Lead */
-.lead{background:#fff7d6;border-left:6px solid var(--accent);padding:1rem 1.2rem;border-radius:12px;font-size:1.05rem;color:#3f3a1a}
+.lead{background:linear-gradient(90deg,#fff3cc,#ffe7f4);border-left:8px solid #ffd166;padding:1rem 1.2rem;border-radius:12px;font-size:1.05rem;color:#3f3a1a}
 
 /* Gallery */
 .gallery{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));margin-top:1rem}
-figure{background:#ffffff;border:1px solid #eef2ee;border-radius:12px;padding:.5rem;box-shadow:var(--shadow)}
-.gallery img{width:100%;height:240px;object-fit:cover;border-radius:8px}
-figcaption{font-size:.95rem;color:#3b5736;margin-top:.4rem;text-align:center}
+figure{background:#ffffff;border:1px solid #f0f0f5;border-radius:12px;padding:.5rem;box-shadow:var(--shadow)}
+.gallery img{width:100%;height:240px;object-fit:cover;border-radius:8px;border:4px solid #fff3cc}
+figure:nth-child(2) img{border-color:#ffe0eb}
+figure:nth-child(3) img{border-color:#e6f4ff}
+figure:nth-child(4) img{border-color:#eafff1}
+figcaption{font-size:.95rem;color:#284d3d;margin-top:.4rem;text-align:center}
 
 /* FAQ */
-details{background:#0f3d2f;color:#fff;border:1px solid #2a7d62;border-radius:12px;padding:1rem;margin:.6rem 0}
+details{background:linear-gradient(180deg,#0f3d2f,#0c3126);color:#fff;border:1px solid #2a7d62;border-radius:12px;padding:1rem;margin:.6rem 0}
 summary{cursor:pointer;font-weight:900}
 details p{margin-top:.5rem;color:#eaf8f1}
 
 /* Footer */
-footer{margin-top:2.2rem;padding:2rem 1rem;background:#0f3d2f;color:#eaf8f1;border-radius:14px 14px 0 0}
+footer{padding:2rem 0;background:linear-gradient(90deg,#0f3d2f,#145a46);color:#eaf8f1}
 footer a{color:#eaf8f1;text-underline-offset:2px}
-.foot-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
-small, .fine{opacity:.8}
+.foot-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.fine{opacity:.85}
 
 /* Utility */
-blockquote{margin:1rem 0;padding:.8rem 1rem;border-left:4px solid var(--primary);background:#f7fff9;border-radius:8px}
-.to-top{position:fixed;right:1rem;bottom:1rem;background:var(--primary);border-radius:999px;padding:.6rem .8rem;box-shadow:var(--shadow);font-weight:800;color:#fff}
-.to-top:hover{background:var(--primary-2);color:#002a1f}
+blockquote{margin:1rem 0;padding:.8rem 1rem;border-left:6px solid #ff9ed0;background:#fff7ff;border-radius:8px}
+.to-top{position:fixed;right:1rem;bottom:1rem;background:linear-gradient(90deg,#ff9ed0,#ffd166);border:none;border-radius:999px;padding:.6rem .9rem;box-shadow:var(--shadow);font-weight:800;color:#222}
+.to-top:hover{filter:brightness(1.05)}
 .to-top:focus-visible{outline:none;box-shadow:var(--ring)}
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<a id="top"></a>
 
-<nav class="nav" role="navigation" aria-label="Main">
-  <div class="nav-inner">
-    <div class="brand">
-      <img class="logo" src="noflowers_logo.png" alt="No Flowers = No Food logo" />
-      <span>No Flowers = No Food</span>
-    </div>
-    <div class="menu" role="menubar" aria-label="Primary">
-      <a role="menuitem" href="#why">Why it matters</a>
-      <a role="menuitem" href="#insects">Insects & food</a>
-      <a role="menuitem" href="#actions">Do this</a>
-      <a role="menuitem" href="#benefits">Benefits</a>
-      <a role="menuitem" href="#gallery">Photos</a>
-      <a role="menuitem" href="#aotearoa">Aotearoa action</a>
-      <a role="menuitem" href="#nz">NZ resources</a>
-      <a role="menuitem" href="#faq">FAQ</a>
-    </div>
-  </div>
-</nav>
-
-<header class="hero" role="banner">
-  <div class="wrap">
-    <img class="logo-hero" src="noflowers_logo.png" alt="Campaign logo" />
-    <h1>🌼 No Flowers = No Food</h1>
-    <p>Let Nature Grow for Aotearoa’s insects. Plant native, mow less and smarter, stop spraying, and keep some corners wild. Small patches add up—at home, at school, and on the street.</p>
-    <div class="cta-row" role="group" aria-label="Primary actions">
-      <a class="btn primary" href="#actions">🌱 Start today</a>
-      <a class="btn secondary" href="#nz">📚 NZ resources</a>
-    </div>
-  </div>
-</header>
-
-<main id="main">
-  <section id="why" aria-labelledby="why-title">
-    <header>
-      <span class="section-kicker">The biodiversity crisis</span>
-      <h2 id="why-title">Why act now</h2>
-      <div class="hr" aria-hidden="true"></div>
-    </header>
-
-    <div class="lead">
-      <p>Nature is under pressure. Many native insects are declining as habitats shrink and chemicals increase. Without them, we risk losing pollination, healthy soils, and the food systems we rely on.</p>
-    </div>
-
-    <div class="grid cols-3" role="list">
-      <div class="card" role="listitem"><h3>Nature feeds us</h3><p>Pollinators support fruit, veg, and seed production, keep soils alive, and help ecosystems function.</p></div>
-      <div class="card" role="listitem"><h3>It’s disappearing</h3><p>Habitat loss and spraying break the links insects need to survive and recover.</p></div>
-      <div class="card" role="listitem"><h3>Good news</h3><p>Native planting, less spraying, and smarter mowing bring insects back—fast.</p></div>
-    </div>
-
-    <blockquote>
-      <p><strong>“Big, system-level change is needed—but local action matters.”</strong></p>
-    </blockquote>
-  </section>
-
-  <section id="insects" aria-labelledby="insects-title">
-    <header>
-      <span class="section-kicker">Insects & food</span>
-      <h2 id="insects-title">Why insects matter in Aotearoa</h2>
-      <div class="hr" aria-hidden="true"></div>
-    </header>
-
-    <div class="grid cols-2">
-      <div class="card">
-        <h3>Pollination = kai</h3>
-        <p>Bees, flies, moths, beetles—and birds—help produce food in gardens and orchards. Protecting them protects our kai.</p>
+<!-- Page frame: keeps everything off the screen edges -->
+<div class="page">
+  <!-- NAV stays inside the page so it doesn’t touch edges -->
+  <nav class="nav" role="navigation" aria-label="Main">
+    <div class="nav-inner container">
+      <div class="brand">
+        <img class="logo" src="noflowers_logo.png" alt="No Flowers = No Food logo" />
+        <span>No Flowers = No Food</span>
       </div>
-      <div class="card">
-        <h3>Uniquely New Zealand</h3>
-        <p>Aotearoa has thousands of endemic insects that evolved with native plants. Planting native reconnects those relationships.</p>
-      </div>
-      <div class="card">
-        <h3>Beyond just bees</h3>
-        <p>Hoverflies, native solitary bees, and night-flying moths play quiet but vital roles—especially when flowers are available through the seasons.</p>
-      </div>
-      <div class="card">
-        <h3>Everything connects</h3>
-        <p>Insects feed birds and fish, recycle nutrients, and build healthy soils. Give them flowers, nesting spots, and chemical-free space.</p>
+      <div class="menu" role="menubar" aria-label="Primary">
+        <a role="menuitem" href="#why">Why it matters</a>
+        <a role="menuitem" href="#insects">Insects & food</a>
+        <a role="menuitem" href="#actions">Do this</a>
+        <a role="menuitem" href="#benefits">Benefits</a>
+        <a role="menuitem" href="#gallery">Photos</a>
+        <a role="menuitem" href="#aotearoa">Aotearoa action</a>
+        <a role="menuitem" href="#nz">NZ resources</a>
+        <a role="menuitem" href="#faq">FAQ</a>
       </div>
     </div>
-  </section>
+  </nav>
 
-  <section id="actions" aria-labelledby="actions-title">
-    <header>
-      <span class="section-kicker">Do this</span>
-      <h2 id="actions-title">Let Nature Grow — the Aotearoa way</h2>
-      <div class="hr" aria-hidden="true"></div>
-    </header>
+  <!-- HERO with colourful gradient + photo overlay -->
+  <header class="hero" role="banner">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-photo" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
 
-    <div class="lead"><p>Focus on native plants and simple changes. Here’s what works best in New Zealand:</p></div>
-
-    <div class="grid cols-2">
-      <div class="card">
-        <h3>1) Grow native, not just “wild”</h3>
-        <p>Choose species that feed and shelter our insects:</p>
-        <ul>
-          <li><strong>Hebe (koromiko)</strong> — nectar for native bees & hoverflies</li>
-          <li><strong>Mānuka & kānuka</strong> — early-season nectar & nesting structure</li>
-          <li><strong>Harakeke (NZ flax)</strong> — rich nectar for many insects</li>
-          <li><strong>Olearia</strong> — supports night-flying moths</li>
-          <li><strong>Pittosporum tenuifolium</strong> — shelter & food for caterpillars</li>
-        </ul>
-        <p>Mix tussocks, shrubs, and trees for year-round support.</p>
-      </div>
-
-      <div class="card">
-        <h3>2) Mow less, and at the right times</h3>
-        <ul>
-          <li>Cut grass only <strong>2–3 times a year</strong>.</li>
-          <li>Never mow everything at once—<strong>leave refuge patches</strong>.</li>
-          <li><strong>Avoid mowing Oct–Jan</strong> (peak insect season).</li>
-          <li>Keep some strips or corners <strong>wild permanently</strong> if possible.</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>3) Stop spraying</h3>
-        <p>Even “eco” sprays harm native insects.</p>
-        <ul>
-          <li>Skip pesticides and herbicides altogether.</li>
-          <li>Weed by hand, use mulch, or plant densely to shade out weeds.</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>4) Make space for shelter</h3>
-        <ul>
-          <li>Leave some <strong>leaf litter, twigs, and logs</strong>.</li>
-          <li>Create <strong>brush piles or stone stacks</strong> for nesting.</li>
-          <li>Let a few corners stay <strong>untidy and wild</strong>.</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>5) Think in layers</h3>
-        <ul>
-          <li><strong>Tussocks & carex</strong> for cover</li>
-          <li><strong>Shrubs</strong> (coprosma, hebe) for nectar</li>
-          <li><strong>Trees</strong> (kōwhai, mānuka, ribbonwood) for height & diversity</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>6) Join local efforts</h3>
-        <p>Restoration is stronger together.</p>
-        <ul>
-          <li>Forest & Bird branches</li>
-          <li>Local council biodiversity programmes</li>
-          <li>Iwi-led restoration projects</li>
-          <li>Wildlife & Ecology NZ</li>
-        </ul>
+    <div class="wrap container">
+      <img class="logo-hero" src="noflowers_logo.png" alt="Campaign logo" />
+      <h1>🌼 No Flowers = No Food</h1>
+      <p>Let Nature Grow for Aotearoa’s insects. Plant native, mow less and smarter, stop spraying, and keep some corners wild. Small patches add up—at home, at school, and on the street.</p>
+      <div class="cta-row" role="group" aria-label="Primary actions">
+        <a class="btn primary" href="#actions">🌱 Start today</a>
+        <a class="btn secondary" href="#nz">📚 NZ resources</a>
       </div>
     </div>
-  </section>
+  </header>
 
-  <section id="benefits" aria-labelledby="benefits-title">
-    <header>
-      <span class="section-kicker">Why it’s worth it</span>
-      <h2 id="benefits-title">Benefits of letting nature grow</h2>
-      <div class="hr" aria-hidden="true"></div>
-    </header>
+  <main id="main" class="container">
+    <section id="why" aria-labelledby="why-title">
+      <header>
+        <span class="section-kicker">The biodiversity crisis</span>
+        <h2 id="why-title">Why act now</h2>
+        <div class="hr" aria-hidden="true"></div>
+      </header>
 
-    <div class="grid cols-3">
-      <div class="card"><h3>Food security</h3><p>Pollinators keep gardens and orchards productive. Chemical-free soils thrive.</p></div>
-      <div class="card"><h3>Wellbeing</h3><p>Green streets reduce stress, lift mood, and invite play and walking.</p></div>
-      <div class="card"><h3>Climate resilience</h3><p>Native plantings cool cities, soak up water, and reduce flooding.</p></div>
-      <div class="card"><h3>Beauty</h3><p>Birdsong, butterflies, and blooming natives make daily life richer.</p></div>
-      <div class="card"><h3>Learning</h3><p>Kids discover ecosystems, pollination, and kaitiakitanga.</p></div>
-      <div class="card"><h3>Stronger ecosystems</h3><p>Connected patches help wildlife survive and adapt.</p></div>
-    </div>
-  </section>
-
-  <section id="gallery" aria-labelledby="gallery-title">
-    <header>
-      <span class="section-kicker">Inspiration</span>
-      <h2 id="gallery-title">Photos</h2>
-      <div class="hr" aria-hidden="true"></div>
-    </header>
-    <div class="gallery" role="list">
-      <figure role="listitem"><img src="IMG_1955.png" alt="A diverse native-plant patch in bloom"><figcaption>Native-first wild patch</figcaption></figure>
-      <figure role="listitem"><img src="IMG_4277.jpeg" alt="Bee visiting a flower"><figcaption>Pollinators at work</figcaption></figure>
-      <figure role="listitem"><img src="IMG_1467.jpeg" alt="Insect habitat structure"><figcaption>Simple habitat features</figcaption></figure>
-      <figure role="listitem"><img src="IMG_1298.jpeg" alt="Garden edge with flowers and a mown path"><figcaption>Framed wild edges</figcaption></figure>
-    </div>
-  </section>
-
-  <section id="aotearoa" aria-labelledby="aotearoa-title">
-    <header>
-      <span class="section-kicker">Aotearoa action</span>
-      <h2 id="aotearoa-title">What “No Flowers = No Food” means here</h2>
-      <div class="hr" aria-hidden="true"></div>
-    </header>
-    <ul class="card">
-      <li><strong>Plant native first.</strong> Prioritise local species that evolved with our insects.</li>
-      <li><strong>Use mosaic mowing.</strong> Different patches, different timings—never all at once.</li>
-      <li><strong>Keep edges tidy.</strong> A mown border, path, or sign shows it’s intentional and cared for.</li>
-      <li><strong>Leave structure.</strong> Logs, brush, and leaf litter are homes—don’t “tidy” them away.</li>
-      <li><strong>Go chemical-free.</strong> Hand-weed, mulch, and plant densely instead.</li>
-    </ul>
-  </section>
-
-  <section id="nz" aria-labelledby="nz-title">
-    <header>
-      <span class="section-kicker">Get involved</span>
-      <h2 id="nz-title">New Zealand resources</h2>
-      <div class="hr" aria-hidden="true"></div>
-    </header>
-    <div class="grid cols-2">
-      <div class="card">
-        <h3>Learn</h3>
-        <ul>
-          <li><a href="https://www.landcareresearch.co.nz/tools-and-resources/education/pollination" target="_blank" rel="noopener">Pollination education</a></li>
-          <li><a href="https://www.doc.govt.nz/our-work/biodiversity/" target="_blank" rel="noopener">DOC biodiversity</a></li>
-          <li><a href="https://www.kcc.org.nz/" target="_blank" rel="noopener">Kiwi Conservation Clubs</a></li>
-        </ul>
+      <div class="lead">
+        <p>Nature is under pressure. Many native insects are declining as habitats shrink and chemicals increase. Without them, we risk losing pollination, healthy soils, and the food systems we rely on.</p>
       </div>
-      <div class="card">
-        <h3>Do</h3>
-        <ul>
-          <li>Join a local Forest & Bird branch</li>
-          <li>Ask council about mosaic mowing pilots</li>
-          <li>Support iwi-led restoration projects</li>
-        </ul>
+
+      <div class="grid cols-3" role="list">
+        <div class="card" role="listitem"><h3>Nature feeds us</h3><p>Pollinators support fruit, veg, and seed production, keep soils alive, and help ecosystems function.</p></div>
+        <div class="card" role="listitem"><h3>It’s disappearing</h3><p>Habitat loss and spraying break the links insects need to survive and recover.</p></div>
+        <div class="card" role="listitem"><h3>Good news</h3><p>Native planting, less spraying, and smarter mowing bring insects back—fast.</p></div>
       </div>
-    </div>
-  </section>
 
-  <section id="faq" aria-labelledby="faq-title">
-    <header>
-      <span class="section-kicker">FAQ</span>
-      <h2 id="faq-title">Common questions</h2>
-      <div class="hr" aria-hidden="true"></div>
-    </header>
+      <blockquote>
+        <p><strong>“Big, system-level change is needed—but local action matters.”</strong></p>
+      </blockquote>
+    </section>
 
-    <details>
-      <summary>Can I just mow as usual?</summary>
-      <p>Regular mowing removes flowers and structure insects need. Leave corners to bloom and mow different areas at different times.</p>
-    </details>
-    <details>
-      <summary>Do native flowers really help?</summary>
-      <p>Yes. Native plants evolved with our insects and provide the most useful nectar, pollen, and habitat.</p>
-    </details>
-    <details>
-      <summary>Will long grass look messy?</summary>
-      <p>Frame wild areas with a tidy edge or path, add a small sign, and use flowering natives. People read it as intentional.</p>
-    </details>
-    <details>
-      <summary>Are “weeds” like clover okay?</summary>
-      <p>They can provide nectar, but <strong>prioritise natives</strong> for the best outcomes. Hand-weed invasives and skip spraying.</p>
-    </details>
-    <details>
-      <summary>What about allergies or safety?</summary>
-      <p>Choose lower-allergen species and keep sightlines open near driveways. In public spaces, add simple signage and keep edges clear.</p>
-    </details>
-    <details>
-      <summary>My council has fixed mowing schedules—what now?</summary>
-      <p>Ask for a trial of <strong>mosaic mowing</strong>, seasonal flowering windows, and reduced-spray zones. Offer to monitor results with photos.</p>
-    </details>
-  </section>
-</main>
+    <section id="insects" aria-labelledby="insects-title">
+      <header>
+        <span class="section-kicker">Insects & food</span>
+        <h2 id="insects-title">Why insects matter in Aotearoa</h2>
+        <div class="hr" aria-hidden="true"></div>
+      </header>
 
-<footer role="contentinfo">
-  <div class="foot-inner">
-    <div>
-      <p><strong>About this page</strong><br/>Helping Aotearoa’s insects by making everyday places native-rich, chemical-free, and alive.</p>
-    </div>
-    <div>
-      <p><strong>Key references</strong></p>
-      <ul>
-        <li><a href="https://files.ipbes.net/ipbes-web-prod-public-files/inline/files/ipbes_global_assessment_report_summary_for_policymakers.pdf" target="_blank" rel="noopener">IPBES Global Assessment (2019)</a></li>
-        <li><a href="https://www.worldwildlife.org/publications/2024-living-planet-report" target="_blank" rel="noopener">WWF Living Planet Report 2024</a></li>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Pollination = kai</h3>
+          <p>Bees, flies, moths, beetles—and birds—help produce food in gardens and orchards. Protecting them protects our kai.</p>
+        </div>
+        <div class="card">
+          <h3>Uniquely New Zealand</h3>
+          <p>Aotearoa has thousands of endemic insects that evolved with native plants. Planting native reconnects those relationships.</p>
+        </div>
+        <div class="card">
+          <h3>Beyond just bees</h3>
+          <p>Hoverflies, native solitary bees, and night-flying moths play quiet but vital roles—especially when flowers are available through the seasons.</p>
+        </div>
+        <div class="card">
+          <h3>Everything connects</h3>
+          <p>Insects feed birds and fish, recycle nutrients, and build healthy soils. Give them flowers, nesting spots, and chemical-free space.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="actions" aria-labelledby="actions-title">
+      <header>
+        <span class="section-kicker">Do this</span>
+        <h2 id="actions-title">Let Nature Grow — the Aotearoa way</h2>
+        <div class="hr" aria-hidden="true"></div>
+      </header>
+
+      <div class="lead"><p>Focus on native plants and simple changes. Here’s what works best in New Zealand:</p></div>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>1) Grow native, not just “wild”</h3>
+          <p>Choose species that feed and shelter our insects:</p>
+          <ul>
+            <li><strong>Hebe (koromiko)</strong> — nectar for native bees & hoverflies</li>
+            <li><strong>Mānuka & kānuka</strong> — early-season nectar & nesting structure</li>
+            <li><strong>Harakeke (NZ flax)</strong> — rich nectar for many insects</li>
+            <li><strong>Olearia</strong> — supports night-flying moths</li>
+            <li><strong>Pittosporum tenuifolium</strong> — shelter & food for caterpillars</li>
+          </ul>
+          <p>Mix tussocks, shrubs, and trees for year-round support.</p>
+        </div>
+
+        <div class="card">
+          <h3>2) Mow less, and at the right times</h3>
+          <ul>
+            <li>Cut grass only <strong>2–3 times a year</strong>.</li>
+            <li>Never mow everything at once—<strong>leave refuge patches</strong>.</li>
+            <li><strong>Avoid mowing Oct–Jan</strong> (peak insect season).</li>
+            <li>Keep some strips or corners <strong>wild permanently</strong> if possible.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>3) Stop spraying</h3>
+          <p>Even “eco” sprays harm native insects.</p>
+          <ul>
+            <li>Skip pesticides and herbicides altogether.</li>
+            <li>Weed by hand, use mulch, or plant densely to shade out weeds.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>4) Make space for shelter</h3>
+          <ul>
+            <li>Leave some <strong>leaf litter, twigs, and logs</strong>.</li>
+            <li>Create <strong>brush piles or stone stacks</strong> for nesting.</li>
+            <li>Let a few corners stay <strong>untidy and wild</strong>.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>5) Think in layers</h3>
+          <ul>
+            <li><strong>Tussocks & carex</strong> for cover</li>
+            <li><strong>Shrubs</strong> (coprosma, hebe) for nectar</li>
+            <li><strong>Trees</strong> (kōwhai, mānuka, ribbonwood) for height & diversity</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>6) Join local efforts</h3>
+          <p>Restoration is stronger together.</p>
+          <ul>
+            <li>Forest & Bird branches</li>
+            <li>Local council biodiversity programmes</li>
+            <li>Iwi-led restoration projects</li>
+            <li>Wildlife & Ecology NZ</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits" aria-labelledby="benefits-title">
+      <header>
+        <span class="section-kicker">Why it’s worth it</span>
+        <h2 id="benefits-title">Benefits of letting nature grow</h2>
+        <div class="hr" aria-hidden="true"></div>
+      </header>
+
+      <div class="grid cols-3">
+        <div class="card"><h3>Food security</h3><p>Pollinators keep gardens and orchards productive. Chemical-free soils thrive.</p></div>
+        <div class="card"><h3>Wellbeing</h3><p>Green streets reduce stress, lift mood, and invite play and walking.</p></div>
+        <div class="card"><h3>Climate resilience</h3><p>Native plantings cool cities, soak up water, and reduce flooding.</p></div>
+        <div class="card"><h3>Beauty</h3><p>Birdsong, butterflies, and blooming natives make daily life richer.</p></div>
+        <div class="card"><h3>Learning</h3><p>Kids discover ecosystems, pollination, and kaitiakitanga.</p></div>
+        <div class="card"><h3>Stronger ecosystems</h3><p>Connected patches help wildlife survive and adapt.</p></div>
+      </div>
+    </section>
+
+    <section id="gallery" aria-labelledby="gallery-title">
+      <header>
+        <span class="section-kicker">Inspiration</span>
+        <h2 id="gallery-title">Photos</h2>
+        <div class="hr" aria-hidden="true"></div>
+      </header>
+      <div class="gallery" role="list">
+        <figure role="listitem"><img src="IMG_1955.png" alt="A diverse native-plant patch in bloom"><figcaption>Native-first wild patch</figcaption></figure>
+        <figure role="listitem"><img src="IMG_4277.jpeg" alt="Bee visiting a flower"><figcaption>Pollinators at work</figcaption></figure>
+        <figure role="listitem"><img src="IMG_1467.jpeg" alt="Insect habitat structure"><figcaption>Simple habitat features</figcaption></figure>
+        <figure role="listitem"><img src="IMG_1298.jpeg" alt="Garden edge with flowers and a mown path"><figcaption>Framed wild edges</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="aotearoa" aria-labelledby="aotearoa-title">
+      <header>
+        <span class="section-kicker">Aotearoa action</span>
+        <h2 id="aotearoa-title">What “No Flowers = No Food” means here</h2>
+        <div class="hr" aria-hidden="true"></div>
+      </header>
+      <ul class="card">
+        <li><strong>Plant native first.</strong> Prioritise local species that evolved with our insects.</li>
+        <li><strong>Use mosaic mowing.</strong> Different patches, different timings—never all at once.</li>
+        <li><strong>Keep edges tidy.</strong> A mown border, path, or sign shows it’s intentional and cared for.</li>
+        <li><strong>Leave structure.</strong> Logs, brush, and leaf litter are homes—don’t “tidy” them away.</li>
+        <li><strong>Go chemical-free.</strong> Hand-weed, mulch, and plant densely instead.</li>
       </ul>
-      <p class="fine">Note: This campaign adapts “No Mow” ideas to New Zealand by emphasising native ecosystems.</p>
+    </section>
+
+    <section id="nz" aria-labelledby="nz-title">
+      <header>
+        <span class="section-kicker">Get involved</span>
+        <h2 id="nz-title">New Zealand resources</h2>
+        <div class="hr" aria-hidden="true"></div>
+      </header>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Learn</h3>
+          <ul>
+            <li><a href="https://www.landcareresearch.co.nz/tools-and-resources/education/pollination" target="_blank" rel="noopener">Pollination education</a></li>
+            <li><a href="https://www.doc.govt.nz/our-work/biodiversity/" target="_blank" rel="noopener">DOC biodiversity</a></li>
+            <li><a href="https://www.kcc.org.nz/" target="_blank" rel="noopener">Kiwi Conservation Clubs</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Do</h3>
+          <ul>
+            <li>Join a local Forest & Bird branch</li>
+            <li>Ask council about mosaic mowing pilots</li>
+            <li>Support iwi-led restoration projects</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" aria-labelledby="faq-title">
+      <header>
+        <span class="section-kicker">FAQ</span>
+        <h2 id="faq-title">Common questions</h2>
+        <div class="hr" aria-hidden="true"></div>
+      </header>
+
+      <details>
+        <summary>Can I just mow as usual?</summary>
+        <p>Regular mowing removes flowers and structure insects need. Leave corners to bloom and mow different areas at different times.</p>
+      </details>
+      <details>
+        <summary>Do native flowers really help?</summary>
+        <p>Yes. Native plants evolved with our insects and provide the most useful nectar, pollen, and habitat.</p>
+      </details>
+      <details>
+        <summary>Will long grass look messy?</summary>
+        <p>Frame wild areas with a tidy edge or path, add a small sign, and use flowering natives. People read it as intentional.</p>
+      </details>
+      <details>
+        <summary>Are “weeds” like clover okay?</summary>
+        <p>They can provide nectar, but <strong>prioritise natives</strong> for the best outcomes. Hand-weed invasives and skip spraying.</p>
+      </details>
+      <details>
+        <summary>What about allergies or safety?</summary>
+        <p>Choose lower-allergen species and keep sightlines open near driveways. In public spaces, add simple signage and keep edges clear.</p>
+      </details>
+      <details>
+        <summary>My council has fixed mowing schedules—what now?</summary>
+        <p>Ask for a trial of <strong>mosaic mowing</strong>, seasonal flowering windows, and reduced-spray zones. Offer to monitor results with photos.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer role="contentinfo" class="container">
+    <div class="foot-inner">
+      <div>
+        <p><strong>About this page</strong><br/>Helping Aotearoa’s insects by making everyday places native-rich, chemical-free, and alive.</p>
+      </div>
+      <div>
+        <p><strong>Key references</strong></p>
+        <ul>
+          <li><a href="https://files.ipbes.net/ipbes-web-prod-public-files/inline/files/ipbes_global_assessment_report_summary_for_policymakers.pdf" target="_blank" rel="noopener">IPBES Global Assessment (2019)</a></li>
+          <li><a href="https://www.worldwildlife.org/publications/2024-living-planet-report" target="_blank" rel="noopener">WWF Living Planet Report 2024</a></li>
+        </ul>
+        <p class="fine">Note: This campaign adapts “No Mow” ideas to New Zealand by emphasising native ecosystems.</p>
+      </div>
+      <div>
+        <p><strong>Contact</strong></p>
+        <p>Email: <a href="mailto:noflowers.nofood@icloud.com">noflowers.nofood@icloud.com</a></p>
+      </div>
     </div>
-    <div>
-      <p><strong>Contact</strong></p>
-      <p>Email: <a href="mailto:noflowers.nofood@icloud.com">noflowers.nofood@icloud.com</a></p>
-    </div>
-  </div>
-  <p style="margin-top:1rem"><small>© 2025 No Flowers = No Food — Aotearoa NZ</small></p>
-</footer>
+    <p style="margin-top:1rem"><small>© 2025 No Flowers = No Food — Aotearoa NZ</small></p>
+  </footer>
+</div><!-- /page -->
 
 <a class="to-top" href="#top" aria-label="Back to top">⬆︎ Top</a>
 </body>
