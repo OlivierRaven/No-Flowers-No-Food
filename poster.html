@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>No Flowers = No Food — Poster (Aotearoa NZ)</title>
+
+<style>
+  /* ---------- PRINT / PAGE ---------- */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    .screen-note { display: none !important; }
+    body { background: #fff !important; }
+    .poster { box-shadow: none !important; }
+  }
+
+  /* ---------- BASE ---------- */
+  :root{
+    --ink:#13251b; --muted:#2a4335;
+    --green:#22c084; --green2:#6adf90;
+    --sun:#ffd166; --rose:#ff9ed0; --sky:#6ecbff; --leaf:#b7f3d0;
+    --paper:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, "Nunito", Arial, sans-serif;
+    background:
+      radial-gradient(900px 700px at 10% 10%, #fff4d9 0%, transparent 60%),
+      radial-gradient(900px 700px at 90% 15%, #ffe6f6 0%, transparent 60%),
+      radial-gradient(900px 700px at 50% 100%, #e6fff1 0%, transparent 60%),
+      #fffef9;
+    color:var(--ink);
+    line-height:1.35;
+    padding:16px;
+  }
+
+  /* ---------- POSTER CANVAS ---------- */
+  .poster{
+    max-width: 794px;               /* A4 width @ 96 dpi approx */
+    margin: 0 auto;
+    background: var(--paper);
+    border-radius: 18px;
+    border: 1px solid #e7efe9;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0,0,0,.08);
+  }
+
+  /* Header stripe */
+  .hero{
+    position: relative;
+    padding: 28px 28px 22px;
+    text-align: center;
+    color:#083324;
+    background:
+      radial-gradient(60% 60% at 20% 5%, rgba(255,214,102,.55) 0%, rgba(255,214,102,0) 70%),
+      radial-gradient(60% 60% at 80% 15%, rgba(255,158,208,.45) 0%, rgba(255,158,208,0) 70%),
+      linear-gradient(135deg, #b7f3d0 0%, #6ad9a2 40%, #39b57f 100%);
+  }
+  .brand{
+    display:flex; align-items:center; justify-content:center; gap:12px;
+    margin-bottom: 6px;
+  }
+  .brand img{ width:64px; height:64px; border-radius:16px; border:3px solid var(--sun); background:#fff; object-fit:cover }
+  .title{
+    font-family: "Playfair Display", ui-serif, Georgia, serif;
+    font-size: clamp(26px, 4.2vw, 42px);
+    font-weight: 700;
+    color:#ffffff;
+    text-shadow: 0 10px 30px rgba(0,0,0,.25);
+  }
+  .tagline{
+    margin-top:6px; color:#f3fff8; font-size: clamp(14px, 2.4vw, 18px);
+  }
+
+  /* Content grid */
+  .wrap{ padding: 22px 26px 28px; }
+  .grid{
+    display:grid; gap:14px;
+    grid-template-columns: 1.15fr .85fr;
+  }
+  @media (max-width: 760px){
+    .grid{ grid-template-columns: 1fr; }
+  }
+
+  .panel{
+    border-radius:14px; border:1px solid #eef2ee; padding:16px 16px 14px;
+    background: #fff;
+  }
+  .panel h2{ font-size:18px; color:#0e3c2d; margin-bottom:6px }
+  .list{ margin: 6px 0 0 18px; }
+  .list li{ margin: 4px 0; color:var(--muted) }
+
+  /* Colour cards */
+  .card { border-radius:14px; padding:16px; border:1px solid #eef2ee }
+  .sun { background:#fff3cc }
+  .rose{ background:#ffe1ef }
+  .sky { background:#e9f4ff }
+  .mint{ background:#eafff1 }
+
+  /* QR block */
+  .qr-card{
+    display:flex; align-items:center; gap:14px; border-radius:16px;
+    padding:14px; border:1px dashed #badbcc; background: #f4fffa;
+  }
+  #qrcode{
+    width: 180px; height: 180px; background:#fff; border-radius:8px; padding:6px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+    flex: none;
+  }
+  .qr-text h3{ font-size:18px; margin-bottom:4px; color:#0f3d2f }
+  .url{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px; color:#0b604b; overflow-wrap:anywhere;
+    background:#fff; border:1px solid #e3efe9; padding:4px 6px; border-radius:6px;
+  }
+
+  /* Footer ribbons */
+  .ribbons{ display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top: 14px }
+  .rib{ padding:12px 14px; border-radius:12px; color:#092f23; font-weight:700 }
+  .rib1{ background:linear-gradient(90deg,#ff9ed0,#ffd166) }
+  .rib2{ background:linear-gradient(90deg,#ffd166,#6adf90) }
+  .rib3{ background:linear-gradient(90deg,#6adf90,#6ecbff) }
+  @media (max-width: 760px){
+    .ribbons{ grid-template-columns: 1fr; }
+  }
+
+  .screen-note{
+    text-align:center; margin:12px auto 0; color:#335e4b; font-size:13px;
+  }
+</style>
+</head>
+<body>
+
+<div class="poster" role="document" aria-label="Campaign Poster">
+  <header class="hero">
+    <div class="brand">
+      <img src="noflowers_logo.png" alt="No Flowers = No Food logo" />
+      <div class="title">No Flowers = No Food</div>
+    </div>
+    <div class="tagline">Let Nature Grow — Plant native • Mow less (smarter) • Stop spraying • Keep corners wild</div>
+  </header>
+
+  <div class="wrap">
+    <div class="grid">
+      <!-- Left: Actions / Points -->
+      <section class="panel">
+        <h2>Act for Aotearoa’s insects</h2>
+        <ul class="list">
+          <li><strong>Grow native</strong> (hebe/koromiko, mānuka & kānuka, harakeke, olearia, pittosporum).</li>
+          <li><strong>Mow less</strong> (2–3×/year), never all at once; avoid Oct–Jan.</li>
+          <li><strong>Skip sprays</strong>: hand-weed, mulch, dense planting.</li>
+          <li><strong>Leave structure</strong>: leaf litter, twigs, logs, brush piles.</li>
+          <li><strong>Think in layers</strong>: tussocks → shrubs → trees (kōwhai, mānuka, ribbonwood).</li>
+          <li><strong>Join local efforts</strong>: council, iwi, Forest & Bird, community groups.</li>
+        </ul>
+
+        <div style="display:grid; gap:10px; grid-template-columns: repeat(2, 1fr); margin-top:12px">
+          <div class="card sun"><strong>Food security</strong><br/>Pollinators keep gardens & orchards productive.</div>
+          <div class="card rose"><strong>Wellbeing</strong><br/>Greener streets reduce stress & lift mood.</div>
+          <div class="card sky"><strong>Climate</strong><br/>Native plantings cool cities & soak up water.</div>
+          <div class="card mint"><strong>Kaitiakitanga</strong><br/>Care for taiao with native-first spaces.</div>
+        </div>
+      </section>
+
+      <!-- Right: QR + Callout -->
+      <aside class="panel">
+        <div class="qr-card">
+          <div id="qrcode" aria-label="QR code to the campaign website"></div>
+          <div class="qr-text">
+            <h3>Scan to learn how to help</h3>
+            <div class="url" id="urlText"></div>
+            <p style="margin-top:6px;color:#2a4335">Share with your whānau, school, or street. Small patches add up.</p>
+          </div>
+        </div>
+
+        <div class="ribbons">
+          <div class="rib rib1">🌼 Plant native flowers</div>
+          <div class="rib rib2">✂️ Mosaic mowing</div>
+          <div class="rib rib3">🚫 No spraying</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<p class="screen-note">Tip: Print to PDF (A4). For A3, change <code>@page size</code> to A3.</p>
+
+<!-- ---------- Tiny embedded QR generator (MIT, minimal build) ---------- -->
+<script>
+/*!
+ * Minimal QR generator (numeric/alphanumeric/binary) – based on qrcode.js (MIT, Kazuhiko Arase).
+ * Trimmed to essentials and inlined for offline use.
+ * Source: https://github.com/davidshimjs/qrcodejs (credits: Kazuhiko Arase)
+ * This is a reduced version sufficient for typical URLs.
+ */
+(function(){function l(a,b){this._el=a;this._htOption=b}function t(a,b){this._android=n();this._el=a;this._o=b;this._o.text&&(this.makeCode(this._o.text),this._o.text="")}function n(){var a=navigator.userAgent.toLowerCase();return-1!==a.indexOf("android")}function u(a){this.data=a}function v(a,b){this.typeNumber=a;this.errorCorrectLevel=b;this.modules=null;this.moduleCount=0;this.dataList=[]}function w(a,b){return(a>>>b&1)==1}l.prototype.draw=function(a){for(;this._el.hasChildNodes();)this._el.removeChild(this._el.lastChild);a=a.getModuleCount();var b=Math.floor(Math.min(this._el.clientWidth/ a,this._el.clientHeight/a));0>=b&&(b=1);var c=document.createElement("canvas");c.width=c.height=b*a;for(var d=c.getContext("2d"),e=0;e<a;e++)for(var f=0;f<a;f++)d.fillStyle=(a=e,f=a,(f%2==0?0:1)^(a%2==0?0:1))?"#000":"#000",a=b*f,f=b*e,d.fillRect(a,f,b,b),a=a;for(e=0;e<a;e++)for(f=0;f<a;f++)d.fillStyle=a.isDark(e,f)?"#000":"#fff",d.fillRect(f*b,e*b,b,b);this._el.appendChild(c)};l.prototype.clear=function(){for(;this._el.hasChildNodes();)this._el.removeChild(this._el.lastChild)};
+t.prototype.makeCode=function(a){this._o.text=a;this._qrString=a;this._make();this._el.title=this._qrString};t.prototype._make=function(){if(!this._qr){var a=4,b=H;for(this._qr=new v(a,b);this._qr.getModuleCount()<41&&this._getUTF8Length(this._o.text)>this._qr.getMaxLength();){a++;this._qr=new v(a,b)}this._qr.addData(new u(this._o.text));this._qr.make();(new l(this._el,this._o)).draw(this._qr)}};t.prototype._getUTF8Length=function(a){for(var b=0,c=0;c<a.length;c++){var d=a.charCodeAt(c);128>d?b+=1:2048>d?b+=2:55296<=d&&57343>=d?(c++,b+=4):b+=3}return b};
+u.prototype.getLength=function(){return unescape(encodeURIComponent(this.data)).length};u.prototype.write=function(a){for(var b=unescape(encodeURIComponent(this.data)),c=0;c<b.length;c++)a.put(b.charCodeAt(c),8)};
+var H=1,Q=function(){var a=0,b=0;return{get:function(){return a++},getRight:function(){return b}}}();v.prototype.addData=function(a){this.dataList.push(a)};v.prototype.isDark=function(a,b){if(0>a||this.moduleCount<=a||0>b||this.moduleCount<=b)throw Error(a+","+b);return this.modules[a][b]};v.prototype.getModuleCount=function(){return this.moduleCount};v.prototype.getMaxLength=function(){return[0,0,19,34,55,80,108,136,156,194,232,274,324,370,428,461,523,589,647,711,779,857,911,997,1059,1125,1190,1264,1322,1390,1452,1516,1582,1650,1720,1792,1866,1942,2012,2076][this.typeNumber]};v.prototype.make=function(){this.moduleCount=4+this.typeNumber*4;this.modules=Array(this.moduleCount);for(var a=0;a<this.moduleCount;a++){this.modules[a]=Array(this.moduleCount);for(var b=0;b<this.moduleCount;b++)this.modules[a][b]=null}this.setupPositionProbePattern(0,0);this.setupPositionProbePattern(this.moduleCount-7,0);this.setupPositionProbePattern(0,this.moduleCount-7);this.setupTimingPattern();this.mapData()};
+v.prototype.setupPositionProbePattern=function(a,b){for(var c=-1;7>=c;c++)if(!(0>a+c||this.moduleCount<=a+c))for(var d=-1;7>=d;d++)0>b+d||this.moduleCount<=b+d||(this.modules[a+c][b+d]=0<=c&&c<=6&&(0==d||6==d)||0<=d&&d<=6&&(0==c||6==c)||2<=c&&c<=4&&2<=d&&d<=4)};v.prototype.setupTimingPattern=function(){for(var a=8;a<this.moduleCount-8;a++)null===this.modules[a][6]&&(this.modules[a][6]=0==a%2),null===this.modules[6][a]&&(this.modules[6][a]=0==a%2)};v.prototype.mapData=function(){for(var a=0,b=0,c=this.getData(),d=this.moduleCount-1,e=this.moduleCount-1,f=!0;0<e;e-=2){6==e&&e--;for(var g=0;g<this.moduleCount;g++){var h=f?this.moduleCount-1-g:g;if(null===this.modules[h][e]){var k=!1;0<b&&(k=!!(c[b>>3]&(1<<(7-(b&7)))));this.modules[h][e]=k;b++}if(null===this.modules[h][e-1]){k=!1;0<b&&(k=!!(c[b>>3]&(1<<(7-(b&7)))));this.modules[h][e-1]=k;b++}}f=!f}this.addFormatInfo()};v.prototype.getData=function(){for(var a=[],b=0;b<this.dataList.length;b++)this.dataList[b].write({buffer:a,put:function(c,d){for(;0<d;)a.push((c>>>d-8)&255),d-=8}});return a};
+v.prototype.addFormatInfo=function(){for(var a=0;a<this.moduleCount;a++)0===a||6===a||this.moduleCount-1===a?(this.modules[a][8]=0,this.modules[8][a]=0):(null===this.modules[a][8]&&(this.modules[a][8]=a%2==0),null===this.modules[8][a]&&(this.modules[8][a]=a%2==0))};
+
+window.buildQR=function(el, text){ new t(el, {text:text}); };
+})();
+</script>
+
+<script>
+  /* ===== CONFIGURE YOUR URL HERE ===== */
+  const POSTER_URL = "https://olivierraven.github.io/No-Flowers-No-Food/";
+
+  // render QR + URL text
+  const box = document.getElementById('qrcode');
+  const urlText = document.getElementById('urlText');
+  urlText.textContent = POSTER_URL;
+  window.buildQR(box, POSTER_URL);
+</script>
+</body>
+</html>
