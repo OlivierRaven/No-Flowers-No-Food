@@ -7,21 +7,18 @@
 
 <style>
   /* ---------- PRINT / PAGE ---------- */
-  @page { size: A4; margin: 14mm; }
+  @page { size: A4; margin: 12mm; }
   @media print {
-    .screen-note { display: none !important; }
-    body { background: #fff !important; }
-    .poster { box-shadow: none !important; }
+    body { background:#fff !important; }
+    .poster { box-shadow:none !important; }
+    .hint { display:none !important; }
   }
 
   /* ---------- BASE ---------- */
   :root{
     --ink:#13251b; --muted:#2a4335;
-    --green:#22c084; --green2:#6adf90;
     --sun:#ffd166; --rose:#ff9ed0; --sky:#6ecbff; --mint:#eafff1;
-    --paper:#ffffff;
-    --bad:#7a1e1e; --good:#0f4b34;
-    --shadow: 0 18px 40px rgba(0,0,0,.08);
+    --paper:#ffffff; --shadow:0 14px 28px rgba(0,0,0,.08);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
@@ -34,115 +31,95 @@
       #fffef9;
     color:var(--ink);
     line-height:1.35;
-    padding:16px;
+    padding:10px;
   }
 
   /* ---------- POSTER CANVAS ---------- */
   .poster{
-    max-width: 794px;               /* A4 width @ ~96 dpi */
-    margin: 0 auto;
-    background: var(--paper);
-    border-radius: 18px;
-    border: 1px solid #e7efe9;
-    overflow: hidden;
-    box-shadow: var(--shadow);
+    max-width:794px; /* A4 width near 96dpi */
+    margin:0 auto;
+    background:var(--paper);
+    border-radius:18px;
+    border:1px solid #e7efe9;
+    overflow:hidden;
+    box-shadow:var(--shadow);
   }
 
-  /* Header stripe */
+  /* Header */
   .hero{
-    position: relative;
-    padding: 28px 28px 22px;
-    text-align: center;
+    padding:18px 20px;
+    text-align:center;
     color:#083324;
     background:
-      radial-gradient(60% 60% at 20% 5%, rgba(255,214,102,.55) 0%, rgba(255,214,102,0) 70%),
-      radial-gradient(60% 60% at 80% 15%, rgba(255,158,208,.45) 0%, rgba(255,158,208,0) 70%),
+      radial-gradient(60% 60% at 18% 8%, rgba(255,214,102,.55) 0%, rgba(255,214,102,0) 70%),
+      radial-gradient(60% 60% at 82% 18%, rgba(255,158,208,.45) 0%, rgba(255,158,208,0) 70%),
       linear-gradient(135deg, #b7f3d0 0%, #6ad9a2 40%, #39b57f 100%);
   }
-  .brand{
-    display:flex; align-items:center; justify-content:center; gap:12px;
-    margin-bottom: 6px;
-  }
-  .brand img{ width:64px; height:64px; border-radius:16px; border:3px solid var(--sun); background:#fff; object-fit:cover }
+  .brand{display:flex;align-items:center;justify-content:center;gap:10px}
+  .brand img{width:56px;height:56px;border-radius:14px;border:3px solid var(--sun);background:#fff;object-fit:cover}
   .title{
-    font-family: "Playfair Display", ui-serif, Georgia, serif;
-    font-size: clamp(26px, 4.2vw, 42px);
-    font-weight: 700;
-    color:#ffffff;
-    text-shadow: 0 10px 30px rgba(0,0,0,.25);
+    font-family:"Playfair Display", ui-serif, Georgia, serif;
+    font-size:44px; line-height:1.05; color:#fff;
+    text-shadow:0 10px 28px rgba(0,0,0,.25);
   }
-  .tagline{
-    margin-top:6px; color:#f3fff8; font-size: clamp(14px, 2.4vw, 18px);
+  .strap{
+    margin-top:6px; color:#eefaf4; font-weight:700; font-size:18px;
   }
 
-  /* Content grid */
-  .wrap{ padding: 22px 26px 28px; }
+  /* Content grid (tighter) */
+  .wrap{ padding:16px 18px 18px }
   .grid{
-    display:grid; gap:14px;
-    grid-template-columns: 1.15fr .85fr;
+    display:grid; gap:12px;
+    grid-template-columns: 1.1fr .9fr;
   }
-  @media (max-width: 760px){
-    .grid{ grid-template-columns: 1fr; }
+  @media (max-width:760px){ .grid{ grid-template-columns:1fr } }
+
+  .panel{ background:#fff; border:1px solid #eef2ee; border-radius:14px; padding:14px }
+
+  /* Left column content */
+  .panel h2{ font-size:22px; margin-bottom:6px; color:#0e3c2d }
+  .list{ margin:6px 0 0 18px; }
+  .list li{ margin:6px 0; font-size:18px }
+  .list b{ color:#0e3c2d }
+
+  .benefits{ display:grid; gap:8px; grid-template-columns:repeat(2,1fr); margin-top:12px }
+  .benefit{
+    border-radius:12px; padding:10px 12px; border:1px solid #eef2ee; font-weight:800; font-size:16px
   }
+  .b1{ background:#fff3cc } .b2{ background:#ffe1ef }
+  .b3{ background:#e9f4ff } .b4{ background:#eafff1 }
 
-  .panel{
-    border-radius:14px; border:1px solid #eef2ee; padding:16px 16px 14px;
-    background: #fff;
-  }
-  .panel h2{ font-size:18px; color:#0e3c2d; margin-bottom:6px }
-  .list{ margin: 6px 0 0 18px; }
-  .list li{ margin: 4px 0; color:var(--muted) }
+  /* Before / After */
+  .compare{ margin-top:12px }
+  .compare h3{ font-size:20px; margin-bottom:8px; color:#0e3c2d }
+  .ba-grid{ display:grid; gap:10px; grid-template-columns:1fr 1fr }
+  @media (max-width:760px){ .ba-grid{ grid-template-columns:1fr } }
+  .ba{ background:#fff; border:1px solid #e6eee9; border-radius:12px; overflow:hidden }
+  .ba img{ width:100%; height:310px; object-fit:cover; display:block }
+  @media (max-width:760px){ .ba img{ height:240px } }
+  .cap{ padding:8px 10px; font-weight:900; font-size:15px; display:flex; justify-content:space-between; align-items:center }
+  .good{ background:#f2fff6; color:#0f4b34 }
+  .bad{  background:#fff1f1; color:#7a1e1e }
+  .cap small{ font-weight:800; color:#35564a }
 
-  /* Colour cards */
-  .card { border-radius:14px; padding:16px; border:1px solid #eef2ee }
-  .sun { background:#fff3cc }
-  .rose{ background:#ffe1ef }
-  .sky { background:#e9f4ff }
-  .mint{ background:#eafff1 }
-
-  /* QR block */
+  /* Right column: QR + chips */
   .qr-card{
-    display:flex; align-items:center; gap:14px; border-radius:16px;
-    padding:14px; border:1px dashed #badbcc; background: #f4fffa;
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    border:1px dashed #badbcc; background:#f6fffb; border-radius:14px; padding:12px;
   }
   .qr-frame{
-    width: 180px; height: 180px; background:#fff; border-radius:8px; padding:6px;
-    box-shadow: 0 8px 24px rgba(0,0,0,.08);
-    display:flex; align-items:center; justify-content:center;
-    flex:none;
+    width:134px; height:134px; background:#fff; border-radius:10px; padding:6px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08); display:flex; align-items:center; justify-content:center;
   }
-  .qr-text h3{ font-size:18px; margin-bottom:4px; color:#0f3d2f }
-  .url{
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 13px; color:#0b604b; overflow-wrap:anywhere;
-    background:#fff; border:1px solid #e3efe9; padding:4px 6px; border-radius:6px;
-  }
+  .qr-frame img{ width:122px; height:122px; display:block }
+  .qr-caption{ font-size:14px; color:#225042; font-weight:800 }
+  .chips{ display:grid; gap:8px; grid-template-columns:1fr; margin-top:8px }
+  .chip{ border-radius:12px; padding:10px 12px; font-weight:900; color:#092f23; font-size:16px; text-align:center }
+  .c1{ background:linear-gradient(90deg,#ff9ed0,#ffd166) }
+  .c2{ background:linear-gradient(90deg,#ffd166,#6adf90) }
+  .c3{ background:linear-gradient(90deg,#6adf90,#6ecbff) }
 
-  /* BEFORE / AFTER block */
-  .compare{ margin-top:12px }
-  .compare h2{ font-size:18px; color:#0e3c2d; margin-bottom:8px }
-  .ba-grid{ display:grid; gap:10px; grid-template-columns: 1fr 1fr; }
-  @media (max-width: 760px){ .ba-grid{ grid-template-columns:1fr; } }
-  .ba{ background:#fff; border:1px solid #e6eee9; border-radius:12px; overflow:hidden }
-  .ba img{ width:100%; height:240px; object-fit:cover; display:block }
-  .cap{ padding:8px 10px; font-weight:800; font-size:14px; display:flex; justify-content:space-between; align-items:center }
-  .cap.bad{ background:#fff1f1; color:var(--bad) }
-  .cap.good{ background:#f2fff6; color:var(--good) }
-  .cap small{ font-weight:700; color:#3b5b4e }
-
-  /* Footer ribbons */
-  .ribbons{ display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top: 14px }
-  .rib{ padding:12px 14px; border-radius:12px; color:#092f23; font-weight:700 }
-  .rib1{ background:linear-gradient(90deg,#ff9ed0,#ffd166) }
-  .rib2{ background:linear-gradient(90deg,#ffd166,#6adf90) }
-  .rib3{ background:linear-gradient(90deg,#6adf90,#6ecbff) }
-  @media (max-width: 760px){
-    .ribbons{ grid-template-columns: 1fr; }
-  }
-
-  .screen-note{
-    text-align:center; margin:12px auto 0; color:#335e4b; font-size:13px;
-  }
+  .hint{ text-align:center; margin:6px 0 10px; color:#3a5a4d; font-size:12px }
 </style>
 </head>
 <body>
@@ -153,100 +130,67 @@
       <img src="noflowers_logo.png" alt="No Flowers = No Food logo" />
       <div class="title">No Flowers = No Food</div>
     </div>
-    <div class="tagline">Let Nature Grow — Plant native • Mow less (smarter) • Stop spraying • Keep corners wild</div>
+    <div class="strap">Plant native • Mow less (smarter) • Stop spraying • Keep corners wild</div>
   </header>
 
   <div class="wrap">
     <div class="grid">
-      <!-- Left: Actions / Points + BEFORE/AFTER -->
+      <!-- LEFT: actions + benefits + photos -->
       <section class="panel">
         <h2>Act for Aotearoa’s insects</h2>
         <ul class="list">
-          <li><strong>Grow native</strong> (hebe/koromiko, mānuka & kānuka, harakeke, olearia, pittosporum).</li>
-          <li><strong>Mow less</strong> (2–3×/year), never all at once; avoid Oct–Jan.</li>
-          <li><strong>Skip sprays</strong>: hand-weed, mulch, dense planting.</li>
-          <li><strong>Leave structure</strong>: leaf litter, twigs, logs, brush piles.</li>
-          <li><strong>Think in layers</strong>: tussocks → shrubs → trees (kōwhai, mānuka, ribbonwood).</li>
-          <li><strong>Join local efforts</strong>: council, iwi, Forest & Bird, community groups.</li>
+          <li><b>Grow native:</b> koromiko, mānuka/kānuka, harakeke, olearia, pittosporum.</li>
+          <li><b>Mow less:</b> 2–3×/year; never all at once; avoid Oct–Jan.</li>
+          <li><b>Skip sprays:</b> hand-weed, mulch, plant densely.</li>
+          <li><b>Leave structure:</b> leaf litter, twigs, logs, brush piles.</li>
+          <li><b>Think in layers:</b> tussocks → shrubs → trees.</li>
+          <li><b>Join locals:</b> council, iwi, Forest & Bird, community groups.</li>
         </ul>
 
-        <div style="display:grid; gap:10px; grid-template-columns: repeat(2, 1fr); margin-top:12px">
-          <div class="card sun"><strong>Food security</strong><br/>Pollinators keep gardens & orchards productive.</div>
-          <div class="card rose"><strong>Wellbeing</strong><br/>Greener streets reduce stress & lift mood.</div>
-          <div class="card sky"><strong>Climate</strong><br/>Native plantings cool cities & soak up water.</div>
-          <div class="card mint"><strong>Kaitiakitanga</strong><br/>Care for taiao with native-first spaces.</div>
+        <div class="benefits">
+          <div class="benefit b1">Food security</div>
+          <div class="benefit b2">Wellbeing</div>
+          <div class="benefit b3">Climate</div>
+          <div class="benefit b4">Kaitiakitanga</div>
         </div>
 
-        <!-- Before/after block using your images -->
         <div class="compare">
-          <h2>Same location — two outcomes</h2>
+          <h3>Same location — two outcomes</h3>
           <div class="ba-grid">
             <figure class="ba">
-              <img src="IMG_2044.png" alt="Roadside verge after spraying: dead grass and litter" />
-              <figcaption class="cap bad">After spraying <small>dead grass, litter traps, no habitat</small></figcaption>
+              <img src="IMG_2043.jpeg" alt="Roadside verge before spraying: flowering plants and living vegetation">
+              <figcaption class="cap good">Before spraying <small>flower-rich verge, nectar & structure</small></figcaption>
             </figure>
             <figure class="ba">
-              <img src="IMG_2043.jpeg" alt="Roadside verge before spraying: flowering plants and living vegetation" />
-              <figcaption class="cap good">Before spraying <small>flower-rich verge, nectar & structure</small></figcaption>
+              <img src="IMG_2044.png" alt="Roadside verge after spraying: dead grass and litter">
+              <figcaption class="cap bad">After spraying <small>dead grass, litter traps, no habitat</small></figcaption>
             </figure>
           </div>
         </div>
       </section>
 
-      <!-- Right: QR + Callout -->
+      <!-- RIGHT: small, subtle QR + quick chips -->
       <aside class="panel">
         <div class="qr-card">
           <div class="qr-frame">
-            <!-- Works without JS: a plain <img> whose src we set below.
-                 If JS is disabled, the noscript below still shows a QR. -->
-            <img id="qrImg" src="" alt="QR code to the campaign website" width="168" height="168" loading="eager" />
+            <!-- Small, subtle QR (still high-res) -->
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=360x360&margin=0&data=https%3A%2F%2Folivierraven.github.io%2FNo-Flowers-No-Food%2F"
+              alt="QR code to the campaign website">
           </div>
-          <div class="qr-text">
-            <h3>Scan to learn how to help</h3>
-            <div class="url" id="urlText"></div>
-            <p style="margin-top:6px;color:#2a4335">Share with your whānau, school, or street. Small patches add up.</p>
-          </div>
+          <div class="qr-caption">Scan for how-to</div>
         </div>
 
-        <div class="ribbons">
-          <div class="rib rib1">🌼 Plant native flowers</div>
-          <div class="rib rib2">✂️ Mosaic mowing</div>
-          <div class="rib rib3">🚫 No spraying</div>
+        <div class="chips">
+          <div class="chip c1">🌼 Plant native flowers</div>
+          <div class="chip c2">✂️ Mosaic mowing</div>
+          <div class="chip c3">🚫 No spraying</div>
         </div>
       </aside>
     </div>
   </div>
 </div>
 
-<p class="screen-note">Tip: Print to PDF (A4). For A3, change <code>@page size</code> to A3.</p>
-
-<!-- QR: robust, zero-dependency method -->
-<script>
-  // Set your site URL here:
-  const POSTER_URL = "https://olivierraven.github.io/No-Flowers-No-Food/";
-
-  // Use a public QR service for a simple image (works without any libraries).
-  // If you later want this fully offline, export this QR as a PNG and replace the src with a local file.
-  const qrImg = document.getElementById('qrImg');
-  const size = 360; // high-res for print; displayed smaller via width/height
-  qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size="
-              + size + "x" + size + "&margin=0&data="
-              + encodeURIComponent(POSTER_URL);
-
-  // Show the URL text too
-  document.getElementById('urlText').textContent = POSTER_URL;
-</script>
-
-<!-- No-JS fallback QR (still works if scripts are blocked) -->
-<noscript>
-  <div style="text-align:center; margin-top:8px">
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&data=https%3A%2F%2Folivierraven.github.io%2FNo-Flowers-No-Food%2F"
-         alt="QR code to the campaign website" width="180" height="180" />
-    <div style="font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; color:#0b604b;">
-      https://olivierraven.github.io/No-Flowers-No-Food/
-    </div>
-  </div>
-</noscript>
-
+<p class="hint">Tip: Print to PDF (A4). For A3, change <code>@page size</code> to A3.</p>
 </body>
 </html>
