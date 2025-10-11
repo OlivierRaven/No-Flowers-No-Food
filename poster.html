@@ -18,9 +18,10 @@
   :root{
     --ink:#13251b; --muted:#2a4335;
     --green:#22c084; --green2:#6adf90;
-    --sun:#ffd166; --rose:#ff9ed0; --sky:#6ecbff; --mint:#6adf90;
+    --sun:#ffd166; --rose:#ff9ed0; --sky:#6ecbff; --mint:#eafff1;
     --paper:#ffffff;
     --bad:#7a1e1e; --good:#0f4b34;
+    --shadow: 0 18px 40px rgba(0,0,0,.08);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
@@ -38,13 +39,13 @@
 
   /* ---------- POSTER CANVAS ---------- */
   .poster{
-    max-width: 794px;               /* A4 width @ 96 dpi approx */
+    max-width: 794px;               /* A4 width @ ~96 dpi */
     margin: 0 auto;
     background: var(--paper);
     border-radius: 18px;
     border: 1px solid #e7efe9;
     overflow: hidden;
-    box-shadow: 0 18px 40px rgba(0,0,0,.08);
+    box-shadow: var(--shadow);
   }
 
   /* Header stripe */
@@ -104,10 +105,11 @@
     display:flex; align-items:center; gap:14px; border-radius:16px;
     padding:14px; border:1px dashed #badbcc; background: #f4fffa;
   }
-  #qrcode{
+  .qr-frame{
     width: 180px; height: 180px; background:#fff; border-radius:8px; padding:6px;
     box-shadow: 0 8px 24px rgba(0,0,0,.08);
-    flex: none;
+    display:flex; align-items:center; justify-content:center;
+    flex:none;
   }
   .qr-text h3{ font-size:18px; margin-bottom:4px; color:#0f3d2f }
   .url{
@@ -175,7 +177,7 @@
           <div class="card mint"><strong>Kaitiakitanga</strong><br/>Care for taiao with native-first spaces.</div>
         </div>
 
-        <!-- New before/after block using your images -->
+        <!-- Before/after block using your images -->
         <div class="compare">
           <h2>Same location — two outcomes</h2>
           <div class="ba-grid">
@@ -194,7 +196,11 @@
       <!-- Right: QR + Callout -->
       <aside class="panel">
         <div class="qr-card">
-          <div id="qrcode" aria-label="QR code to the campaign website"></div>
+          <div class="qr-frame">
+            <!-- Works without JS: a plain <img> whose src we set below.
+                 If JS is disabled, the noscript below still shows a QR. -->
+            <img id="qrImg" src="" alt="QR code to the campaign website" width="168" height="168" loading="eager" />
+          </div>
           <div class="qr-text">
             <h3>Scan to learn how to help</h3>
             <div class="url" id="urlText"></div>
@@ -214,36 +220,33 @@
 
 <p class="screen-note">Tip: Print to PDF (A4). For A3, change <code>@page size</code> to A3.</p>
 
-<!-- Tiny embedded QR generator (trimmed) -->
+<!-- QR: robust, zero-dependency method -->
 <script>
-(function(){function L(a,b){this._el=a;this._o=b}
-function T(a,b){this._el=a;this._o=b;this._o.text&&(this.makeCode(this._o.text),this._o.text="")}
-function U(a){this.data=a}
-function V(a,b){this.typeNumber=a;this.errorCorrectLevel=b;this.modules=null;this.moduleCount=0;this.dataList=[]}
-L.prototype.draw=function(qr){for(;this._el.firstChild;)this._el.removeChild(this._el.firstChild);
-var n=qr.getModuleCount(),s=Math.max(1,Math.floor(Math.min(this._el.clientWidth/n,this._el.clientHeight/n)));
-var c=document.createElement("canvas");c.width=c.height=s*n;var ctx=c.getContext("2d");
-for(var r=0;r<n;r++)for(var k=0;k<n;k++){ctx.fillStyle=qr.isDark(r,k)?"#000":"#fff";ctx.fillRect(k*s,r*s,s,s)}this._el.appendChild(c)};
-T.prototype.makeCode=function(t){this._o.text=t;this._qrStr=t;this._make();this._el.title=this._qrStr};
-T.prototype._make=function(){if(!this._qr){var v=4;for(this._qr=new V(v,1);this._qr.getModuleCount()<41;)v++,this._qr=new V(v,1);
-this._qr.addData(new U(this._o.text));this._qr.make();(new L(this._el,this._o)).draw(this._qr)}};
-U.prototype.getLength=function(){return unescape(encodeURIComponent(this.data)).length};
-U.prototype.write=function(buf){for(var s=unescape(encodeURIComponent(this.data)),i=0;i<s.length;i++)buf.put(s.charCodeAt(i),8)};
-V.prototype.addData=function(d){this.dataList.push(d)};V.prototype.isDark=function(r,c){return this.modules[r][c]};
-V.prototype.getModuleCount=function(){return this.moduleCount};
-V.prototype.getMaxLength=function(){return[0,0,19,34,55,80,108,136,156,194,232,274,324,370,428,461,523,589,647,711,779,857,911,997,1059,1125,1190,1264,1322,1390,1452,1516,1582,1650,1720,1792,1866,1942,2012,2076][this.typeNumber]};
-V.prototype.make=function(){this.moduleCount=4+this.typeNumber*4;this.modules=Array(this.moduleCount);
-for(var r=0;r<this.moduleCount;r++){this.modules[r]=Array(this.moduleCount);
-for(var c=0;c<this.moduleCount;c++)this.modules[r][c]=Math.random()<0.5}}; // minimal fake pattern; good enough for a static poster preview
-window.buildQR=function(el,text){new T(el,{text:text})};
-})();
+  // Set your site URL here:
+  const POSTER_URL = "https://olivierraven.github.io/No-Flowers-No-Food/";
+
+  // Use a public QR service for a simple image (works without any libraries).
+  // If you later want this fully offline, export this QR as a PNG and replace the src with a local file.
+  const qrImg = document.getElementById('qrImg');
+  const size = 360; // high-res for print; displayed smaller via width/height
+  qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size="
+              + size + "x" + size + "&margin=0&data="
+              + encodeURIComponent(POSTER_URL);
+
+  // Show the URL text too
+  document.getElementById('urlText').textContent = POSTER_URL;
 </script>
 
-<script>
-  /* ===== Configure your URL here ===== */
-  const POSTER_URL = "https://olivierraven.github.io/No-Flowers-No-Food/";
-  document.getElementById('urlText').textContent = POSTER_URL;
-  window.buildQR(document.getElementById('qrcode'), POSTER_URL);
-</script>
+<!-- No-JS fallback QR (still works if scripts are blocked) -->
+<noscript>
+  <div style="text-align:center; margin-top:8px">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&data=https%3A%2F%2Folivierraven.github.io%2FNo-Flowers-No-Food%2F"
+         alt="QR code to the campaign website" width="180" height="180" />
+    <div style="font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; color:#0b604b;">
+      https://olivierraven.github.io/No-Flowers-No-Food/
+    </div>
+  </div>
+</noscript>
+
 </body>
 </html>
