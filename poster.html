@@ -29,95 +29,74 @@
       radial-gradient(900px 700px at 90% 15%, #ffe6f6 0%, transparent 60%),
       radial-gradient(900px 700px at 50% 100%, #e6fff1 0%, transparent 60%),
       #fffef9;
-    color:var(--ink);
-    line-height:1.35;
-    padding:10px;
+    color:var(--ink); line-height:1.35; padding:10px;
   }
 
-  /* ---------- POSTER CANVAS ---------- */
+  /* ---------- POSTER ---------- */
   .poster{
-    max-width:794px; /* A4 width near 96dpi */
-    margin:0 auto;
-    background:var(--paper);
-    border-radius:18px;
-    border:1px solid #e7efe9;
-    overflow:hidden;
-    box-shadow:var(--shadow);
+    max-width:794px; margin:0 auto; background:var(--paper);
+    border-radius:18px; border:1px solid #e7efe9; overflow:hidden; box-shadow:var(--shadow);
   }
 
   /* Header */
   .hero{
-    padding:18px 20px;
-    text-align:center;
-    color:#083324;
+    padding:18px 20px; text-align:center; color:#083324;
     background:
       radial-gradient(60% 60% at 18% 8%, rgba(255,214,102,.55) 0%, rgba(255,214,102,0) 70%),
       radial-gradient(60% 60% at 82% 18%, rgba(255,158,208,.45) 0%, rgba(255,158,208,0) 70%),
-      linear-gradient(135deg, #b7f3d0 0%, #6ad9a2 40%, #39b57f 100%);
+      linear-gradient(135deg,#b7f3d0 0%,#6ad9a2 40%,#39b57f 100%);
   }
   .brand{display:flex;align-items:center;justify-content:center;gap:10px}
   .brand img{width:56px;height:56px;border-radius:14px;border:3px solid var(--sun);background:#fff;object-fit:cover}
-  .title{
-    font-family:"Playfair Display", ui-serif, Georgia, serif;
-    font-size:44px; line-height:1.05; color:#fff;
-    text-shadow:0 10px 28px rgba(0,0,0,.25);
-  }
-  .strap{
-    margin-top:6px; color:#eefaf4; font-weight:700; font-size:18px;
-  }
+  .title{font-family:"Playfair Display",ui-serif,Georgia,serif;font-size:44px;line-height:1.05;color:#fff;text-shadow:0 10px 28px rgba(0,0,0,.25)}
+  .strap{margin-top:6px;color:#eefaf4;font-weight:700;font-size:18px}
 
-  /* Content grid (tighter) */
-  .wrap{ padding:16px 18px 18px }
-  .grid{
-    display:grid; gap:12px;
-    grid-template-columns: 1.1fr .9fr;
+  /* Layout: 2 rows (content + photos), 2 columns */
+  .wrap{ padding:14px 16px 16px; display:grid; gap:12px;
+         grid-template-columns: 1.1fr .9fr;
+         grid-template-areas:
+           "actions qr"
+           "before  after";
   }
-  @media (max-width:760px){ .grid{ grid-template-columns:1fr } }
+  @media (max-width:760px){
+    .wrap{ grid-template-columns:1fr; grid-template-areas:
+           "actions" "qr" "before" "after"; }
+  }
 
   .panel{ background:#fff; border:1px solid #eef2ee; border-radius:14px; padding:14px }
 
-  /* Left column content */
-  .panel h2{ font-size:22px; margin-bottom:6px; color:#0e3c2d }
-  .list{ margin:6px 0 0 18px; }
+  /* Actions (left, row 1) */
+  #actions{ grid-area:actions }
+  #actions h2{ font-size:22px; margin-bottom:6px; color:#0e3c2d }
+  .list{ margin:6px 0 0 18px }
   .list li{ margin:6px 0; font-size:18px }
   .list b{ color:#0e3c2d }
-
   .benefits{ display:grid; gap:8px; grid-template-columns:repeat(2,1fr); margin-top:12px }
-  .benefit{
-    border-radius:12px; padding:10px 12px; border:1px solid #eef2ee; font-weight:800; font-size:16px
-  }
-  .b1{ background:#fff3cc } .b2{ background:#ffe1ef }
-  .b3{ background:#e9f4ff } .b4{ background:#eafff1 }
+  .benefit{ border-radius:12px; padding:10px 12px; border:1px solid #eef2ee; font-weight:900; font-size:16px }
+  .b1{background:#fff3cc}.b2{background:#ffe1ef}.b3{background:#e9f4ff}.b4{background:#eafff1}
 
-  /* Before / After */
-  .compare{ margin-top:12px }
-  .compare h3{ font-size:20px; margin-bottom:8px; color:#0e3c2d }
-  .ba-grid{ display:grid; gap:10px; grid-template-columns:1fr 1fr }
-  @media (max-width:760px){ .ba-grid{ grid-template-columns:1fr } }
-  .ba{ background:#fff; border:1px solid #e6eee9; border-radius:12px; overflow:hidden }
-  .ba img{ width:100%; height:310px; object-fit:cover; display:block }
-  @media (max-width:760px){ .ba img{ height:240px } }
-  .cap{ padding:8px 10px; font-weight:900; font-size:15px; display:flex; justify-content:space-between; align-items:center }
-  .good{ background:#f2fff6; color:#0f4b34 }
-  .bad{  background:#fff1f1; color:#7a1e1e }
-  .cap small{ font-weight:800; color:#35564a }
-
-  /* Right column: QR + chips */
-  .qr-card{
-    display:flex; flex-direction:column; align-items:center; gap:10px;
-    border:1px dashed #badbcc; background:#f6fffb; border-radius:14px; padding:12px;
-  }
-  .qr-frame{
-    width:134px; height:134px; background:#fff; border-radius:10px; padding:6px;
-    box-shadow:0 8px 20px rgba(0,0,0,.08); display:flex; align-items:center; justify-content:center;
-  }
-  .qr-frame img{ width:122px; height:122px; display:block }
-  .qr-caption{ font-size:14px; color:#225042; font-weight:800 }
-  .chips{ display:grid; gap:8px; grid-template-columns:1fr; margin-top:8px }
+  /* QR & chips (right, row 1) */
+  #qr{ grid-area:qr; display:grid; gap:10px }
+  .qr-card{ display:flex;flex-direction:column;align-items:center;gap:8px;border:1px dashed #badbcc;background:#f6fffb;border-radius:14px;padding:10px }
+  .qr-frame{ width:120px;height:120px;background:#fff;border-radius:10px;padding:6px;box-shadow:0 8px 20px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center }
+  .qr-frame img{ width:108px;height:108px;display:block }
+  .qr-caption{ font-size:14px;color:#225042;font-weight:800 }
+  .chips{ display:grid; gap:8px }
   .chip{ border-radius:12px; padding:10px 12px; font-weight:900; color:#092f23; font-size:16px; text-align:center }
   .c1{ background:linear-gradient(90deg,#ff9ed0,#ffd166) }
   .c2{ background:linear-gradient(90deg,#ffd166,#6adf90) }
   .c3{ background:linear-gradient(90deg,#6adf90,#6ecbff) }
+
+  /* Photos (row 2, two columns) */
+  #before{ grid-area:before }
+  #after{  grid-area:after }
+  .ba{ background:#fff; border:1px solid #e6eee9; border-radius:14px; overflow:hidden }
+  .ba img{ width:100%; height:340px; object-fit:cover; display:block }
+  @media (max-width:760px){ .ba img{ height:260px } }
+  .cap{ padding:8px 10px; font-weight:900; font-size:15px; display:flex; justify-content:space-between; align-items:center }
+  .good{ background:#f2fff6; color:#0f4b34 }
+  .bad{  background:#fff1f1; color:#7a1e1e }
+  .cap small{ font-weight:800; color:#35564a }
 
   .hint{ text-align:center; margin:6px 0 10px; color:#3a5a4d; font-size:12px }
 </style>
@@ -134,60 +113,53 @@
   </header>
 
   <div class="wrap">
-    <div class="grid">
-      <!-- LEFT: actions + benefits + photos -->
-      <section class="panel">
-        <h2>Act for Aotearoa’s insects</h2>
-        <ul class="list">
-          <li><b>Grow native:</b> koromiko, mānuka/kānuka, harakeke, olearia, pittosporum.</li>
-          <li><b>Mow less:</b> 2–3×/year; never all at once; avoid Oct–Jan.</li>
-          <li><b>Skip sprays:</b> hand-weed, mulch, plant densely.</li>
-          <li><b>Leave structure:</b> leaf litter, twigs, logs, brush piles.</li>
-          <li><b>Think in layers:</b> tussocks → shrubs → trees.</li>
-          <li><b>Join locals:</b> council, iwi, Forest & Bird, community groups.</li>
-        </ul>
+    <!-- LEFT, ROW 1: actions -->
+    <section id="actions" class="panel">
+      <h2>Act for Aotearoa’s insects</h2>
+      <ul class="list">
+        <li><b>Grow native:</b> koromiko, mānuka/kānuka, harakeke, olearia, pittosporum.</li>
+        <li><b>Mow less:</b> 2–3×/year; never all at once; avoid Oct–Jan.</li>
+        <li><b>Skip sprays:</b> hand-weed, mulch, plant densely.</li>
+        <li><b>Leave structure:</b> leaf litter, twigs, logs, brush piles.</li>
+        <li><b>Think in layers:</b> tussocks → shrubs → trees.</li>
+        <li><b>Join locals:</b> council, iwi, Forest & Bird, community groups.</li>
+      </ul>
+      <div class="benefits">
+        <div class="benefit b1">Food security</div>
+        <div class="benefit b2">Wellbeing</div>
+        <div class="benefit b3">Climate</div>
+        <div class="benefit b4">Kaitiakitanga</div>
+      </div>
+    </section>
 
-        <div class="benefits">
-          <div class="benefit b1">Food security</div>
-          <div class="benefit b2">Wellbeing</div>
-          <div class="benefit b3">Climate</div>
-          <div class="benefit b4">Kaitiakitanga</div>
+    <!-- RIGHT, ROW 1: QR + chips -->
+    <aside id="qr" class="panel">
+      <div class="qr-card">
+        <div class="qr-frame">
+          <!-- Small, subtle QR (high-res source) -->
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&margin=0&data=https%3A%2F%2Folivierraven.github.io%2FNo-Flowers-No-Food%2F"
+            alt="QR code to the campaign website">
         </div>
+        <div class="qr-caption">Scan for how-to</div>
+      </div>
+      <div class="chips">
+        <div class="chip c1">🌼 Plant native flowers</div>
+        <div class="chip c2">✂️ Mosaic mowing</div>
+        <div class="chip c3">🚫 No spraying</div>
+      </div>
+    </aside>
 
-        <div class="compare">
-          <h3>Same location — two outcomes</h3>
-          <div class="ba-grid">
-            <figure class="ba">
-              <img src="IMG_2043.jpeg" alt="Roadside verge before spraying: flowering plants and living vegetation">
-              <figcaption class="cap good">Before spraying <small>flower-rich verge, nectar & structure</small></figcaption>
-            </figure>
-            <figure class="ba">
-              <img src="IMG_2044.png" alt="Roadside verge after spraying: dead grass and litter">
-              <figcaption class="cap bad">After spraying <small>dead grass, litter traps, no habitat</small></figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
+    <!-- ROW 2: photos fill both columns -->
+    <figure id="before" class="ba">
+      <img src="IMG_2043.jpeg" alt="Roadside verge before spraying: flowering plants and living vegetation">
+      <figcaption class="cap good">Before spraying <small>flower-rich verge, nectar & structure</small></figcaption>
+    </figure>
 
-      <!-- RIGHT: small, subtle QR + quick chips -->
-      <aside class="panel">
-        <div class="qr-card">
-          <div class="qr-frame">
-            <!-- Small, subtle QR (still high-res) -->
-            <img
-              src="https://api.qrserver.com/v1/create-qr-code/?size=360x360&margin=0&data=https%3A%2F%2Folivierraven.github.io%2FNo-Flowers-No-Food%2F"
-              alt="QR code to the campaign website">
-          </div>
-          <div class="qr-caption">Scan for how-to</div>
-        </div>
-
-        <div class="chips">
-          <div class="chip c1">🌼 Plant native flowers</div>
-          <div class="chip c2">✂️ Mosaic mowing</div>
-          <div class="chip c3">🚫 No spraying</div>
-        </div>
-      </aside>
-    </div>
+    <figure id="after" class="ba">
+      <img src="IMG_2044.png" alt="Roadside verge after spraying: dead grass and litter">
+      <figcaption class="cap bad">After spraying <small>dead grass, litter traps, no habitat</small></figcaption>
+    </figure>
   </div>
 </div>
 
