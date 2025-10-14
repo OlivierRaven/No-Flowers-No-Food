@@ -43,7 +43,7 @@
     box-shadow:var(--shadow);
   }
 
-  /* ---------- HEADER (like your PDF) ---------- */
+  /* ---------- HEADER (matches PDF look) ---------- */
   .hero{
     padding:18px 22px; text-align:center; color:#083324;
     background:
@@ -60,7 +60,7 @@
   }
   .strap{margin-top:6px;color:#eefaf4;font-weight:700;font-size:18px}
 
-  /* ---------- BODY GRID ---------- */
+  /* ---------- BODY GRID (from PDF: 2 rows × 2 cols + footer) ---------- */
   .wrap{
     padding:14px 16px 16px;
     display:grid; gap:12px;
@@ -71,14 +71,13 @@
       "footer footer";
   }
 
-  /* LEFT: What you can do */
+  /* LEFT: What you can do (bold cards) */
   .what{ grid-area:what; background:#fff; border:1px solid #eef2ee; border-radius:14px; padding:14px }
-  .what h2{ font-size:22px; margin-bottom:8px; color:#0e3c2d }
-  .list{ margin:6px 0 0 0; display:grid; gap:8px }
+  .what h2{ font-size:24px; margin-bottom:10px; color:#0e3c2d }
+  .list{ display:grid; gap:10px }
   .item{
-    border:1px solid #eef2ee; border-radius:12px; padding:10px 12px;
-    background:#fff;
-    font-weight:900; font-size:18px; color:#0e3c2d;
+    border:1px solid #eef2ee; border-radius:12px; padding:12px 14px;
+    background:#fff; font-weight:900; font-size:19px; color:#0e3c2d;
   }
   .item small{ display:block; font-weight:700; color:var(--muted); font-size:15px; margin-top:2px }
   .i1{ background:#fff3cc }  /* sun */
@@ -86,9 +85,9 @@
   .i3{ background:#ffe1ef }  /* rose */
   .i4{ background:#eafff1 }  /* mint */
 
-  /* RIGHT: Crisis paragraph + CTA + QR (subtle) */
+  /* RIGHT: Crisis paragraph + CTA + QR (subtle, small) */
   .crisis{ grid-area:crisis; background:#fff; border:1px solid #eef2ee; border-radius:14px; padding:16px; display:grid; gap:12px; align-content:start }
-  .crisis h3{ font-size:24px; color:#0e3c2d; line-height:1.2 }
+  .crisis h3{ font-size:26px; color:#0e3c2d; line-height:1.2 }
   .crisis p{ font-size:18px; color:#2a4335 }
   .cta{ font-weight:900; font-size:20px; color:#0e3c2d }
   .qr{
@@ -97,16 +96,16 @@
     border:1px dashed #badbcc; background:#f6fffb; border-radius:12px; padding:8px 10px;
   }
   .qr-frame{
-    width:110px; height:110px; background:#fff; border-radius:8px; padding:6px;
+    width:108px; height:108px; background:#fff; border-radius:8px; padding:6px;
     box-shadow:0 8px 20px rgba(0,0,0,.08); display:flex; align-items:center; justify-content:center;
   }
-  .qr img{ width:98px; height:98px; display:block }
+  .qr img{ width:96px; height:96px; display:block }
   .qr small{ font-weight:800; color:#225042; font-size:12px }
 
-  /* BEFORE / AFTER (two columns) */
+  /* BEFORE / AFTER (two large photos) */
   .ba{ background:#fff; border:1px solid #e6eee9; border-radius:14px; overflow:hidden }
-  .ba img{ width:100%; height:320px; object-fit:cover; display:block }
-  .cap{ padding:8px 10px; font-weight:900; font-size:15px; display:flex; justify-content:space-between; align-items:center }
+  .ba img{ width:100%; height:330px; object-fit:cover; display:block }
+  .cap{ padding:9px 12px; font-weight:900; font-size:16px; display:flex; justify-content:space-between; align-items:center }
   .good{ background:#f2fff6; color:var(--good) }
   .bad{  background:#fff1f1; color:var(--bad) }
   .cap small{ font-weight:800; color:#35564a }
@@ -133,20 +132,16 @@
     <!-- LEFT: WHAT YOU CAN DO -->
     <section class="what">
       <h2>What you can do</h2>
-
       <div class="list">
         <div class="item i1">Grow Native Plants
           <small>Hebe (koromiko), Mānuka, Olearia</small>
         </div>
-
         <div class="item i2">Mow Grass Less
           <small>2–3×/year, leave ~30% long, avoid Oct–Jan</small>
         </div>
-
         <div class="item i3">Stop Spraying
           <small>Weed by hand, use mulch, or plant densely</small>
         </div>
-
         <div class="item i4">Make Shelter Spaces
           <small>Leave leaf litter, twigs, and logs for nesting</small>
         </div>
@@ -159,10 +154,8 @@
       <p>Insects are disappearing, and without them, we risk losing our food.</p>
       <p>Even small patches of flowers in gardens, schools, or streets make a big difference.</p>
       <div class="cta">Come in action today!</div>
-
       <div class="qr" aria-label="QR to the campaign website">
         <div class="qr-frame">
-          <!-- Subtle, high-res QR (no long URL text) -->
           <img
             src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=0&data=https%3A%2F%2Folivierraven.github.io%2FNo-Flowers-No-Food%2F"
             alt="QR code to the campaign website">
@@ -176,7 +169,6 @@
       <img src="IMG_2043.jpeg" alt="Roadside verge before spraying: flowering and living vegetation">
       <figcaption class="cap good">Roadside before spraying <small>Flowering and living vegetation</small></figcaption>
     </figure>
-
     <figure class="ba baR">
       <img src="IMG_2044.png" alt="Roadside verge after spraying: dead grass and litter">
       <figcaption class="cap bad">Roadside after spraying <small>Dead grass, litter traps, no habitat</small></figcaption>
