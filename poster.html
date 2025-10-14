@@ -2,186 +2,231 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
+<title>No Flowers = No Food — Poster (A4 Exact Layout w/ Header QR)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>No Flowers = No Food — Poster (Aotearoa NZ)</title>
+
+<!-- Fonts to match your PDF look -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
 <style>
-  /* ---------- PRINT / PAGE ---------- */
-  @page { size: A4; margin: 12mm; }
-  @media print {
-    body { background:#fff !important; }
-    .poster { box-shadow:none !important; }
-  }
-
-  /* ---------- BASE ---------- */
-  :root{
-    --ink:#13251b; --muted:#2a4335;
-    --sun:#ffd166; --rose:#ff9ed0; --sky:#6ecbff; --mint:#eafff1;
-    --paper:#ffffff; --shadow:0 14px 28px rgba(0,0,0,.08);
-    --good:#0f4b34; --bad:#7a1e1e;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
+  /* ===== PAGE / PRINT ===== */
+  @page { size: A4; margin: 0; }               /* full bleed; we control margins */
+  html, body { height: 100%; }
   body{
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, "Nunito", Arial, sans-serif;
-    background:
-      radial-gradient(900px 700px at 10% 10%, #fff4d9 0%, transparent 60%),
-      radial-gradient(900px 700px at 90% 15%, #ffe6f6 0%, transparent 60%),
-      radial-gradient(900px 700px at 50% 100%, #e6fff1 0%, transparent 60%),
-      #fffef9;
-    color:var(--ink); line-height:1.35; padding:10px;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    margin:0; background:#fff; color:#13251b;
+    font-family:'Nunito', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   }
 
-  /* ---------- POSTER CANVAS ---------- */
-  .poster{
-    width:794px; /* lock to A4 width @ ~96 dpi for consistent layout */
-    margin:0 auto;
-    background:var(--paper);
-    border-radius:18px;
-    border:1px solid #e7efe9;
-    overflow:hidden;
-    box-shadow:var(--shadow);
-  }
+  /* A4 @ ~96dpi */
+  .sheet{ width:794px; height:1123px; margin:0 auto; position:relative; overflow:hidden }
 
-  /* ---------- HEADER (matches PDF look) ---------- */
+  /* ===== HEADER STRIPE with QR and décor ===== */
   .hero{
-    padding:18px 22px; text-align:center; color:#083324;
+    position:absolute; left:0; right:0; top:0; height:170px;
+    padding:0 22px; display:grid; align-items:center;
     background:
-      radial-gradient(60% 60% at 18% 8%, rgba(255,214,102,.55) 0%, rgba(255,214,102,0) 70%),
-      radial-gradient(60% 60% at 82% 18%, rgba(255,158,208,.45) 0%, rgba(255,158,208,0) 70%),
+      radial-gradient(60% 60% at 18% 25%, rgba(255,214,102,.55) 0%, rgba(255,214,102,0) 70%),
+      radial-gradient(60% 60% at 82% 20%, rgba(255,158,208,.45) 0%, rgba(255,158,208,0) 70%),
       linear-gradient(135deg,#b7f3d0 0%,#6ad9a2 40%,#39b57f 100%);
+    color:#083324;
   }
-  .brand{display:flex;align-items:center;justify-content:center;gap:10px}
-  .brand img{width:56px;height:56px;border-radius:14px;border:3px solid var(--sun);background:#fff;object-fit:cover}
+  .hero-inner{
+    position:relative; display:grid; gap:8px; justify-items:center;
+  }
+  .brand{
+    display:inline-grid; grid-auto-flow:column; gap:10px; align-items:center; justify-content:center;
+  }
+  .brand img{
+    width:58px;height:58px;border-radius:14px;border:3px solid #ffd166;background:#fff;object-fit:cover
+  }
   .title{
-    font-family:"Playfair Display", ui-serif, Georgia, serif;
-    font-size:44px; line-height:1.05; color:#fff;
+    font-family:'Playfair Display', ui-serif, Georgia, serif;
+    font-weight:700; font-size:46px; line-height:1.04; color:#fff;
     text-shadow:0 10px 28px rgba(0,0,0,.25);
   }
-  .strap{margin-top:6px;color:#eefaf4;font-weight:700;font-size:18px}
+  .strap{ color:#eefaf4; font-weight:900; font-size:18px }
 
-  /* ---------- BODY GRID (from PDF: 2 rows × 2 cols + footer) ---------- */
-  .wrap{
-    padding:14px 16px 16px;
+  /* QR in header (top-right, subtle) */
+  .hero-qr{
+    position:absolute; right:16px; top:14px;
+    display:grid; gap:6px; place-items:center;
+    background:#f6fffb; border:1px dashed #badbcc; border-radius:12px;
+    padding:8px 10px; box-shadow:0 8px 20px rgba(0,0,0,.08);
+  }
+  .hero-qr .frame{
+    width:104px; height:104px; background:#fff; border-radius:8px;
+    display:grid; place-items:center;
+  }
+  .hero-qr img{ width:96px; height:96px; display:block }
+  .hero-qr small{ font-weight:900; color:#0e3c2d; font-size:11px }
+
+  /* Header décor: light SVG insects & flower dots */
+  .hero svg.decor{
+    position:absolute; inset:0; width:100%; height:100%; pointer-events:none; opacity:.35;
+    mix-blend-mode:overlay;
+  }
+
+  /* ===== BODY GRID (LEFT crisis, RIGHT what; row 2 photos) ===== */
+  .body{
+    position:absolute; left:0; right:0; top:170px; bottom:0;
+    padding:12px 16px 14px;
     display:grid; gap:12px;
-    grid-template-columns: 1.05fr .95fr;
+    grid-template-columns:.94fr 1.06fr;
+    grid-template-rows:330px 1fr;
     grid-template-areas:
-      "what crisis"
-      "baL  baR"
-      "footer footer";
+      "crisis what"
+      "before after";
   }
 
-  /* LEFT: What you can do (bold cards) */
-  .what{ grid-area:what; background:#fff; border:1px solid #eef2ee; border-radius:14px; padding:14px }
-  .what h2{ font-size:24px; margin-bottom:10px; color:#0e3c2d }
-  .list{ display:grid; gap:10px }
-  .item{
-    border:1px solid #eef2ee; border-radius:12px; padding:12px 14px;
-    background:#fff; font-weight:900; font-size:19px; color:#0e3c2d;
-  }
-  .item small{ display:block; font-weight:700; color:var(--muted); font-size:15px; margin-top:2px }
-  .i1{ background:#fff3cc }  /* sun */
-  .i2{ background:#e9f4ff }  /* sky */
-  .i3{ background:#ffe1ef }  /* rose */
-  .i4{ background:#eafff1 }  /* mint */
+  .card{ background:#fff; border:1px solid #eef2ee; border-radius:14px }
 
-  /* RIGHT: Crisis paragraph + CTA + QR (subtle, small) */
-  .crisis{ grid-area:crisis; background:#fff; border:1px solid #eef2ee; border-radius:14px; padding:16px; display:grid; gap:12px; align-content:start }
-  .crisis h3{ font-size:26px; color:#0e3c2d; line-height:1.2 }
-  .crisis p{ font-size:18px; color:#2a4335 }
+  /* LEFT: Crisis */
+  .crisis{ grid-area:crisis; padding:16px; display:grid; gap:12px; align-content:start }
+  .crisis h3{ font-size:28px; line-height:1.15; color:#0e3c2d; margin:0; font-weight:900 }
+  .crisis p{ font-size:18px; color:#2a4335; margin:0 }
   .cta{ font-weight:900; font-size:20px; color:#0e3c2d }
-  .qr{
-    justify-self:center;
-    display:flex; flex-direction:column; align-items:center; gap:6px;
-    border:1px dashed #badbcc; background:#f6fffb; border-radius:12px; padding:8px 10px;
-  }
-  .qr-frame{
-    width:108px; height:108px; background:#fff; border-radius:8px; padding:6px;
-    box-shadow:0 8px 20px rgba(0,0,0,.08); display:flex; align-items:center; justify-content:center;
-  }
-  .qr img{ width:96px; height:96px; display:block }
-  .qr small{ font-weight:800; color:#225042; font-size:12px }
 
-  /* BEFORE / AFTER (two large photos) */
-  .ba{ background:#fff; border:1px solid #e6eee9; border-radius:14px; overflow:hidden }
-  .ba img{ width:100%; height:330px; object-fit:cover; display:block }
-  .cap{ padding:9px 12px; font-weight:900; font-size:16px; display:flex; justify-content:space-between; align-items:center }
-  .good{ background:#f2fff6; color:var(--good) }
-  .bad{  background:#fff1f1; color:var(--bad) }
+  /* RIGHT: What you can do (bold cards) */
+  .what{ grid-area:what; padding:14px }
+  .what h2{ font-size:24px; margin:0 0 10px 0; color:#0e3c2d; font-weight:900 }
+  .what-list{ display:grid; gap:10px }
+  .what-item{
+    border:1px solid #eef2ee; border-radius:12px; padding:12px 14px;
+    font-weight:900; font-size:19px; color:#0e3c2d;
+  }
+  .what-item small{ display:block; font-size:15px; font-weight:800; color:#2a4335; margin-top:2px }
+  .sun{ background:#fff3cc } .sky{ background:#e9f4ff } .rose{ background:#ffe1ef } .mint{ background:#eafff1 }
+
+  /* ROW 2: Before / After */
+  .before{ grid-area:before; overflow:hidden }
+  .after{  grid-area:after;  overflow:hidden }
+  .ba{
+    height:100%; display:grid; grid-template-rows:1fr auto;
+    border:1px solid #e6eee9; border-radius:14px; overflow:hidden;
+    background:#fff;
+  }
+  .ba img{ width:100%; height:100%; object-fit:cover; display:block }
+  .cap{ display:flex; align-items:center; justify-content:space-between; padding:9px 12px; font-weight:900; font-size:16px }
   .cap small{ font-weight:800; color:#35564a }
-  .baL{ grid-area:baL }
-  .baR{ grid-area:baR }
+  .good{ background:#f2fff6; color:#0f4b34 }
+  .bad{  background:#fff1f1; color:#7a1e1e }
 
-  /* FOOTER thank you */
-  .thank{ grid-area:footer; background:#fff; border:1px solid #eef2ee; border-radius:14px; padding:10px 12px; text-align:center; font-weight:800; color:#0e3c2d; font-size:16px }
-  .thank a{ color:#0e3c2d; text-decoration:underline; text-underline-offset:2px }
+  /* Bottom grass / flower confetti strip to fill space like PDF */
+  .ground{
+    position:absolute; left:0; right:0; bottom:0; height:40px;
+    background:
+      radial-gradient(10px 10px at 10% 60%, #ffd166 0 40%, transparent 42%),
+      radial-gradient(10px 10px at 20% 40%, #ff9ed0 0 40%, transparent 42%),
+      radial-gradient(10px 10px at 30% 55%, #6ecbff 0 40%, transparent 42%),
+      radial-gradient(10px 10px at 40% 45%, #6adf90 0 40%, transparent 42%),
+      radial-gradient(10px 10px at 50% 60%, #ffd166 0 40%, transparent 42%),
+      radial-gradient(10px 10px at 60% 40%, #ff9ed0 0 40%, transparent 42%),
+      radial-gradient(10px 10px at 70% 55%, #6ecbff 0 40%, transparent 42%),
+      radial-gradient(10px 10px at 80% 45%, #6adf90 0 40%, transparent 42%),
+      linear-gradient(0deg, #9edfae 0, #b7f3d0 30%, transparent 31%);
+    opacity:.6;
+  }
 </style>
 </head>
 <body>
 
-<div class="poster" role="document" aria-label="Campaign Poster">
+<div class="sheet" role="document" aria-label="Poster A4">
+  <!-- HEADER -->
   <header class="hero">
-    <div class="brand">
-      <img src="noflowers_logo.png" alt="No Flowers = No Food logo" />
-      <div class="title">No Flowers = No Food</div>
+    <!-- decorative insects/flowers overlay -->
+    <svg class="decor" viewBox="0 0 794 170" aria-hidden="true">
+      <!-- simple bees -->
+      <g>
+        <circle cx="110" cy="46" r="6" fill="#ffd166"/>
+        <ellipse cx="110" cy="46" rx="12" ry="6" fill="none" stroke="#0e3c2d" stroke-width="2"/>
+        <path d="M100 46 Q110 36 120 46" fill="none" stroke="#0e3c2d" stroke-width="2"/>
+      </g>
+      <g transform="translate(560,25) rotate(-8)">
+        <circle cx="0" cy="0" r="6" fill="#ffd166"/>
+        <ellipse cx="0" cy="0" rx="12" ry="6" fill="none" stroke="#0e3c2d" stroke-width="2"/>
+        <path d="M-10 0 Q0 -10 10 0" fill="none" stroke="#0e3c2d" stroke-width="2"/>
+      </g>
+      <!-- butterflies -->
+      <g transform="translate(210,120)">
+        <path d="M0 0 C-12 -10 -18 -20 -6 -24 C4 -12 6 -8 0 0" fill="#ff9ed0"/>
+        <path d="M0 0 C12 -10 18 -20 6 -24 C-4 -12 -6 -8 0 0" fill="#6ecbff"/>
+        <circle cx="0" cy="0" r="2" fill="#0e3c2d"/>
+      </g>
+      <g transform="translate(690,110) scale(0.9)">
+        <path d="M0 0 C-12 -10 -18 -20 -6 -24 C4 -12 6 -8 0 0" fill="#6ecbff"/>
+        <path d="M0 0 C12 -10 18 -20 6 -24 C-4 -12 -6 -8 0 0" fill="#ff9ed0"/>
+        <circle cx="0" cy="0" r="2" fill="#0e3c2d"/>
+      </g>
+      <!-- small flower dots -->
+      <circle cx="320" cy="40" r="3.5" fill="#ff9ed0"/>
+      <circle cx="365" cy="30" r="3.5" fill="#ffd166"/>
+      <circle cx="410" cy="44" r="3.5" fill="#6ecbff"/>
+      <circle cx="455" cy="34" r="3.5" fill="#6adf90"/>
+    </svg>
+
+    <!-- QR in header (top-right) -->
+    <div class="hero-qr" aria-label="QR to the website">
+      <div class="frame">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=0&data=https%3A%2F%2Folivierraven.github.io%2FNo-Flowers-No-Food%2F" alt="QR code">
+      </div>
+      <small>Scan for how-to</small>
     </div>
-    <div class="strap">Plant native • Mow less (smarter) • Stop spraying • Keep corners wild</div>
+
+    <div class="hero-inner">
+      <div class="brand">
+        <img src="noflowers_logo.png" alt="No Flowers = No Food logo">
+        <div class="title">No Flowers = No Food</div>
+      </div>
+      <div class="strap">Plant native • Mow less (smarter) • Stop spraying • Keep corners wild</div>
+    </div>
   </header>
 
-  <div class="wrap">
-    <!-- LEFT: WHAT YOU CAN DO -->
-    <section class="what">
+  <!-- BODY -->
+  <div class="body">
+    <!-- LEFT: CRISIS -->
+    <section class="card crisis">
+      <h3>The world is in a biodiversity crisis.</h3>
+      <p>Insects are disappearing, and without them, we risk losing our food.</p>
+      <p>Even small patches of flowers in gardens, schools, or streets make a big difference.</p>
+      <div class="cta">Come in action today!</div>
+    </section>
+
+    <!-- RIGHT: WHAT YOU CAN DO -->
+    <section class="card what">
       <h2>What you can do</h2>
-      <div class="list">
-        <div class="item i1">Grow Native Plants
+      <div class="what-list">
+        <div class="what-item sun">Grow Native Plants
           <small>Hebe (koromiko), Mānuka, Olearia</small>
         </div>
-        <div class="item i2">Mow Grass Less
+        <div class="what-item sky">Mow Grass Less
           <small>2–3×/year, leave ~30% long, avoid Oct–Jan</small>
         </div>
-        <div class="item i3">Stop Spraying
+        <div class="what-item rose">Stop Spraying
           <small>Weed by hand, use mulch, or plant densely</small>
         </div>
-        <div class="item i4">Make Shelter Spaces
+        <div class="what-item mint">Make Shelter Spaces
           <small>Leave leaf litter, twigs, and logs for nesting</small>
         </div>
       </div>
     </section>
 
-    <!-- RIGHT: CRISIS TEXT + CTA + QR -->
-    <section class="crisis">
-      <h3>The world is in a biodiversity crisis.</h3>
-      <p>Insects are disappearing, and without them, we risk losing our food.</p>
-      <p>Even small patches of flowers in gardens, schools, or streets make a big difference.</p>
-      <div class="cta">Come in action today!</div>
-      <div class="qr" aria-label="QR to the campaign website">
-        <div class="qr-frame">
-          <img
-            src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=0&data=https%3A%2F%2Folivierraven.github.io%2FNo-Flowers-No-Food%2F"
-            alt="QR code to the campaign website">
-        </div>
-        <small>Scan to learn how</small>
-      </div>
-    </section>
-
-    <!-- ROW 2: BEFORE / AFTER -->
-    <figure class="ba baL">
+    <!-- ROW 2: PHOTOS -->
+    <figure class="card ba before">
       <img src="IMG_2043.jpeg" alt="Roadside verge before spraying: flowering and living vegetation">
       <figcaption class="cap good">Roadside before spraying <small>Flowering and living vegetation</small></figcaption>
     </figure>
-    <figure class="ba baR">
-      <img src="IMG_2044.png" alt="Roadside verge after spraying: dead grass and litter">
+
+    <figure class="card ba after">
+      <img src="IMG_2044.jpeg" alt="Roadside verge after spraying: dead grass and litter">
       <figcaption class="cap bad">Roadside after spraying <small>Dead grass, litter traps, no habitat</small></figcaption>
     </figure>
-
-    <!-- FOOTER -->
-    <div class="thank">
-      Thank you for supporting local biodiversity! &nbsp;&nbsp;•&nbsp;&nbsp;
-      <a href="mailto:noflowers.nofood@icloud.com">noflowers.nofood@icloud.com</a>
-    </div>
   </div>
-</div>
 
+  <!-- Bottom decorative grass strip -->
+  <div class="ground" aria-hidden="true"></div>
+</div>
 </body>
 </html>
+
 
