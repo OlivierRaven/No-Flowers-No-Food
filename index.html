@@ -12,37 +12,23 @@
 <meta property="og:type" content="website" />
 <meta property="og:image" content="IMG_4277.jpeg" />
 
-<!-- Optional: advertise a PDF version of the poster if/when you add it -->
-<a role="menuitem" href="poster.pdf" target="_blank" rel="noopener">Poster</a>
+<!-- Advertise the poster PDF for previews and search -->
+<link rel="alternate" type="application/pdf" href="no_flowers_no_food_poster.pdf" title="No Flowers = No Food — Poster (PDF)" />
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  /* Base palette: brighter, flower-forward */
   --bg-gradient: radial-gradient(1200px 800px at 15% 10%, #fff8d9 0%, transparent 60%),
                   radial-gradient(1200px 800px at 85% 20%, #ffe6f6 0%, transparent 60%),
                   radial-gradient(1200px 800px at 50% 100%, #e6fff1 0%, transparent 60%),
                   #fffef9;
-  --ink:#122018;
-  --muted:#2a4135;
+  --ink:#122018; --muted:#2a4135;
+  --primary:#1fbf7a; --primary-2:#6abf69; --link:#0f6c56;
 
-  /* Brand greens & accents */
-  --primary:#1fbf7a;
-  --primary-2:#6abf69;
-  --link:#0f6c56;
+  --rose:#ffe0eb; --sun:#fff1c9; --sky:#e6f4ff; --mint:#eafff1; --lav:#efe6ff; --peach:#ffe9dc;
 
-  /* Flower tints for cards */
-  --rose:#ffe0eb;
-  --sun:#fff1c9;
-  --sky:#e6f4ff;
-  --mint:#eafff1;
-  --lav:#efe6ff;
-  --peach:#ffe9dc;
-
-  --paper:#ffffff;
-  --ring: 0 0 0 3px rgba(31,191,122,.28);
-  --shadow: 0 14px 28px rgba(0,0,0,.08);
+  --paper:#ffffff; --ring: 0 0 0 3px rgba(31,191,122,.28); --shadow: 0 14px 28px rgba(0,0,0,.08);
 }
 
 /* Reset & base */
@@ -62,18 +48,16 @@ img{max-width:100%;display:block}
 .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
 .skip-link:focus{position:fixed;left:1rem;top:1rem;width:auto;height:auto;background:#fff;padding:.6rem 1rem;border-radius:.6rem;box-shadow:var(--shadow);z-index:3000}
 
-/* Page frame: pulls content away from edges */
+/* Page frame */
 .page{
   max-width:1180px;
   margin:1.25rem auto 2rem;
   background:var(--paper);
   border-radius:20px;
   box-shadow:var(--shadow);
-  overflow:hidden; /* keep hero corners rounded */
+  overflow:hidden;
   border:1px solid #eef3ee;
 }
-
-/* Inner container padding for all sections */
 .container{padding:0 1.25rem}
 @media(min-width:960px){.container{padding:0 2rem}}
 
@@ -88,48 +72,39 @@ img{max-width:100%;display:block}
 .menu a:focus-visible{outline:none;box-shadow:var(--ring)}
 
 /* Hero */
-.hero{
-  position:relative;
-  min-height:58vh;
-  display:grid;
-  place-items:center;
-  text-align:center;
-}
+.hero{position:relative;min-height:58vh;display:grid;place-items:center;text-align:center}
 .hero-bg{
   position:absolute; inset:0;
   background-image:
     radial-gradient(60% 60% at 20% 10%, rgba(255,214,102,.60) 0%, rgba(255,214,102,0) 70%),
     radial-gradient(60% 60% at 80% 20%, rgba(255,158,208,.55) 0%, rgba(255,158,208,0) 70%),
     linear-gradient(135deg, #b7f3d0 0%, #6ad9a2 45%, #39b57f 100%);
-  filter:saturate(1.05);
-  z-index:0; pointer-events:none;
+  filter:saturate(1.05); z-index:0; pointer-events:none;
 }
 .hero-photo{
-  position:absolute; inset:0;
-  background-color:#b7f3d0;
+  position:absolute; inset:0; background-color:#b7f3d0;
   background-image:url('https://images.unsplash.com/photo-1465146633011-14f18c72b735?q=80&w=2000&auto=format&fit=crop');
   background-size:cover; background-position:50% 30%;
   mix-blend-mode:multiply; opacity:.45; z-index:1; pointer-events:none;
 }
-.hero-overlay{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.45)); z-index:2; pointer-events:none; }
-.hero .wrap{ position:relative; z-index:3; max-width:980px; padding:3rem 1rem; }
-.logo-hero{ width:92px;height:92px;border-radius:22px;margin:0 auto 1rem; border:4px solid #ffd166; background:linear-gradient(135deg,var(--primary),#fff); }
-.hero h1{ font-family:'Playfair Display',serif; font-size:clamp(2.2rem,5vw,3.6rem); color:#fff; letter-spacing:.2px; text-shadow:0 10px 30px rgba(0,0,0,.35); margin-bottom:.6rem; }
-.hero p{ color:#eefaf4; font-size:clamp(1rem,2.1vw,1.22rem); max-width:800px; margin:0 auto 1.2rem; }
+.hero-overlay{position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.45)); z-index:2; pointer-events:none}
+.hero .wrap{position:relative; z-index:3; max-width:980px; padding:3rem 1rem}
+.logo-hero{width:92px;height:92px;border-radius:22px;margin:0 auto 1rem;border:4px solid #ffd166;background:linear-gradient(135deg,var(--primary),#fff)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.6rem);color:#fff;letter-spacing:.2px;text-shadow:0 10px 30px rgba(0,0,0,.35);margin-bottom:.6rem}
+.hero p{color:#eefaf4;font-size:clamp(1rem,2.1vw,1.22rem);max-width:800px;margin:0 auto 1.2rem}
 
 /* Buttons */
-.cta-row{ display:flex; gap:.7rem; justify-content:center; flex-wrap:wrap; }
+.cta-row{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap}
 .btn{
-  display:inline-block; border-radius:999px; padding:.9rem 1.25rem;
-  font-weight:800; font-size:1rem;
-  transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease, filter .15s ease;
+  display:inline-block;border-radius:999px;padding:.9rem 1.25rem;font-weight:800;font-size:1rem;
+  transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease, filter .15s ease;
   will-change: transform, box-shadow, background-color, color, filter;
 }
-.btn.primary{ background:linear-gradient(90deg,#2ad08a,#6adf90); color:#06281c; box-shadow:var(--shadow) }
-.btn.primary:hover{ transform:translateY(-2px); filter:brightness(1.04) }
-.btn.secondary{ background:#fff; color:#0f3d2f; border:2px solid #e2f2e6 }
-.btn.secondary:hover{ background:#f6fff8; transform:translateY(-2px) }
-.btn:focus-visible,.btn:focus{ outline:none; box-shadow:var(--ring) }
+.btn.primary{background:linear-gradient(90deg,#2ad08a,#6adf90);color:#06281c;box-shadow:var(--shadow)}
+.btn.primary:hover{transform:translateY(-2px);filter:brightness(1.04)}
+.btn.secondary{background:#fff;color:#0f3d2f;border:2px solid #e2f2e6}
+.btn.secondary:hover{background:#f6fff8;transform:translateY(-2px)}
+.btn:focus-visible,.btn:focus{outline:none;box-shadow:var(--ring)}
 
 /* Sections */
 section{margin:2rem 0;padding:2rem 0}
@@ -140,13 +115,13 @@ section header h2{font-size:clamp(1.6rem,3.2vw,2.2rem);margin-bottom:.6rem;color
 /* Grids & cards */
 .grid{display:grid;gap:1rem;margin-top:1rem}
 @media(min-width:720px){.grid.cols-2{grid-template-columns:repeat(2,1fr)}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
-.card{ border-radius:14px;padding:1rem 1rem;border:1px solid #eef2ee;box-shadow:var(--shadow);position:relative }
+.card{border-radius:14px;padding:1rem 1rem;border:1px solid #eef2ee;box-shadow:var(--shadow);position:relative}
 .card h3{color:#0f3d2f;margin-bottom:.35rem;font-size:1.15rem}
 .card p{color:var(--muted);font-size:1rem}
 .card ul{margin:.35rem 0 .2rem 1.1rem}
 .card li{margin:.2rem 0}
 
-/* Pastel card variants for colour (auto-rotating) */
+/* Pastel cards */
 .grid .card:nth-child(6n+1){background:var(--rose)}
 .grid .card:nth-child(6n+2){background:var(--sun)}
 .grid .card:nth-child(6n+3){background:var(--sky)}
@@ -199,9 +174,7 @@ blockquote{margin:1rem 0;padding:.8rem 1rem;border-left:6px solid #ff9ed0;backgr
 <a id="top"></a>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- Page frame: keeps everything off the screen edges -->
 <div class="page">
-  <!-- NAV stays inside the page so it doesn’t touch edges -->
   <nav class="nav" role="navigation" aria-label="Main">
     <div class="nav-inner container">
       <div class="brand">
@@ -218,7 +191,8 @@ blockquote{margin:1rem 0;padding:.8rem 1rem;border-left:6px solid #ff9ed0;backgr
         <a role="menuitem" href="#aotearoa">Aotearoa action</a>
         <a role="menuitem" href="#nz">NZ resources</a>
         <a role="menuitem" href="#faq">FAQ</a>
-        <a role="menuitem" href="poster.html" target="_blank" rel="noopener">Poster</a>
+        <!-- Poster link: PDF only -->
+        <a role="menuitem" href="no_flowers_no_food_poster.pdf" target="_blank" rel="noopener">Poster (PDF)</a>
       </div>
     </div>
   </nav>
@@ -290,7 +264,7 @@ blockquote{margin:1rem 0;padding:.8rem 1rem;border-left:6px solid #ff9ed0;backgr
       </div>
     </section>
 
-    <!-- BEFORE / AFTER (matches poster style) -->
+    <!-- BEFORE / AFTER -->
     <section id="compare" aria-labelledby="compare-title">
       <header>
         <span class="section-kicker">Same location — two outcomes</span>
@@ -304,7 +278,7 @@ blockquote{margin:1rem 0;padding:.8rem 1rem;border-left:6px solid #ff9ed0;backgr
           <figcaption class="cap good">Before spraying <small>flower-rich verge, nectar & structure</small></figcaption>
         </figure>
         <figure class="ba" role="listitem">
-          <img src="IMG_2044.jpeg" alt="Roadside verge after spraying: dead grass and litter" />
+          <img src="IMG_2044.png" alt="Roadside verge after spraying: dead grass and litter" />
           <figcaption class="cap bad">After spraying <small>dead grass, litter traps, no habitat</small></figcaption>
         </figure>
       </div>
@@ -442,8 +416,6 @@ blockquote{margin:1rem 0;padding:.8rem 1rem;border-left:6px solid #ff9ed0;backgr
             <li><a href="https://www.landcareresearch.co.nz/tools-and-resources/education/pollination" target="_blank" rel="noopener">Pollination education</a></li>
             <li><a href="https://www.doc.govt.nz/our-work/biodiversity/" target="_blank" rel="noopener">DOC biodiversity</a></li>
             <li><a href="https://www.kcc.org.nz/" target="_blank" rel="noopener">Kiwi Conservation Clubs</a></li>
-            <!-- Poster entry repeated for scrollers -->
-
           </ul>
         </div>
         <div class="card">
@@ -502,6 +474,8 @@ blockquote{margin:1rem 0;padding:.8rem 1rem;border-left:6px solid #ff9ed0;backgr
           <li><a href="https://files.ipbes.net/ipbes-web-prod-public-files/inline/files/ipbes_global_assessment_report_summary_for_policymakers.pdf" target="_blank" rel="noopener">IPBES Global Assessment (2019)</a></li>
           <li><a href="https://www.worldwildlife.org/publications/2024-living-planet-report" target="_blank" rel="noopener">WWF Living Planet Report 2024</a></li>
         </ul>
+        <!-- Poster: PDF only -->
+        <p class="fine">Poster: <a href="no_flowers_no_food_poster.pdf" target="_blank" rel="noopener">view PDF</a></p>
       </div>
       <div>
         <p><strong>Contact</strong></p>
