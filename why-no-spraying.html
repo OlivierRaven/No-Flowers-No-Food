@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Why not spraying | No Flowers = No Food (Aotearoa NZ)</title>
+<meta name="description" content="Why routine herbicide and pesticide spraying harms Aotearoa’s biodiversity, pollinators, soils, and people — and what to do instead. Inspired by Rachel Carson’s Silent Spring." />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Why not spraying — No Flowers = No Food" />
+<meta property="og:description" content="Spraying harms pollinators, soils, waterways, and health. Here are clear reasons, rebuttals to industry claims, and better alternatives for Aotearoa." />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="IMG_2044.jpeg" />
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+/* Reuse the exact visual language from the homepage */
+:root{
+  --bg-gradient: radial-gradient(1200px 800px at 15% 10%, #fff8d9 0%, transparent 60%),
+                  radial-gradient(1200px 800px at 85% 20%, #ffe6f6 0%, transparent 60%),
+                  radial-gradient(1200px 800px at 50% 100%, #e6fff1 0%, transparent 60%),
+                  #fffef9;
+  --ink:#122018; --muted:#2a4135;
+  --primary:#1fbf7a; --primary-2:#6abf69; --link:#0f6c56;
+
+  --rose:#ffe0eb; --sun:#fff1c9; --sky:#e6f4ff; --mint:#eafff1; --lav:#efe6ff; --peach:#ffe9dc;
+
+  --paper:#ffffff; --ring: 0 0 0 3px rgba(31,191,122,.28); --shadow: 0 14px 28px rgba(0,0,0,.08);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Nunito',system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--ink); line-height:1.6;
+  background:var(--bg-gradient);
+}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;display:block}
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{position:fixed;left:1rem;top:1rem;width:auto;height:auto;background:#fff;padding:.6rem 1rem;border-radius:.6rem;box-shadow:var(--shadow);z-index:3000}
+
+.page{
+  max-width:1180px;
+  margin:1.25rem auto 2rem;
+  background:var(--paper);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  border:1px solid #eef3ee;
+}
+.container{padding:0 1.25rem}
+@media(min-width:960px){.container{padding:0 2rem}}
+
+.nav{position:sticky;top:0;background:#ffffffee;backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid #e9f2ea;z-index:1000}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem;gap:1rem}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:900;color:#0f3d2f;font-size:1.1rem}
+.brand .logo{width:42px;height:42px;border-radius:10px;object-fit:cover;border:3px solid #ffd166;background:linear-gradient(135deg,var(--primary),#fff)}
+.menu{display:flex;gap:.25rem;flex-wrap:wrap}
+.menu a{padding:.45rem .75rem;border-radius:999px;font-weight:800}
+.menu a:hover{background:#e8fbf1}
+.menu a:focus-visible{outline:none;box-shadow:var(--ring)}
+
+header.page-hero{
+  position:relative;min-height:38vh;display:grid;place-items:center;text-align:center;
+  background-image:
+    radial-gradient(60% 60% at 20% 10%, rgba(255,214,102,.60) 0%, rgba(255,214,102,0) 70%),
+    radial-gradient(60% 60% at 80% 20%, rgba(255,158,208,.55) 0%, rgba(255,158,208,0) 70%),
+    linear-gradient(135deg, #b7f3d0 0%, #6ad9a2 45%, #39b57f 100%);
+  overflow:hidden;
+}
+.page-hero::after{
+  content:""; position:absolute; inset:0; background-image:url('IMG_2044.jpeg');
+  background-size:cover; background-position:50% 50%; mix-blend-mode:multiply; opacity:.35;
+}
+.page-hero .wrap{position:relative; z-index:2; padding:2.6rem 1rem; max-width:900px}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3.2rem);color:#fff;text-shadow:0 10px 30px rgba(0,0,0,.35)}
+.page-hero p{color:#eefaf4;max-width:760px;margin:.6rem auto 0;font-size:clamp(1rem,2vw,1.18rem)}
+
+main section{margin:2rem 0;padding:2rem 0}
+.section-kicker{display:inline-block;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#145a46;background:#e8fbf1;border:1px solid #ccf3de;padding:.2rem .6rem;border-radius:999px;margin-bottom:.6rem}
+.hr{height:6px;width:90px;border-radius:6px;background:linear-gradient(90deg,#ff9ed0,#ffd166,#2ad08a);margin:.5rem 0 1rem}
+
+.lead{background:linear-gradient(90deg,#fff3cc,#ffe7f4);border-left:8px solid #ffd166;padding:1rem 1.2rem;border-radius:12px;font-size:1.05rem;color:#3f3a1a}
+
+.grid{display:grid;gap:1rem;margin-top:1rem}
+@media(min-width:720px){.grid.cols-2{grid-template-columns:repeat(2,1fr)}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+.card{border-radius:14px;padding:1rem 1rem;border:1px solid #eef2ee;box-shadow:var(--shadow);position:relative;background:#fff}
+.card h3{color:#0f3d2f;margin-bottom:.35rem;font-size:1.15rem}
+.card p{color:var(--muted);font-size:1rem}
+.card ul{margin:.35rem 0 .2rem 1.1rem}
+.card li{margin:.2rem 0}
+.grid .card:nth-child(6n+1){background:var(--rose)}
+.grid .card:nth-child(6n+2){background:var(--sun)}
+.grid .card:nth-child(6n+3){background:var(--sky)}
+.grid .card:nth-child(6n+4){background:var(--mint)}
+.grid .card:nth-child(6n+5){background:var(--lav)}
+.grid .card:nth-child(6n+6){background:var(--peach)}
+
+blockquote{margin:1rem 0;padding:.8rem 1rem;border-left:6px solid #ff9ed0;background:#fff7ff;border-radius:8px}
+
+details{background:linear-gradient(180deg,#0f3d2f,#0c3126);color:#fff;border:1px solid #2a7d62;border-radius:12px;padding:1rem;margin:.6rem 0}
+summary{cursor:pointer;font-weight:900}
+details p{margin-top:.5rem;color:#eaf8f1}
+
+footer{padding:2rem 0;background:linear-gradient(90deg,#0f3d2f,#145a46);color:#eaf8f1}
+footer a{color:#eaf8f1;text-underline-offset:2px}
+.foot-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.fine{opacity:.85}
+
+.to-top{position:fixed;right:1rem;bottom:1rem;background:linear-gradient(90deg,#ff9ed0,#ffd166);border:none;border-radius:999px;padding:.6rem .9rem;box-shadow:var(--shadow);font-weight:800;color:#222}
+.to-top:hover{filter:brightness(1.05)}
+.to-top:focus-visible{outline:none;box-shadow:var(--ring)}
+</style>
+</head>
+<body>
+<a id="top"></a>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="page">
+  <nav class="nav" role="navigation" aria-label="Main">
+    <div class="nav-inner container">
+      <div class="brand">
+        <img class="logo" src="noflowers_logo.png" alt="No Flowers = No Food logo" />
+        <span>No Flowers = No Food</span>
+      </div>
+      <div class="menu" role="menubar" aria-label="Primary">
+        <a role="menuitem" href="index.html#why">Why it matters</a>
+        <a role="menuitem" href="index.html#actions">Do this</a>
+        <a role="menuitem" href="index.html#nz">NZ resources</a>
+        <!-- Current page -->
+        <a role="menuitem" aria-current="page" href="why-not-spraying.html">Why not spraying</a>
+        <a role="menuitem" href="Noflowers_poster.pdf" target="_blank" rel="noopener">Poster</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="wrap container">
+      <h1>Why not spraying</h1>
+      <p>Routine herbicide and pesticide use is sold as “tidy”, “necessary”, and “safe”. It isn’t. Here’s why spraying harms Aotearoa’s insects, soils, waterways, and people — and what to do instead.</p>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section aria-labelledby="sec-why">
+      <header>
+        <span class="section-kicker">The case against chemicals</span>
+        <h2 id="sec-why">Spraying does more harm than good</h2>
+        <div class="hr" aria-hidden="true"></div>
+      </header>
+
+      <div class="lead">
+        <p><em>Silent Spring</em> (Rachel Carson, 1962) warned that chemical shortcuts create long-term damage. Decades later, we still see the same patterns: residues in soils and water, collapsing insect life, and a costly “chemical treadmill”.</p>
+      </div>
+
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Ecological harm</h3>
+          <p>Sprays drift and run off. They kill non-target insects, amphibians, and soil microbes, and fragment food webs.</p>
+        </div>
+        <div class="card">
+          <h3>Human health</h3>
+          <p>Chronic, low-dose exposure is under-tested. Residues can persist on food, playgrounds, and verges.</p>
+        </div>
+        <div class="card">
+          <h3>Pollinator loss</h3>
+          <p>Bees, hoverflies, butterflies, and moths are sensitive to many common actives and “inert” co-formulants.</p>
+        </div>
+        <div class="card">
+          <h3>Resistance & treadmill</h3>
+          <p>Pests evolve. Doses increase. New formulations arrive. Costs rise while ecosystems weaken.</p>
+        </div>
+        <div class="card">
+          <h3>Fake “tidiness”</h3>
+          <p>Browned-off edges may look “managed”, but they remove flowers, trap litter, and signal neglect.</p>
+        </div>
+        <div class="card">
+          <h3>Intergenerational costs</h3>
+          <p>Contamination lingers for years. Restoring soils and waterways is slow and expensive.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="sec-claims">
+      <header>
+        <span class="section-kicker">Answering the sales pitch</span>
+        <h2 id="sec-claims">Common industry claims — and clear replies</h2>
+        <div class="hr" aria-hidden="true"></div>
+      </header>
+
+      <details>
+        <summary>“Modern sprays are targeted and break down quickly.”</summary>
+        <p>Field reality is messier: drift, runoff, and repeated applications create chemical “cocktails”. Many impacts occur at sub-lethal doses (navigation, reproduction, immunity). “Targeted” biochemistry is shared across species.</p>
+      </details>
+      <details>
+        <summary>“Safe when used as directed.”</summary>
+        <p>Most testing is short-term and industry-provided. Chronic, low-dose, and mixture effects are under-represented — precisely what communities experience.</p>
+      </details>
+      <details>
+        <summary>“We need pesticides to feed the world.”</summary>
+        <p>Food insecurity is driven by waste, distribution, and fragile monocultures. Agroecological systems maintain yields while protecting biodiversity — and cut long-term costs.</p>
+      </details>
+      <details>
+        <summary>“Weed-free verges are safer and tidier.”</summary>
+        <p>Flower-rich verges can be safe and more resilient. Use mosaic mowing, keep edges/pathways neat, and add small signs. You get habitat, pollinators, and lower erosion and fire risk.</p>
+      </details>
+      <details>
+        <summary>“New formulations solve resistance.”</summary>
+        <p>They postpone it. True resilience comes from diversity: varied plant communities, groundcovers, and habitat for natural enemies.</p>
+      </details>
+    </section>
+
+    <section aria-labelledby="sec-alt">
+      <header>
+        <span class="section-kicker">Better practice</span>
+        <h2 id="sec-alt">What to do instead (Aotearoa-first)</h2>
+        <div class="hr" aria-hidden="true"></div>
+      </header>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Native-first planting</h3>
+          <ul>
+            <li><strong>Hebe (koromiko)</strong>, <strong>mānuka/kānuka</strong>, <strong>harakeke</strong>, <strong>olearia</strong>, <strong>kōwhai</strong></li>
+            <li>Layer tussocks, shrubs, and trees for year-round nectar and shelter.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Mosaic mowing</h3>
+          <ul>
+            <li>Mow 2–3×/year, never all at once; keep tidy edges and sightlines.</li>
+            <li>Avoid mowing Oct–Jan (peak insect season).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Weed without chemicals</h3>
+          <ul>
+            <li>Hand-weed high-visibility areas; mulch or plant densely to shade out “weeds”.</li>
+            <li>Use groundcovers on edges to reduce maintenance.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Habitat, not bare soil</h3>
+          <ul>
+            <li>Leave leaf litter, logs, and brush piles.</li>
+            <li>Create stone stacks and nest pockets for insects.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Community + signage</h3>
+          <ul>
+            <li>Explain the approach (“Let Nature Grow” signs).</li>
+            <li>Monitor with photos; share results with council and neighbours.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Policy pilots</h3>
+          <ul>
+            <li>Ask councils for reduced-spray zones and flower windows.</li>
+            <li>Offer to help monitor biodiversity outcomes.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="sec-quote">
+      <header>
+        <span class="section-kicker">A reminder</span>
+        <h2 id="sec-quote">From <em>Silent Spring</em></h2>
+        <div class="hr" aria-hidden="true"></div>
+      </header>
+      <blockquote>
+        <p><strong>“The ‘control of nature’ is a phrase conceived in arrogance.”</strong> — Rachel Carson</p>
+      </blockquote>
+      <p class="lead">We can choose living, resilient places over temporary chemical fixes. Let’s make verges, parks, schools, and gardens safe for insects — and safe for us.</p>
+    </section>
+  </main>
+
+  <footer role="contentinfo" class="container">
+    <div class="foot-inner">
+      <div>
+        <p><strong>About this page</strong><br/>Why routine spraying isn’t the solution, and how to manage landscapes in ways that support life.</p>
+      </div>
+      <div>
+        <p><strong>Further reading</strong></p>
+        <ul>
+          <li><em>Silent Spring</em> — Rachel Carson</li>
+          <li><a href="https://www.doc.govt.nz/our-work/biodiversity/" target="_blank" rel="noopener">DOC biodiversity (NZ)</a></li>
+          <li><a href="https://www.landcareresearch.co.nz/tools-and-resources/education/pollination" target="_blank" rel="noopener">Pollination education (Manaaki Whenua)</a></li>
+        </ul>
+      </div>
+      <div>
+        <p><strong>Contact</strong></p>
+        <p>Email: <a href="mailto:noflowers.nofood@icloud.com">noflowers.nofood@icloud.com</a></p>
+        <p><a href="index.html">← Back to homepage</a></p>
+      </div>
+    </div>
+    <p style="margin-top:1rem"><small>© 2025 No Flowers = No Food — Aotearoa NZ</small></p>
+  </footer>
+</div>
+
+<a class="to-top" href="#top" aria-label="Back to top">⬆︎ Top</a>
+</body>
+</html>
