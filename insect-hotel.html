@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Build an Insect Hotel | No Flowers = No Food (Aotearoa NZ)</title>
+<meta name="description" content="How to build a simple, effective insect hotel for native pollinators in Aotearoa: what to use, what to avoid, where to place it, and how to maintain it." />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Build an Insect Hotel — No Flowers = No Food" />
+<meta property="og:description" content="Practical, science-based tips for making an insect hotel that actually works for pollinators in Aotearoa NZ." />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="IMG_4277.jpeg" />
+
+<link rel="alternate" type="application/pdf" href="Noflowers_poster.pdf" title="No Flowers = No Food — Poster (PDF)" />
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-gradient: radial-gradient(1200px 800px at 15% 10%, #fff8d9 0%, transparent 60%),
+                  radial-gradient(1200px 800px at 85% 20%, #ffe6f6 0%, transparent 60%),
+                  radial-gradient(1200px 800px at 50% 100%, #e6fff1 0%, transparent 60%),
+                  #fffef9;
+  --ink:#122018; --muted:#2a4135;
+  --primary:#1fbf7a; --primary-2:#6abf69; --link:#0f6c56;
+
+  --rose:#ffe0eb; --sun:#fff1c9; --sky:#e6f4ff; --mint:#eafff1; --lav:#efe6ff; --peach:#ffe9dc;
+
+  --paper:#ffffff; --ring: 0 0 0 3px rgba(31,191,122,.28); --shadow: 0 14px 28px rgba(0,0,0,.08);
+}
+
+/* Reset & base */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Nunito',system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--ink); line-height:1.6;
+  background:var(--bg-gradient);
+  text-rendering:optimizeLegibility;
+}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;display:block}
+
+/* Accessibility */
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{position:fixed;left:1rem;top:1rem;width:auto;height:auto;background:#fff;padding:.6rem 1rem;border-radius:.6rem;box-shadow:var(--shadow);z-index:3000}
+
+/* Page frame */
+.page{
+  max-width:1180px;
+  margin:1.25rem auto 2rem;
+  background:var(--paper);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  border:1px solid #eef3ee;
+}
+.container{padding:0 1.25rem}
+@media(min-width:960px){.container{padding:0 2rem}}
+
+/* Nav */
+.nav{position:sticky;top:0;background:#ffffffee;backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid #e9f2ea;z-index:1000}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem;gap:1rem}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:900;color:#0f3d2f;font-size:1.1rem}
+.brand .logo{width:42px;height:42px;border-radius:10px;object-fit:cover;border:3px solid #ffd166;background:linear-gradient(135deg,var(--primary),#fff)}
+.menu{display:flex;gap:.25rem;flex-wrap:wrap}
+.menu a{padding:.45rem .75rem;border-radius:999px;font-weight:800}
+.menu a:hover{background:#e8fbf1}
+.menu a:focus-visible{outline:none;box-shadow:var(--ring)}
+
+/* Hero */
+.hero{position:relative;min-height:42vh;display:grid;place-items:center;text-align:center}
+.hero-bg{
+  position:absolute; inset:0;
+  background-image:
+    radial-gradient(60% 60% at 20% 10%, rgba(255,214,102,.60) 0%, rgba(255,214,102,0) 70%),
+    radial-gradient(60% 60% at 80% 20%, rgba(255,158,208,.55) 0%, rgba(255,158,208,0) 70%),
+    linear-gradient(135deg, #b7f3d0 0%, #6ad9a2 45%, #39b57f 100%);
+  filter:saturate(1.05); z-index:0; pointer-events:none;
+}
+.hero-photo{
+  position:absolute; inset:0; background-color:#b7f3d0;
+  background-image:url('https://images.unsplash.com/photo-1465146633011-14f18c72b735?q=80&w=2000&auto=format&fit=crop');
+  background-size:cover; background-position:50% 30%;
+  mix-blend-mode:multiply; opacity:.45; z-index:1; pointer-events:none;
+}
+.hero-overlay{position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.45)); z-index:2; pointer-events:none}
+.hero .wrap{position:relative; z-index:3; max-width:980px; padding:3rem 1rem}
+.logo-hero{width:92px;height:92px;border-radius:22px;margin:0 auto 1rem;border:4px solid #ffd166;background:linear-gradient(135deg,var(--primary),#fff)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3.2rem);color:#fff;letter-spacing:.2px;text-shadow:0 10px 30px rgba(0,0,0,.35);margin-bottom:.6rem}
+.hero p{color:#eefaf4;font-size:clamp(1rem,2.1vw,1.15rem);max-width:800px;margin:0 auto 1.2rem}
+
+/* Sections */
+section{margin:2rem 0;padding:2rem 0}
+section header h2{font-size:clamp(1.6rem,3.2vw,2.2rem);margin-bottom:.6rem;color:#0f3d2f}
+.section-kicker{display:inline-block;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#145a46;background:#e8fbf1;border:1px solid #ccf3de;padding:.2rem .6rem;border-radius:999px;margin-bottom:.6rem}
+.hr{height:6px;width:90px;border-radius:6px;background:linear-gradient(90deg,#ff9ed0,#ffd166,#2ad08a);margin:.5rem 0 1rem}
+
+/* Grids & cards */
+.grid{display:grid;gap:1rem;margin-top:1rem}
+@media(min-width:720px){.grid.cols-2{grid-template-columns:repeat(2,1fr)}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+.card{border-radius:14px;padding:1rem 1rem;border:1px solid #eef2ee;box-shadow:var(--shadow);position:relative}
+.card h3{color:#0f3d2f;margin-bottom:.35rem;font-size:1.15rem}
+.card p{color:var(--muted);font-size:1rem}
+.card ul{margin:.35rem 0 .2rem 1.1rem}
+.card li{margin:.2rem 0}
+
+/* Gallery placeholder */
+.gallery{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));margin-top:1rem}
+figure{background:#ffffff;border:1px solid #f0f0f5;border-radius:12px;padding:.5rem;box-shadow:var(--shadow)}
+.gallery img{width:100%;height:240px;object-fit:cover;border-radius:8px;border:4px solid #fff3cc}
+figcaption{font-size:.95rem;color:#284d3d;margin-top:.4rem;text-align:center}
+
+/* Lead / notes */
+.lead{background:linear-gradient(90deg,#fff3cc,#ffe7f4);border-left:8px solid #ffd166;padding:1rem 1.2rem;border-radius:12px;font-size:1.05rem;color:#3f3a1a}
+
+/* Footer */
+footer{padding:2rem 0;background:linear-gradient(90deg,#0f3d2f,#145a46);color:#eaf8f1}
+footer a{color:#eaf8f1;text-underline-offset:2px}
+.foot-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.fine{opacity:.85}
+
+/* Utility */
+blockquote{margin:1rem 0;padding:.8rem 1rem;border-left:6px solid #ff9ed0;background:#fff7ff;border-radius:8px}
+.to-top{position:fixed;right:1rem;bottom:1rem;background:linear-gradient(90deg,#ff9ed0,#ffd166);border:none;border-radius:999px;padding:.6rem .9rem;box-shadow:var(--shadow);font-weight:800;color:#222}
+.to-top:hover{filter:brightness(1.05)}
+.to-top:focus-visible{outline:none;box-shadow:var(--ring)}
+.badge{display:inline-block;padding:.15rem .5rem;border-radius:999px;font-weight:800;border:1px solid #ccf3de;background:#e8fbf1;color:#145a46;margin-left:.4rem}
+</style>
+</head>
+<body>
+<a id="top"></a>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="page">
+  <nav class="nav" role="navigation" aria-label="Main">
+    <div class="nav-inner container">
+      <div class="brand">
+        <img class="logo" src="noflowers_logo.png" alt="No Flowers = No Food logo" />
+        <span>No Flowers = No Food</span>
+      </div>
+      <div class="menu" role="menubar" aria-label="Primary">
+        <a role="menuitem" href="index.html">Home</a>
+        <a role="menuitem" href="why-no-spraying.html">Why not spraying</a>
+        <a role="menuitem" href="Noflowers_poster.pdf" target="_blank" rel="noopener">Poster</a>
+        <a role="menuitem" aria-current="page" href="insect-hotel.html">Insect hotel</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" role="banner">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-photo" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="wrap">
+      <img class="logo-hero" src="noflowers_logo.png" alt="No Flowers = No Food logo" />
+      <h1>Build an Insect Hotel</h1>
+      <p>Simple, proven steps to support native pollinators and beneficial insects in Aotearoa. Use natural, dry materials, get the hole sizes right, place it in full morning sun, and keep it clean each year.</p>
+      <div class="cta-row" style="margin-top:.6rem">
+        <a class="btn primary" href="#how">How to build</a>
+        <a class="btn secondary" href="#placement">Placement</a>
+        <a class="btn secondary" href="#maintenance">Maintenance</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container" role="main" aria-label="Insect hotel content">
+    <!-- Intro -->
+    <section id="intro">
+      <header>
+        <span class="section-kicker">Why it helps</span>
+        <h2>Give pollinators safe nesting spaces</h2>
+        <div class="hr"></div>
+      </header>
+      <p class="lead">Most native solitary bees and many beneficial insects need small, dry cavities to nest. An insect hotel provides those cavities using untreated wood, bamboo, and paper tubes. Successful hotels are compact, sunny, rain-sheltered, and maintained once a year.</p>
+    </section>
+
+    <!-- How to build -->
+    <section id="how">
+      <header>
+        <span class="section-kicker">Step-by-step</span>
+        <h2>How to build an effective insect hotel</h2>
+        <div class="hr"></div>
+      </header>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>1) Choose the frame</h3>
+          <p>Use a small wooden box or a simple frame (e.g., 25–35 cm wide × 25–35 cm high × 10–15 cm deep). Add a solid back panel to keep wind and rain out. Avoid plastics and treated timber.</p>
+          <ul>
+            <li>Untreated, seasoned timber</li>
+            <li>Weatherproof roof with a little overhang</li>
+            <li>Mounting points (two screws through back)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>2) Fill with nesting materials</h3>
+          <p>Mix cavity types to suit different species. Ensure all cavities are clean-cut, smooth inside, and closed at the back.</p>
+          <ul>
+            <li><strong>Drilled hardwood blocks:</strong> 3–10&nbsp;mm diameter holes, 10–15&nbsp;cm deep, closed at the back.</li>
+            <li><strong>Bamboo/pūkekohekohe canes:</strong> cut between nodes so one end is closed; internal diameters 3–10&nbsp;mm.</li>
+            <li><strong>Paper/cardboard tubes:</strong> thick-walled, snug in the frame; avoid flimsy craft paper.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>3) Hole sizes that work</h3>
+          <p>Provide a range of diameters for solitary bees and wasps.</p>
+          <ul>
+            <li>3–4&nbsp;mm (small species)</li>
+            <li>5–7&nbsp;mm (common sizes)</li>
+            <li>8–10&nbsp;mm (larger species)</li>
+          </ul>
+          <p>Space holes at least 8–10&nbsp;mm apart to keep the block strong.</p>
+        </div>
+
+        <div class="card">
+          <h3>4) Prepare the surfaces</h3>
+          <p>Drill into the <em>face grain</em> of hardwood (not end grain) to avoid splitting and rough interiors. Lightly sand entrances to remove splinters.</p>
+        </div>
+
+        <div class="card">
+          <h3>5) Keep it dry</h3>
+          <p>Add a sloped roof and a small overhang. If the frame is exposed, fit a simple rain cap or mount under an eave.</p>
+        </div>
+
+        <div class="card">
+          <h3>6) Secure the fillings</h3>
+          <p>Pack tubes tightly so they don’t rattle. Use a simple front lattice or wire mesh only if needed; don’t obstruct entrances.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Placement -->
+    <section id="placement">
+      <header>
+        <span class="section-kicker">Site it right</span>
+        <h2>Placement and orientation</h2>
+        <div class="hr"></div>
+      </header>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Sun</h3>
+          <p>Full morning sun is best (faces <strong>north-east to north</strong> in NZ). Warmth helps larvae develop and discourages mould.</p>
+        </div>
+        <div class="card">
+          <h3>Height</h3>
+          <p>Mount 0.8–1.5&nbsp;m above ground on a stable fence, wall, or post. Keep the back solid and the front clear of vegetation.</p>
+        </div>
+        <div class="card">
+          <h3>Proximity to flowers</h3>
+          <p>Place within 5–20&nbsp;m of pesticide-free flowers and shrubs. Add a shallow water dish with pebbles nearby.</p>
+        </div>
+      </div>
+      <blockquote>Visibility matters. Add a small sign so people know it’s an intentional pollinator habitat.</blockquote>
+    </section>
+
+    <!-- What to avoid / common mistakes -->
+    <section id="avoid">
+      <header>
+        <span class="section-kicker">Avoid these</span>
+        <h2>Common mistakes that make hotels fail</h2>
+        <div class="hr"></div>
+      </header>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Don’t use</h3>
+          <ul>
+            <li>Treated/preserved wood or plastics</li>
+            <li>Loose, short, or cracked tubes</li>
+            <li>End-grain drilled logs (splinters, water ingress)</li>
+            <li>Straw/pinecones alone (fine as filler, poor for nesting)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Don’t place</h3>
+          <ul>
+            <li>In deep shade or damp spots</li>
+            <li>Under roof drip lines with heavy splashback</li>
+            <li>Where lawn sprinklers hit directly</li>
+            <li>On moving branches or wobbly posts</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Maintenance -->
+    <section id="maintenance">
+      <header>
+        <span class="section-kicker">Care</span>
+        <h2>Maintenance and yearly cycle</h2>
+        <div class="hr"></div>
+      </header>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Inspect quarterly</h3>
+          <p>Check for mould, bird damage, or loose tubes. Replace any soggy or splintered materials.</p>
+        </div>
+        <div class="card">
+          <h3>Annual refresh</h3>
+          <p>After the main emergence (late spring/early summer), retire heavily used paper tubes and insert new ones. Timber blocks last longer but still inspect holes and entrances.</p>
+        </div>
+        <div class="card">
+          <h3>No pesticides</h3>
+          <p>Keep the surrounding area spray-free. Herbicides and insecticides undermine the hotel’s purpose.</p>
+        </div>
+      </div>
+      <p class="lead">Tip: Build two small hotels and rotate materials each year — one “active”, one “resting/cleaned”.</p>
+    </section>
+
+    <!-- NZ context -->
+    <section id="aotearoa">
+      <header>
+        <span class="section-kicker">Aotearoa context</span>
+        <h2>Designed for local species</h2>
+        <div class="hr"></div>
+      </header>
+      <p>In Aotearoa, many solitary bees (e.g., masked and leafcutter bees) use small, dry cavities. Mixed diameters (3–10&nbsp;mm) and clean, deep holes support a range of species. Pair your hotel with year-round flowers, bare soil patches for ground-nesters, and no-mow strips to supply forage.</p>
+    </section>
+
+    <!-- Gallery placeholders you will fill -->
+    <section id="gallery">
+      <header>
+        <span class="section-kicker">Examples</span>
+        <h2>Insect hotel gallery (your photos here)</h2>
+        <div class="hr"></div>
+      </header>
+      <div class="gallery">
+        <figure>
+          <img src="images/hotel-example-1.jpg" alt="Compact insect hotel example with mixed bamboo and timber blocks" />
+          <figcaption>Compact frame with mixed materials</figcaption>
+        </figure>
+        <figure>
+          <img src="images/hotel-example-2.jpg" alt="Close-up of drilled hardwood blocks with varied hole diameters" />
+          <figcaption>Hardwood blocks, smooth 3–10&nbsp;mm holes</figcaption>
+        </figure>
+        <figure>
+          <img src="images/hotel-example-3.jpg" alt="Insect hotel mounted on a fence, facing morning sun" />
+          <figcaption>Mounted in morning sun, sheltered from rain</figcaption>
+        </figure>
+        <figure>
+          <img src="images/hotel-example-4.jpg" alt="Paper tube inserts snugly packed into a frame" />
+          <figcaption>Replaceable paper tubes packed tightly</figcaption>
+        </figure>
+      </div>
+      <p style="margin-top:.6rem"><span class="badge">Note</span> Replace the image paths and captions with your own examples.</p>
+    </section>
+
+    <!-- Simple checklist -->
+    <section id="checklist">
+      <header>
+        <span class="section-kicker">Checklist</span>
+        <h2>Quick build checklist</h2>
+        <div class="hr"></div>
+      </header>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Materials</h3>
+          <ul>
+            <li>Untreated, seasoned timber frame with solid back</li>
+            <li>Hardwood blocks drilled 3–10&nbsp;mm × 10–15&nbsp;cm deep</li>
+            <li>Bamboo canes with one end naturally closed</li>
+            <li>Thick-walled paper/card tubes (closed at back)</li>
+            <li>Fixings to mount securely; sloped rain cap</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Setup</h3>
+          <ul>
+            <li>Full morning sun (NE–N facing)</li>
+            <li>0.8–1.5&nbsp;m high on stable surface</li>
+            <li>Near pesticide-free flowers and shrubs</li>
+            <li>Tubes snug; entrances smooth and unobstructed</li>
+            <li>Simple sign explaining the purpose</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container foot-inner">
+      <div>
+        <strong>No Flowers = No Food</strong>
+        <p class="fine">Aotearoa NZ campaign helping native insects and pollinators. Plant native, mow less and smarter, stop spraying, and keep parts of your place wild.</p>
+      </div>
+      <div>
+        <p><a href="index.html">Back to Home</a> · <a href="#top">Back to top</a></p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<button class="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">Top</button>
+</body>
+</html>
